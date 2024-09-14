@@ -115,4 +115,4 @@ fabric.properties
 .idea/caches/build_file_checksums.ser
 
 # Ignore all .sql files
-*.sql
+./**/sql/**
