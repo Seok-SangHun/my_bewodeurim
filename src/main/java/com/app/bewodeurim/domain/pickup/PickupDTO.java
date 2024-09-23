@@ -6,10 +6,11 @@ import org.springframework.stereotype.Component;
 @Component
 @Getter
 @ToString
+@Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public class PickupVO {
+public class PickupDTO {
     @EqualsAndHashCode.Include
     private Long id;
     private String pickupNumber;
@@ -21,4 +22,8 @@ public class PickupVO {
     private String pickupStatus;
     private String createdDate;
     private String updatedDate;
+
+    public PickupVO toVO(){
+        return new PickupVO(id,pickupNumber,memberId,driverId,pickupSchedule,pickupEnter,pickupRequestContent,pickupStatus,createdDate,updatedDate);
+    }
 }

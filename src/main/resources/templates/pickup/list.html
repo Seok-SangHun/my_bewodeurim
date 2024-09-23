@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>수거요청 목록</title>
+</head>
+<style>
+    table {
+        width: 1000px;
+        border-collapse: collapse;
+        margin: 0 auto;
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #f2f2f2;
+        color: #333;
+    }
+</style>
+<body>
+<table id="pickup-table">
+    <tr>
+        <th>번호</th>
+        <th>작성자</th>
+        <th>픽업 날짜</th>
+        <th>요청 사항</th>
+        <th>작성 날짜</th>
+    </tr>
+</table>
+<button id="moreView">더보기</button>
+<div id="page-wrap"></div>
+<button id="go-read">조회하기</button>
+</body>
+<script th:inline="javascript">
+    const member = [[${member}]]
+    const pagination = [[${pagination}]]
+    const pickups = [[${pickups}]]
+    const table = document.getElementById("pickup-table");
+    const pageWrap = document.getElementById("page-wrap");
+    const moreView = document.getElementById("moreView");
+    let text = ``;
+    pickups.forEach((pickup) => {
+        text += `
+            <tr>
+                <td>${pickup.id}</td>
+                <td>${pickup.memberName}</td>
+                <td>${pickup.pickupSchedule}</td>
+                <td>${pickup.pickupRequestContent}</td>
+                <td>${pickup.createdDate}</td>
+            </tr>
+        `;
+    });
+    table.innerHTML += text;
+
+    text = ``;
+    for(let i=0; i<pagination.pageCount; i++){
+        text += `<a href="/pickup/list?page=${i + 1}">${i + 1}</a>`;
+    }
+    pageWrap.innerHTML = text;
+
+    document.getElementById("go-read").addEventListener("click",()=>{
+        location.href = `/member/read?id=${member.id}`;
+    })
+</script>
+</html>
