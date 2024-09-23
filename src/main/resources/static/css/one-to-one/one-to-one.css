@@ -406,8 +406,8 @@ input, select, strong {
 }
 
 .select-type2 .nice-select.open {
-    background-color: #ffebe8;
-    border-color: #ff8c79;
+    background-color: #ECFFEF;
+    border-color: #6ADB7B;
 }
 .nice-select.open:after {
     -webkit-transform: rotate(-180deg);
@@ -1023,15 +1023,15 @@ address, caption, em, i, var {
 
 input[type=number]:focus, input[type=password]:focus, 
 input[type=tel]:focus, input[type=text]:focus {
-    border-color: #ffc2b8;
-    background: #ffebe8;
+    border-color: #6ADB7B;
+    background: #ECFFEF;
     outline: 0;
 }
 
 .form-item input:focus~.title {
     font-size: 11px;
     top: 9px;
-    color: #f0543a;
+    color: #3f4970;
 }
 
 @media (min-width: 1200px) {
@@ -1321,7 +1321,7 @@ input, select {
 
 
 .btn-type, .btn-type-sm{
-    background: #f0543a;
+    background: #6ADB7B;
     color: #fff;
 }
 
@@ -1354,7 +1354,7 @@ input, select {
 }
 
 .disabled.btn-type:hover, .disabled.btn-type-sm:hover {
-    background: #f0543a; /* 비활성화 상태에서 hover 시 원래의 색상으로 유지 */
+    background: #6ADB7B; /* 비활성화 상태에서 hover 시 원래의 색상으로 유지 */
 }
 
 /* modal 창 */
