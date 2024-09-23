@@ -44,7 +44,7 @@ body {
     padding: 0;
 }
 
-.AppLayout_container {
+.AppLayout_container__2g11i {
     overflow-y: auto;
     position: relative;
 }
@@ -434,7 +434,7 @@ iframe, img, video {
 }
 
 /* 사이드 바 */
-.AppLayout_container .AppLayout_main__3h4EB {
+.AppLayout_container__2g11i .AppLayout_main__3h4EB {
     display: flex;
     padding-top: 72px;
     height: 100%;
@@ -563,7 +563,7 @@ iframe, img, video {
     min-width: 28px;
 }
 
-.AppLayout_container .AppLayout_main__3h4EB .AppLayout_expandNavButton__2AQMd {
+.AppLayout_container__2g11i .AppLayout_main__3h4EB .AppLayout_expandNavButton__2AQMd {
     display: flex;
     position: fixed;
     top: 92px;
@@ -580,7 +580,7 @@ iframe, img, video {
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .1019607843);
 }
 
-.AppLayout_container .AppLayout_main__3h4EB .AppLayout_expandNavButton__2AQMd .AppLayout_icon__1_YzF {
+.AppLayout_container__2g11i .AppLayout_main__3h4EB .AppLayout_expandNavButton__2AQMd .AppLayout_icon__1_YzF {
     background: url(https://static.wadiz.kr/studio/funding/static/media/icon-expand-more.21864999.svg) no-repeat 50%;
     background-size: 12px 12px;
     pointer-events: none;
@@ -589,10 +589,10 @@ iframe, img, video {
 }
 
 /* 사이드바 열렸을 때 버튼 */
-.AppLayout_container .AppLayout_main__3h4EB .AppLayout_expandNavButton__2AQMd.AppLayout_expand__3TNUI {
+.AppLayout_container__2g11i .AppLayout_main__3h4EB .AppLayout_expandNavButton__2AQMd.AppLayout_expand__3TNUI {
     left: 224px;
 }
-.AppLayout_container .AppLayout_main__3h4EB .AppLayout_expandNavButton__2AQMd.AppLayout_expand__3TNUI .AppLayout_icon__1_YzF {
+.AppLayout_container__2g11i .AppLayout_main__3h4EB .AppLayout_expandNavButton__2AQMd.AppLayout_expand__3TNUI .AppLayout_icon__1_YzF {
     -webkit-transform: rotate(180deg);
     transform: rotate(180deg);
 }

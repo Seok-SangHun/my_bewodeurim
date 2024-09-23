@@ -67,10 +67,10 @@ textarea, tfoot, th, thead, time, tr, u, ul, var, video {
     padding: 0;
     vertical-align: baseline;
 }
-.AppGNBbar_container__3aaiG {
+.AppGNBbar_container {
     height: 72px;
 }
-.AppGNBbar_container__3aaiG {
+.AppGNBbar_container{
     box-shadow: 0 1px 0 0 rgba(10, 22, 70, .06);
     display: flex;
     position: fixed;
@@ -151,7 +151,7 @@ a {
 
 
 
-.AppGNBbar_flex__-H9Qf {
+.AppGNBbar_flex {
     display: flex;
     flex: 1 1;
     align-items: center;
