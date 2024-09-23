@@ -1,0 +1,7 @@
+/* 도시 테이블: 도시 정보를 저장 */
+CREATE TABLE TBL_CITY (
+    ID NUMBER CONSTRAINT PK_CITY PRIMARY KEY,  /* 도시의 고유 ID */
+    CITY_NAME VARCHAR2(100) NOT NULL     /* 도시 이름 (예: 서울) */
+);
+
+CREATE SEQUENCE SEQ_CITY;
