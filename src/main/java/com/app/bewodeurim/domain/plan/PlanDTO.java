@@ -10,7 +10,7 @@ import java.io.Serializable;
 @Getter @Setter @ToString @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public class PlanVO implements Serializable {
+public class PlanDTO implements Serializable {
     @EqualsAndHashCode.Include
     private Long id;
     private String grade;
@@ -21,4 +21,5 @@ public class PlanVO implements Serializable {
     private String createdDate;
     private String updatedDate;
 
+    
 }
