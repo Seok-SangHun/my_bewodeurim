@@ -1,21 +1,4 @@
 @charset "UTF-8";
-@font-face {
-    font-family: "SUIT";
-    font-weight: 400;
-    src: local("SUIT-Regular"),url(/static/css/fonts/SUIT-Regular.woff2)format("woff2"),url(/static/css/fonts/SUIT-Regular.otf)format("opentype")
-}
-
-@font-face {
-    font-family: "SUIT";
-    font-weight: 600;
-    src: local("SUIT-SemiBold"),url(/static/css/fonts/SUIT-SemiBold.woff2)format("woff2"),url(/static/css/fonts/SUIT-SemiBold.otf)format("opentype")
-}
-
-@font-face {
-    font-family: "SUIT";
-    font-weight: 700;
-    src: local("SUIT-Bold"),url(/static/css/fonts/SUIT-Bold.woff2)format("woff2"),url(/static/css/fonts/SUIT-Bold.otf)format("opentype")
-}
 
 body {
     background-color: #fff;
@@ -44,6 +27,52 @@ body {
     }
 }
 
+.page-header.side .page-title {
+    font-size: 28px;
+}
+.page-header .page-title {
+    line-height: 1.2;
+    font-weight: 600;
+}
+.page-header.side .location {
+    margin-bottom: 0;
+}
+/*  */
+.location {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #343434;
+    margin-bottom: 20px;
+}
+.location .home,
+.location a:after {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    background-image: url(https://www.freet.co.kr/assets/images/icon/home.svg);
+    background-position: 50% 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.location a {
+    position: relative;
+    margin-right: 25px;
+}
+.location a:after {
+    content: "";
+    width: 10px;
+    height: 10px;
+    background-image: url(https://www.freet.co.kr/assets/images/icon/arrow.svg);
+    transform: rotate(-90deg);
+    position: absolute;
+    right: -18px;
+    top: 50%;
+    margin-top: -5px;
+}
 #driver-signup1-content {
     padding: 30px 0 80px;
 }
@@ -103,7 +132,7 @@ section {
         width: 16px;
         height: 16px;
         vertical-align: middle;
-        background-image: url("/static/images/driver_signup/driversignup_home.png");
+        background-image: none;
         background-position: 50% 50%;
         background-size: cover;
         background-repeat: no-repeat;
@@ -137,7 +166,7 @@ section {
         width: 10px;
         height: 10px;
         vertical-align: middle;
-        background-image: url("/static/images/driver_signup/driversignup_arrow.png");
+        background-image: url(https://www.freet.co.kr/assets/images/icon/arrow3.svg);
         background-position: 50% 50%;
         background-size: cover;
         background-repeat: no-repeat;
@@ -195,7 +224,8 @@ ol {
 }
 
 @media (min-width: 1200px) {
-    .driver-signup1-step-wrap ol li.driver-signup1-active {
+
+    .driver-signup1-step-wrap ol li.active {
         display: inline-flex;
     }
 }
@@ -206,7 +236,7 @@ ol {
     }
 }
 
-.driver-signup1-step-wrap ol li.driver-signup1-active {
+.driver-signup1-step-wrap ol li.active {
     align-items: center;
     color: #f0543a;
 }
@@ -226,27 +256,13 @@ ol {
 }
 
 @media (min-width: 1200px) {
-    .driver-signup1-step-wrap ol li.driver-signup1-active:before {
-        background-image: url("/static/images/driver_signup/driversignup_arrow2.png");
+    .driver-signup1-step-wrap ol li.active:before {
+        background-image: url(https://www.freet.co.kr/assets/images/icon/arrow2.svg);
         background-size: cover;
     }
 }
 
-@media (min-width: 1200px) {
-    .driver-signup1-step-wrap ol li:not(:last-child):before {
-        content: "";
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        right: -4px;
-        width: 12px;
-        height: 12px;
-        margin-top: -6px;
-        box-sizing: border-box;
-    }
-}
-
-.driver-signup1-step-wrap ol li.driver-signup1-active .driver-signup1-num {
+.driver-signup1-step-wrap ol li.active .driver-signup1-num {
     border-color: #f0543a;
     background: #f0543a;
     opacity: 1;
@@ -273,8 +289,8 @@ ol {
     font-style: normal;
 }
 
-@media (min-width: 1200px) {
-    .driver-signup1-step-wrap ol li.driver-signup1-active:after {
+
+    .driver-signup1-step-wrap ol li.active:after {
         content: "";
         width: 100%;
         height: 2px;
@@ -285,21 +301,46 @@ ol {
         right: 0;
         box-sizing: border-box;
     }
-}
 
-@media (min-width: 1200px) {
+
+
     .driver-signup1-step-wrap ol li:not(:last-child) {
         padding-right: 39px;
     }
+
+    .driver-signup1 ol li .num{
+        display: inline-flex;
+        width: 29px;
+        height: 22px;
+        border-radius: 11px;
+        border: 2px solid #c3c3c9;
+        background: #c3c3c9;
+        font-size: 12px;
+        font-weight: 600;
+        color: #fff;
+        margin-right: 8px;
+        line-height: 1;
+        opacity: 0.7;
+    }
+
+/*    li에 done이 되면 */
+.driver-signup1 ol li.done {
+    display: inline-flex;
+}
+.driver-signup1 ol li.done .num:after {
+    content: "";
+    width: 16px;
+    height: 16px;
+    background-image: url(https://www.freet.co.kr/assets/images/icon/check.svg);
+    background-size: cover;
 }
 
-@media (min-width: 1200px) {
     .driver-signup1-step-wrap ol li {
         display: inline-flex;
         align-items: center;
         font-size: 15px;
     }
-}
+
 
 .driver-signup1-step-wrap ol li {
     position: relative;
@@ -316,13 +357,16 @@ ol {
         right: -4px;
         width: 12px;
         height: 12px;
-        background-image: url("/static/images/driver_signup/driversignup_arrow3.png");
+        background-image: url(https://www.freet.co.kr/assets/images/icon/arrow3.svg);
         background-size: cover;
         margin-top: -6px;
         box-sizing: border-box;
     }
 }
-
+image{
+    width: 100%;
+    height: 100%;
+}
 @media (min-width: 1200px) {
     .driver-signup1-step-wrap ol li .driver-signup1-num {
         font-size: 13px;
@@ -359,7 +403,7 @@ ol {
     bottom: 0;
     background: #f0543a;
     display: flex;
-    width: 33.3333%;
+    width: 20%;
 }
 
 @media (min-width: 1200px) {
