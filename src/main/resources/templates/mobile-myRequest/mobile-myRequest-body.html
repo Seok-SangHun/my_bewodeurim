@@ -457,7 +457,7 @@
                             </section>
                             <!-- 수거 요청 목록 레이아웃 -->
                             <div class="btn-wrap">
-                                <a class="btn-type3">더보기</a>
+                                <a id="more" class="btn-type3">더보기</a>
                             </div>
                         </div>
                         <!-- 요청 목록이 없을 시 -->
@@ -471,6 +471,12 @@
                 </main>
             </div>
         </div>
+    <input type="hidden" id="page" th:value="${pagination.page}">
     </body>
     <script src="/static/js/mobile-myRequest/mobile-myRequest-body.js"></script>
+    <script th:inline="javascirpt">
+        const pickups = [[${pickups}]];
+        const nextPage = [[${nextPage}]];
+    </script>
+    <script src="js/mobile-myRequest/list.js"></script>
 </html>

@@ -422,6 +422,7 @@
             const order = [[${order}]];
             const requestAllList = document.getElementById("requestAllList");
             const pageWrap = document.getElementById("page-wrap");
+            const more = document.getElementById("loadMore");
 
             // 데이터 로그로 출력해서 확인
             console.log("Pagination:", pagination);
@@ -464,6 +465,13 @@
             if (pickups.length < 10) {
                 document.getElementById("loadMore").style.display = 'none';
             }
+
+            more.addEventListener("click", (e) => {
+                e.preventDefault();
+                page++;
+                location.href = `/mobile-allRequest/mobile-allRequest-body?page=${page}`
+
+            });
 
     </script>
 
