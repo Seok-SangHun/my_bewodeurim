@@ -22,7 +22,8 @@ public class Pagination {
         this.rowCount = 10;
         this.pageCount = 10;
         this.endRow = page * rowCount;
-        this.startRow = endRow - rowCount + 1;
+//        this.startRow = endRow - rowCount + 1;
+        this.startRow = 1;
         this.endPage = (int)(Math.ceil(page / (double)pageCount) * pageCount);
         this.startPage = endPage - pageCount + 1;
         this.realEnd = (int)Math.ceil(total / (double)rowCount);
