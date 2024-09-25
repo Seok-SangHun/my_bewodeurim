@@ -1,4 +1,3 @@
-
 package com.app.bewodeurim.service.inquiry;
 
 import com.app.bewodeurim.domain.inquiry.InquiryVO;

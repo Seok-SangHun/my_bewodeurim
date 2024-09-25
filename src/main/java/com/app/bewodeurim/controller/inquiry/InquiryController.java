@@ -72,13 +72,6 @@ public class InquiryController {
         return "faq/faq"; // faq.html 페이지 반환
     }
 
-    // 자주 묻는 질문 페이지로 이동(GET)
-    @GetMapping("/faq/faq")
-    public void gotoFaqPage() {
-
-    }
-
-    public void goToInquiry() {}
     // 1:1 상담 문의 페이지로 이동(GET)
     @GetMapping("/one-to-one/one-to-one")
     public void goToOnetoOne(InquiryDTO inquiryDTO, HttpSession session) {;}
