@@ -7,6 +7,5 @@ import java.util.List;
 
 public interface DriverPickupService {
     public List<DriverPickUpDTO> getPickupList(Pagination pagination, Long driverId);
-
     public int getTotal();
 }

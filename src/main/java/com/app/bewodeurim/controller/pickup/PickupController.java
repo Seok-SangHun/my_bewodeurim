@@ -35,7 +35,7 @@ public class PickupController {
     @GetMapping("/mobile-allRequest/mobile-allRequest-body")
     public void getList(Pagination pagination, String order, Model model){
 
-//        PickupDTO pickupDTO = (PickupDTO) session.getAttribute("pickup");
+        PickupDTO pickupDTO = (PickupDTO) session.getAttribute("pickup");
 
         if(order == null){
             order = "recent";
@@ -44,6 +44,7 @@ public class PickupController {
         pagination.setTotal(pickupService.getTotal());
         pagination.progress();
 
+//        model.addAttribute("nextPage", pickupService.getPickups(pagination, String.valueOf(pickupDTO.getId())).size());
         // 게시물 목록과 회원 정보를 모델에 추가
         model.addAttribute("pickups", pickupService.getPickups(pagination, order));
         model.addAttribute("totalCount", totalCount); // 총 개수를 모델에 추가
@@ -69,6 +70,7 @@ public class PickupController {
     public void goToDetailForm(@RequestParam("id") Long id, HttpSession session, Model model) {
         // ID로 픽업 데이터 조회
         Optional<PickupDTO> optionalPickupDTO = pickupService.getPickup(id);
+
 
         // 픽업 데이터가 존재하는 경우
         if (optionalPickupDTO.isPresent()) {
