@@ -10,5 +10,6 @@
         <typeAlias type="com.app.bewodeurim.domain.pickup.DriverPickUpDTO" alias="driverPickupDTO"/>
         <typeAlias type="com.app.bewodeurim.domain.member.DriverVO" alias="driverVO"/>
         <typeAlias type="com.app.bewodeurim.domain.member.DriverDTO" alias="driverDTO"/>
+        <typeAlias type="com.app.bewodeurim.domain.pickup.PickupDTO" alias="pickupDTO"/>
     </typeAliases>
 </configuration>
