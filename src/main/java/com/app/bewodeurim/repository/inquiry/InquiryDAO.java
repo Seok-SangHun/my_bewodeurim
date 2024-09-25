@@ -15,5 +15,4 @@ public class InquiryDAO {
         inquiryMapper.insert(inquiryVO);
     }
 
-
 }

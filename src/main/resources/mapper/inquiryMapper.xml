@@ -6,4 +6,5 @@
         INSERT INTO TBL_INQUIRY (ID, MEMBER_ID, INQUIRY_TYPE, INQUIRY_TITLE, INQUIRY_CONTENT)
         VALUES (SEQ_INQUIRY.NEXTVAL, #{memberId}, #{inquiryType}, #{inquiryTitle}, #{inquiryContent})
     </insert>
+
 </mapper>
