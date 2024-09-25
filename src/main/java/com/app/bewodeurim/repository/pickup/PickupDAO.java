@@ -29,8 +29,8 @@ public class PickupDAO {
         pickupMapper.insert(pickupVO);
     }
 
-    public List<PickupDTO> findAll(Pagination pagination){
-        return pickupMapper.selectAll(pagination);
+    public List<PickupDTO> findAll(Pagination pagination, String order){
+        return pickupMapper.selectAll(pagination, order);
     }
 
     public Optional<PickupDTO> findById(Long id){
@@ -38,5 +38,8 @@ public class PickupDAO {
     }
     public int getTotal(){
         return pickupMapper.selectTotal();
+    }
+    public void setPickup(PickupVO pickupVO){
+        pickupMapper.update(pickupVO);
     }
 }
