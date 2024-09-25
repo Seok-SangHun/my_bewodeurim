@@ -428,6 +428,33 @@
             let page = document.getElementById("page").value;
             const nextPage = [[${nextPage}]];
 
+            const options = document.querySelectorAll('.option');
+            const current = document.querySelector('.current');
+
+            // 옵션 선택 기능
+            options.forEach(option => {
+                option.addEventListener('click', (event) => {
+                    // 모든 옵션에서 selected와 focus 제거
+                    options.forEach(opt => {
+                        opt.classList.remove('selected', 'focus');
+                    });
+
+                    // 클릭된 옵션에 selected와 focus 추가
+                    event.currentTarget.classList.add('selected', 'focus');
+                    current.textContent = event.currentTarget.textContent; // 현재 선택된 텍스트 업데이트
+
+                    // 선택된 값에 따라 페이지 이동
+                    const value = event.currentTarget.getAttribute('data-value');
+                    if (value === 'new') {
+                        window.location.href = `/mobile-allRequest/mobile-allRequest-body?page=${page}&order=recent`;
+                    } else if (value === 'reco') {
+                        window.location.href = `/mobile-allRequest/mobile-allRequest-body?page=${page}&order=popular`;
+                    } else if (value === 'end') {
+                        window.location.href = `/mobile-allRequest/mobile-allRequest-body?page=${page}&order=nearby`;
+                    }
+                });
+            });
+
             // 데이터 로그로 출력해서 확인
             console.log("Pagination:", pagination);
             console.log("Pickups:", pickups);
@@ -472,7 +499,7 @@
             if(pickups.length < totalCount){
                 more.addEventListener("click", (e) => {
                     page++;
-                    location.href = `/mobile-allRequest/mobile-allRequest-body?page=${page}`
+                    location.href = `/mobile-allRequest/mobile-allRequest-body?page=${page}&order=${order}`
 
                 })
             }else{
@@ -480,6 +507,7 @@
             }
 
     </script>
+
 
     <script src="/js/mobile-allRequest/mobile-allRequest-body.js"></script>
 </html>

@@ -29,9 +29,6 @@ public class PickupController {
     private final HttpSession session;
     private final DriverPickupDAO driverPickupDAO;
 
-    @GetMapping("apply")
-    public void goToApplyForm(HttpServletResponse response) {;}
-
     @GetMapping("/mobile-allRequest/mobile-allRequest-body")
     public void getList(Pagination pagination, String order, Model model){
 
@@ -44,27 +41,13 @@ public class PickupController {
         pagination.setTotal(pickupService.getTotal());
         pagination.progress();
 
-//        model.addAttribute("nextPage", pickupService.getPickups(pagination, String.valueOf(pickupDTO.getId())).size());
         // 게시물 목록과 회원 정보를 모델에 추가
         model.addAttribute("pickups", pickupService.getPickups(pagination, order));
+        log.info("{}",order);
         model.addAttribute("totalCount", totalCount); // 총 개수를 모델에 추가
         model.addAttribute("order", order); // order 값을 모델에 추가
     }
 
-//    @GetMapping("/mobile-detailRequest/mobile-detailRequest-body")
-//    public void goTodetailForm(Model model, HttpSession session){
-//        PickupDTO pickupDTO = (PickupDTO) session.getAttribute("pickup");
-//        model.addAttribute("pickup", pickupDTO);
-//    }
-
-//    @GetMapping("/mobile-detailRequest/mobile-detailRequest-body")
-//    public void goToDetailForm(@RequestParam("id") Long pickupId, Model model) {
-//        // 전달받은 id로 픽업 데이터를 조회
-//        Optional<PickupDTO> pickupDTO = pickupService.getPickup(pickupId);
-//
-//        
-//        model.addAttribute("pickup", pickupDTO);
-//    }
 
     @GetMapping("/mobile-detailRequest/mobile-detailRequest-body")
     public void goToDetailForm(@RequestParam("id") Long id, HttpSession session, Model model) {
