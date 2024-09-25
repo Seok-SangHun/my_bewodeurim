@@ -18,12 +18,15 @@ import org.springframework.web.servlet.view.RedirectView;
 public class InquiryController {
     private InquiryService inquiryService;
 
+    // 문의 페이지로 이동(GET)
+
+    public void goToInquiry() {}
     // 1:1 상담 문의 페이지로 이동(GET)
     @GetMapping("/one-to-one/one-to-one")
-    public void goToInquiry(InquiryDTO inquiryDTO, HttpSession session) {;}
+    public void goToOnetoOne(InquiryDTO inquiryDTO, HttpSession session) {;}
 
     // 1:1 상담 문의 페이지 작성 완료(POST)
-    @PostMapping
+    @PostMapping("/one-to-one/one-to-one")
     public RedirectView completeInquiry(InquiryDTO inquiryDTO) {
         inquiryService.completeInquiry(inquiryDTO.toVO());
         return new RedirectView("/one-to-one/my_counsel");
