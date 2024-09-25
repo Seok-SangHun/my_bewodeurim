@@ -21,5 +21,5 @@ public class PlanDTO implements Serializable {
     private String createdDate;
     private String updatedDate;
 
-    
+
 }
