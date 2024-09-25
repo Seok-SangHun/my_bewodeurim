@@ -62,19 +62,19 @@ public class PickupController {
 //        // 전달받은 id로 픽업 데이터를 조회
 //        Optional<PickupDTO> pickupDTO = pickupService.getPickup(pickupId);
 //
-//        // 조회된 픽업 데이터를 모델에 추가
+//        
 //        model.addAttribute("pickup", pickupDTO);
 //    }
 
     @GetMapping("/mobile-detailRequest/mobile-detailRequest-body")
     public void goToDetailForm(@RequestParam("id") Long id, HttpSession session, Model model) {
         // ID로 픽업 데이터 조회
-        Optional<PickupDTO> optionalPickupDTO = pickupService.getPickup(id);
+        Optional<PickupDTO> PickupDTO = pickupService.getPickup(id);
 
 
         // 픽업 데이터가 존재하는 경우
-        if (optionalPickupDTO.isPresent()) {
-            PickupDTO pickupDTO = optionalPickupDTO.get();
+        if (PickupDTO.isPresent()) {
+            PickupDTO pickupDTO = PickupDTO.get();
 
             // 조회된 픽업 데이터를 세션에 저장
             session.setAttribute("pickup", pickupDTO);
@@ -96,7 +96,6 @@ public class PickupController {
         model.addAttribute("pickups", driverPickupService.getPickupList(pagination, driverVO.getId()));
         pagination.setPage(pagination.getPage() + 1);
         model.addAttribute("nextPage", driverPickupService.getPickupList(pagination, driverVO.getId()).size());
-
     }
 
 
