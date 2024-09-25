@@ -22,6 +22,14 @@ public class PickupDTO {
     private String pickupStatus;
     private String createdDate;
     private String updatedDate;
+    private String memberAddressCode;
+    private String memberAddressBasic;
+    private String memberAddressDetail;
+    private int planPrice;
+    private String planGrade;
+    private String planBoxSize;
+    private int planDeliveryFee;
+    private int planMaxMembers;
 
     public PickupVO toVO(){
         return new PickupVO(id,pickupNumber,memberId,driverId,pickupSchedule,pickupEnter,pickupRequestContent,pickupStatus,createdDate,updatedDate);

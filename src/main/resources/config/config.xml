@@ -5,7 +5,11 @@
         <setting name="mapUnderscoreToCamelCase" value="true"/>
     </settings>
     <typeAliases>
+<<<<<<< HEAD
         <typeAlias type="com.app.bewodeurim.domain.inquiry.InquiryVO" alias="inquiryVO"/>
         <typeAlias type="com.app.bewodeurim.domain.inquiry.InquiryDTO" alias="inquiryDTO"/>
+=======
+        <typeAlias type="com.app.bewodeurim.domain.pickup.DriverPickUpDTO" alias="driverPickupDTO"/>
+>>>>>>> b0923
     </typeAliases>
 </configuration>
