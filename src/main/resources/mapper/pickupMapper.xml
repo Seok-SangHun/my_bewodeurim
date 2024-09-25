@@ -2,13 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.app.bewodeurim.mapper.pickup.PickupMapper">
     <select id="selectPlan" resultType="com.app.bewodeurim.domain.plan.PlanVO">
-        SELECT ID, PLAN_GRADE, PLAN_PRICE, PLAN_BOX_SIZE, PLAN_MAX_MEMBERS, PLAN_STATUS, CREATED_DATE, UPDATED_DATE
+        SELECT ID, PLAN_GRADE, PLAN_PRICE, PLAN_BOX_SIZE, PLAN_MAX_MEMBERS, PLAN_STATUS, CREATED_DATE, UPDATED_DATE, PLAN_DELIVERY_FEE
         FROM TBL_PLAN
         WHERE ID = #{id}
     </select>
 
     <select id="selectMember" resultType="com.app.bewodeurim.domain.member.MemberVO">
-        SELECT ID, MEMBER_NAME, MEMBER_EMAIL, MEMBER_PHONE_NUMBER, MEMBER_STATUS, MEMBER_PASSWORD, CREATED_DATE, UPDATED_DATE, MEMBER_ADDRESS_CODE, MEMBER_ADDRESS_BASIC, MEMBER_ADDRESS_DETAIL
+        SELECT ID, MEMBER_NAME, MEMBER_EMAIL, MEMBER_PHONE_NUMBER, MEMBER_STATUS, MEMBER_PASSWORD, CREATED_DATE, UPDATED_DATE, MEMBER_ADDRESS_CODE, MEMBER_ADDRESS_BASIC, MEMBER_ADDRESS_DETAIL, MEMBER_TYPE
         FROM TBL_MEMBER
         WHERE ID = #{id}
     </select>
@@ -20,46 +20,74 @@
 
     <select id="selectById" resultType="com.app.bewodeurim.domain.pickup.PickupDTO">
         SELECT
-            P.ID,
-            P.PICKUP_NUMBER,
-            P.MEMBER_ID,
-            P.DRIVER_ID,
-            P.PICKUP_SCHEDULE,
-            P.PICKUP_ENTER,
-            P.PICKUP_REQUEST_CONTENT,
-            P.PICKUP_STATUS,
-            P.CREATED_DATE,
-            P.UPDATED_DATE,
-            M.MEMBER_ADDRESS_CODE,
-            M.MEMBER_ADDRESS_BASIC,
-            M.MEMBER_ADDRESS_DETAIL
+        P.ID,
+        P.PICKUP_NUMBER,
+        P.MEMBER_ID,
+        P.DRIVER_ID,
+        P.PICKUP_SCHEDULE,
+        P.PICKUP_ENTER,
+        P.PICKUP_REQUEST_CONTENT,
+        P.PICKUP_STATUS,
+        P.CREATED_DATE,
+        P.UPDATED_DATE,
+        M.MEMBER_ADDRESS_CODE,
+        M.MEMBER_ADDRESS_BASIC,
+        M.MEMBER_ADDRESS_DETAIL,
+        PL.PLAN_PRICE,
+        PL.PLAN_GRADE,
+        PL.PLAN_BOX_SIZE,
+        PL.PLAN_DELIVERY_FEE,
+        PL.PLAN_MAX_MEMBERS
         FROM TBL_PICKUP P
-                 JOIN TBL_MEMBER M ON P.MEMBER_ID = M.ID
+        JOIN TBL_MEMBER M ON P.MEMBER_ID = M.ID
+        LEFT JOIN TBL_PAYMENT PA ON M.ID = PA.MEMBER_ID
+        LEFT JOIN TBL_PLAN PL ON PA.PLAN_ID = PL.ID
         WHERE P.ID = #{id}
     </select>
 
 
+
     <select id="selectAll" resultType="com.app.bewodeurim.domain.pickup.PickupDTO">
-        SELECT P2.ID, M.MEMBER_ADDRESS_CODE, M.MEMBER_ADDRESS_BASIC, MEMBER_ADDRESS_DETAIL, P2.PICKUP_NUMBER, P2.MEMBER_ID, P2.DRIVER_ID, P2.PICKUP_SCHEDULE, P2.PICKUP_ENTER, P2.PICKUP_REQUEST_CONTENT, P2.PICKUP_STATUS, P2.CREATED_DATE, P2.UPDATED_DATE
-        FROM TBL_MEMBER M JOIN
-        (
-        SELECT ROWNUM R, ID, PICKUP_NUMBER, MEMBER_ID, DRIVER_ID, PICKUP_SCHEDULE, PICKUP_ENTER, PICKUP_REQUEST_CONTENT, PICKUP_STATUS, CREATED_DATE, UPDATED_DATE
-        FROM
-        (
-        SELECT ID, PICKUP_NUMBER, MEMBER_ID, DRIVER_ID, PICKUP_SCHEDULE, PICKUP_ENTER, PICKUP_REQUEST_CONTENT, PICKUP_STATUS, CREATED_DATE, UPDATED_DATE
+        SELECT P2.ID, M.MEMBER_ADDRESS_CODE, M.MEMBER_ADDRESS_BASIC, M.MEMBER_ADDRESS_DETAIL,
+        P2.PICKUP_NUMBER, P2.MEMBER_ID, P2.DRIVER_ID, P2.PICKUP_SCHEDULE,
+        P2.PICKUP_ENTER, P2.PICKUP_REQUEST_CONTENT, P2.PICKUP_STATUS,
+        P2.CREATED_DATE, P2.UPDATED_DATE, PL.PLAN_PRICE, PL.PLAN_GRADE
+        FROM TBL_MEMBER M
+        JOIN (
+        SELECT ROWNUM R, ID, PICKUP_NUMBER, MEMBER_ID, DRIVER_ID,
+        PICKUP_SCHEDULE, PICKUP_ENTER, PICKUP_REQUEST_CONTENT,
+        PICKUP_STATUS, CREATED_DATE, UPDATED_DATE
+        FROM (
+        SELECT ID, PICKUP_NUMBER, MEMBER_ID, DRIVER_ID,
+        PICKUP_SCHEDULE, PICKUP_ENTER, PICKUP_REQUEST_CONTENT,
+        PICKUP_STATUS, CREATED_DATE, UPDATED_DATE
         FROM TBL_PICKUP
         ORDER BY
-        ID
+        <choose>
+            <when test="order == 'recent'.toString()">ID</when>
+            <otherwise>PL.PLAN_PRICE</otherwise>
+        </choose>
         DESC
         ) P1
         <![CDATA[
-            WHERE ROWNUM <= #{pagination.endRow}
+        WHERE ROWNUM <= #{pagination.endRow}
         ) P2
-        ON M.ID = P2.MEMBER_ID AND P2.R >= #{pagination.startRow}
-        ]]>
+        ON M.ID = P2.MEMBER_ID
+        LEFT JOIN TBL_PAYMENT PA ON M.ID = PA.MEMBER_ID
+        LEFT JOIN TBL_PLAN PL ON PA.PLAN_ID = PL.ID
+        WHERE P2.R >= #{pagination.startRow}
+         ]]>
     </select>
+
 
     <select id="selectTotal">
         SELECT COUNT(*) FROM TBL_PICKUP
     </select>
+
+    <update id="update">
+        UPDATE TBL_PICKUP
+        SET PICKUP_SCHEDULE = #{pickupSchedule}, PICKUP_ENTER=#{pickupEnter}, PICKUP_REQUEST_CONTENT=#{pickupRequestContent},
+            PICKUP_STATUS =#{pickupStatus}, UPDATED_DATE = CURRENT_TIMESTAMP
+        WHERE ID = #{id}
+    </update>
 </mapper>

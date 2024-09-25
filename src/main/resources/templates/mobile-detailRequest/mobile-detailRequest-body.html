@@ -5,10 +5,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link
             rel="stylesheet"
-            href="/static/css/mobile-detailRequest/mobile-detailRequest-body.css"
+            href="/css/mobile-detailRequest/mobile-detailRequest-body.css"
         />
 
-        <link rel="stylesheet" href="/static/css/common/common.css" />
+        <link rel="stylesheet" href="/css/common/common.css" />
         <link
             rel="shortcut icon"
             href="https://www.freet.co.kr/static/assets/favicons/favicon.png"
@@ -27,7 +27,7 @@
             <div class="contents">
                 <div class="header-page">
                     <div class="btn-box">
-                        <a href="" class="btn-back">
+                        <a id="btn-back" class="btn-back">
                             <i class="ico-back"></i>
                             <span class="hidden">뒤로가기</span>
                         </a>
@@ -43,32 +43,28 @@
                                 <div class="plan-inner-box">
                                     <div class="plan-box">
                                         <div class="plan-top">
-                                            <span
-                                                class="flag-type status-light"
-                                            >
-                                                라이트
-                                            </span>
+                                            <span class="flag-type status-light" th:text="${pickup.planGrade}"></span>
                                             <div class="tag-box">
                                                 <span class="tag-type2">
                                                     오늘
                                                 </span>
-                                                <span class="tag-type2">
-                                                    강남구
+                                                <span class="tag-type2" th:text="${pickup.memberAddressBasic}">
+
                                                 </span>
-                                                <span class="tag-type2">
-                                                    수거요청
+                                                <span class="tag-type2" th:text="${pickup.pickupStatus}">
+
                                                 </span>
                                             </div>
                                         </div>
                                         <div class="plan-title">
                                             <h3
                                                 class="title"
-                                                id="parent_svcName"
+                                                id="parent_svcName" th:text="${pickup.memberAddressBasic}"
                                             >
-                                                서울특별시 강남구 테헤란로 26길
+
                                             </h3>
-                                            <p class="desc">
-                                                제일비전타워 13층
+                                            <p class="desc" th:text="${pickup.memberAddressDetail}">
+
                                             </p>
                                         </div>
                                         <div class="box-type3">
@@ -78,11 +74,11 @@
                                                 </div>
                                                 <div class="box-content">
                                                     <dl>
-                                                        <dt class="title">
-                                                            라이트
+                                                        <dt class="title" th:text="${pickup.planGrade}">
+
                                                         </dt>
-                                                        <dd class="caption">
-                                                            1인 가구 권장 구독
+                                                        <dd class="caption" th:text="${pickup.planMaxMembers} + '인 가구 권장 구독'">
+
                                                         </dd>
                                                     </dl>
                                                 </div>
@@ -111,8 +107,8 @@
                                                         <dt class="title">
                                                             배달료
                                                         </dt>
-                                                        <dd class="caption">
-                                                            2500원
+                                                        <dd class="caption" th:text="${pickup.planDeliveryFee} +'원'">
+
                                                         </dd>
                                                     </dl>
                                                 </div>
@@ -131,10 +127,7 @@
                                                             >
                                                         </dt>
                                                         <dd>
-                                                            <strong
-                                                                >주문번호
-                                                                VLO4WEVY</strong
-                                                            >
+                                                            <strong th:text="'주문번호: ' + ${pickup.pickupNumber}"></strong>
                                                         </dd>
                                                     </dl>
                                                 </div>
@@ -151,7 +144,7 @@
                                                             >배출 품목</strong
                                                         >
                                                     </dt>
-                                                    <dd>1호 박스(1)</dd>
+                                                    <dd th:text="${pickup.planBoxSize} + '호 박스'"></dd>
                                                 </dl>
                                                 <dl>
                                                     <dt>
@@ -159,8 +152,8 @@
                                                             >수거신청일</strong
                                                         >
                                                     </dt>
-                                                    <dd>
-                                                        2024년 09월 03일 09:19
+                                                    <dd  th:text="${pickup.createdDate}">
+
                                                     </dd>
                                                 </dl>
                                                 <dl>
@@ -169,8 +162,8 @@
                                                             >수거 일정</strong
                                                         >
                                                     </dt>
-                                                    <dd>
-                                                        09월 03일 22:00 ~ 06:00
+                                                    <dd th:text="${pickup.pickupSchedule}">
+<!--                                                        09월 03일 22:00 ~ 06:00-->
                                                     </dd>
                                                 </dl>
                                                 <dl>
@@ -179,7 +172,7 @@
                                                             >출입 방법</strong
                                                         >
                                                     </dt>
-                                                    <dd>-</dd>
+                                                    <dd th:text="${pickup.pickupEnter}"></dd>
                                                 </dl>
                                                 <dl>
                                                     <dt>
@@ -188,7 +181,7 @@
                                                             요청사항</strong
                                                         >
                                                     </dt>
-                                                    <dd>-</dd>
+                                                    <dd th:text="${pickup.pickupRequestContent}"></dd>
                                                 </dl>
                                             </div>
                                             <div class="box-content">
@@ -225,4 +218,19 @@
             </div>
         </div>
     </body>
+<!--    <script th:inline="javascript">-->
+<!--        const pickup = [[${pickup}]];-->
+<!--        const planGrade = document.getElementById("flag-type status-light");-->
+
+<!--        document.getElementById("btn-back").addEventListener("click", (e) => {-->
+<!--            history.back();-->
+<!--        });-->
+<!--        // planGrade.innerText = pickup.planGrade;-->
+
+<!--    </script>-->
+    <script>
+        document.getElementById("btn-back").addEventListener("click", (e) => {
+            history.back();
+        });
+    </script>
 </html>
