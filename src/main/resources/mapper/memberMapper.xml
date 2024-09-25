@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.app.bewodeurim.mapper.member.MemberMapper">
+    <insert id="insertMemberInfo">
+        INSERT INTO TBL_MEMBER (ID, MEMBER_NAME, MEMBER_EMAIL, MEMBER_ADDRESS_CODE, MEMBER_ADDRESS_BASIC, MEMBER_ADDRESS_DETAIL, MEMBER_PHONE_NUMBER, MEMBER_PASSWORD)
+        VALUES (SEQ_MEMBER.NEXTVAL,#{memberName},#{memberPhoneNumber},#{memberEmail},#{memberAddressCode},#{memberAddressBasic},#{memberAddressDetail},#{memberPassword})
+    </insert>
+</mapper>
