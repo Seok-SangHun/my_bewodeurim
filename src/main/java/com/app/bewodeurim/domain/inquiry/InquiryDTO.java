@@ -6,15 +6,13 @@ import lombok.Setter;
 import lombok.ToString;
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
-
 @Component
 @Getter @Setter
 @ToString @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class InquiryDTO {
     @EqualsAndHashCode.Include
     private Long id;
-    private String memberId;
+    private Long memberId;
     private String inquiryType;
     private String inquiryTitle;
     private String inquiryContent;
@@ -22,6 +20,6 @@ public class InquiryDTO {
     private String updatedDate;
 
     public InquiryVO toVO(){
-        return new InquiryVO(id, memberId, inquiryType, inquiryTitle, inquiryContent, createdDate, updatedDate );
+        return new InquiryVO(id, memberId, inquiryType, inquiryTitle, inquiryContent, createdDate, updatedDate);
     }
 }

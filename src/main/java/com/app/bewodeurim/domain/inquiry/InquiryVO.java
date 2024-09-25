@@ -3,8 +3,6 @@ package com.app.bewodeurim.domain.inquiry;
 import lombok.*;
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
-
 @Component
 @Getter @ToString @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
@@ -12,7 +10,7 @@ import java.util.Date;
 public class InquiryVO {
     @EqualsAndHashCode.Include
     private Long id;
-    private String memberId;
+    private Long memberId;
     private String inquiryType;
     private String inquiryTitle;
     private String inquiryContent;

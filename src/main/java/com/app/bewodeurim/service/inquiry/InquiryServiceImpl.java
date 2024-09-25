@@ -15,7 +15,7 @@ public class InquiryServiceImpl implements InquiryService {
     public final InquiryDAO inquiryDAO;
 
     @Override
-    public void write(InquiryVO inquiryVO) {
+    public void completeInquiry(InquiryVO inquiryVO) {
         inquiryDAO.save(inquiryVO);
     }
 }
