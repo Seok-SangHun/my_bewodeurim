@@ -13,7 +13,6 @@ import org.springframework.stereotype.Component;
 public class DriverDTO {
     @EqualsAndHashCode.Include
     private Long id;
-    private Long memberId;
     private String driverBank;
     private String driverBankAccount;
     private String createdDate;
@@ -28,6 +27,6 @@ public class DriverDTO {
     private String memberPassword;
 
     public DriverVO toVO() {
-        return new DriverVO(id, memberId, driverBank, driverBankAccount, createdDate, updatedDate);
+        return new DriverVO(id, driverBank, driverBankAccount, createdDate, updatedDate);
     }
 }
