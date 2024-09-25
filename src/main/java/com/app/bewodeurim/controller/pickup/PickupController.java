@@ -1,8 +1,11 @@
 package com.app.bewodeurim.controller.pickup;
 
+import com.app.bewodeurim.domain.driver.DriverVO;
 import com.app.bewodeurim.domain.member.MemberVO;
 import com.app.bewodeurim.domain.pickup.Pagination;
 import com.app.bewodeurim.domain.pickup.PickupDTO;
+import com.app.bewodeurim.repository.pickup.DriverPickupDAO;
+import com.app.bewodeurim.service.pickup.DriverPickupService;
 import com.app.bewodeurim.service.pickup.PickupService;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -22,7 +25,9 @@ import java.util.Optional;
 @Slf4j
 public class PickupController {
     private final PickupService pickupService;
+    private final DriverPickupService driverPickupService;
     private final HttpSession session;
+    private final DriverPickupDAO driverPickupDAO;
 
     @GetMapping("apply")
     public void goToApplyForm(HttpServletResponse response) {;}
@@ -80,6 +85,17 @@ public class PickupController {
         }
     }
 
+    @GetMapping("/mobile-myRequest/mobile-myRequest-body")
+    public void pickupList(Pagination pagination, Model model){
+        DriverVO driverVO = (DriverVO) session.getAttribute("driver");
+        pagination.setTotal(driverPickupService.getTotal());
+        pagination.progress();
+        model.addAttribute("pagination", pagination);
+        model.addAttribute("pickups", driverPickupService.getPickupList(pagination, driverVO.getId()));
+        pagination.setPage(pagination.getPage() + 1);
+        model.addAttribute("nextPage", driverPickupService.getPickupList(pagination, driverVO.getId()).size());
+
+    }
 
 
 }
