@@ -37,8 +37,8 @@ public class PickupServiceImpl implements PickupService {
     }
 
     @Override
-    public List<PickupDTO> getPickups(Pagination pagination) {
-        return pickupDAO.findAll(pagination);
+    public List<PickupDTO> getPickups(Pagination pagination, String order) {
+        return pickupDAO.findAll(pagination, order);
     }
 
     @Override
@@ -49,5 +49,10 @@ public class PickupServiceImpl implements PickupService {
     @Override
     public int getTotal() {
         return pickupDAO.getTotal();
+    }
+
+    @Override
+    public void update(PickupVO pickupVO) {
+        pickupDAO.setPickup(pickupVO);
     }
 }
