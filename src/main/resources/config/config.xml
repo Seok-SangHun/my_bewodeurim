@@ -7,5 +7,6 @@
     <typeAliases>
         <typeAlias type="com.app.bewodeurim.domain.member.MemberVO" alias="memberVO"/>
         <typeAlias type="com.app.bewodeurim.domain.member.MemberDTO" alias="memberDTO"/>
+        <typeAlias type="com.app.bewodeurim.domain.pickup.DriverPickUpDTO" alias="driverPickupDTO"/>
     </typeAliases>
 </configuration>
