@@ -24,5 +24,8 @@ public class InquiryMapperTests {
         inquiryDTO.setInquiryContent("SKT 관련 문의 내용");   // 문의 내용
 
         inquiryMapper.insert(inquiryDTO.toVO());
+
+        log.info("문의가 성공적으로 저장되었습니다. 제목: {}", inquiryDTO.getInquiryTitle());
     }
+
 }

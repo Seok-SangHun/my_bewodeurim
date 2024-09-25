@@ -7,4 +7,8 @@
         VALUES (SEQ_INQUIRY.NEXTVAL, #{memberId}, #{inquiryType}, #{inquiryTitle}, #{inquiryContent})
     </insert>
 
+    <!-- 특정 회원의 상담 내역 조회 -->
+    <select id="findByMemberId" resultType="com.app.bewodeurim.domain.inquiry.InquiryVO">
+        SELECT * FROM TBL_INQUIRY WHERE MEMBER_ID = #{memberId}
+    </select>
 </mapper>

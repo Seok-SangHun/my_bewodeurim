@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 @Primary
@@ -17,5 +19,10 @@ public class InquiryServiceImpl implements InquiryService {
     @Override
     public void completeInquiry(InquiryVO inquiryVO) {
         inquiryDAO.save(inquiryVO);
+    }
+
+    @Override
+    public List<InquiryVO> getInquiriesByMemberId(Long memberId) {
+        return inquiryDAO.findByMemberId(memberId);
     }
 }

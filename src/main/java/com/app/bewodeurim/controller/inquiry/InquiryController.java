@@ -1,6 +1,7 @@
 package com.app.bewodeurim.controller.inquiry;
 
 import com.app.bewodeurim.domain.inquiry.InquiryDTO;
+import com.app.bewodeurim.domain.inquiry.InquiryVO;
 import com.app.bewodeurim.service.inquiry.InquiryService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -81,5 +82,16 @@ public class InquiryController {
     public RedirectView completeInquiry(InquiryDTO inquiryDTO) {
         inquiryService.completeInquiry(inquiryDTO.toVO());
         return new RedirectView("/one-to-one/my_counsel");
+    }
+
+    // 나의 상담 내역 페이지로 이동하여 목록 출력 (GET)
+    @GetMapping("/one-to-one/my_counsel")
+    public String showMyCounselList(HttpSession session, Model model) {
+        Long memberId = (Long) session.getAttribute("memberId"); // 로그인된 회원 ID를 세션에서 가져옴
+        if (memberId != null) {
+            List<InquiryVO> inquiries = inquiryService.getInquiriesByMemberId(memberId);
+            model.addAttribute("inquiries", inquiries);
+        }
+        return "one-to-one/my_counsel"; // my_counsel.html 템플릿 반환
     }
 }
