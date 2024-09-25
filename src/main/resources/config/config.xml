@@ -8,5 +8,7 @@
         <typeAlias type="com.app.bewodeurim.domain.member.MemberVO" alias="memberVO"/>
         <typeAlias type="com.app.bewodeurim.domain.member.MemberDTO" alias="memberDTO"/>
         <typeAlias type="com.app.bewodeurim.domain.pickup.DriverPickUpDTO" alias="driverPickupDTO"/>
+        <typeAlias type="com.app.bewodeurim.domain.member.DriverVO" alias="driverVO"/>
+        <typeAlias type="com.app.bewodeurim.domain.member.DriverDTO" alias="driverDTO"/>
     </typeAliases>
 </configuration>
