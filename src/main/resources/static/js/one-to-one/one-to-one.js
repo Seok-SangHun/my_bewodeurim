@@ -249,3 +249,8 @@ document.addEventListener("DOMContentLoaded", function () {
     // 페이지 로드 시 모달 열기
     openModal();
 });
+
+// 나의 삼담 내역 페이지로 이동
+document.getElementById('myCounselBtn').addEventListener('click', (e) => {
+    window.location.href = "/one-to-one/my_counsel";
+});
