@@ -43,7 +43,7 @@
                                 <div class="plan-inner-box">
                                     <div class="plan-box">
                                         <div class="plan-top">
-                                            <span class="flag-type status-light" th:text="${pickup.planGrade}"></span>
+                                            <span class="flag-type" th:classappend="${pickup.planGrade == '프리미엄' ? 'status-premium' : pickup.planGrade == '일반' ? 'status-standard' : 'status-light'}" th:text="${pickup.planGrade}"></span>
                                             <div class="tag-box">
                                                 <span class="tag-type2">
                                                     오늘

@@ -22,16 +22,6 @@ public class PickupServiceImpl implements PickupService {
     private final PickupDAO pickupDAO;
 
     @Override
-    public Optional<PlanVO> getPlan(Long id) {
-        return pickupDAO.findByPlanID(id);
-    }
-
-    @Override
-    public Optional<MemberVO> getMember(Long id) {
-        return pickupDAO.findByMemberID(id);
-    }
-
-    @Override
     public void insertPickup(PickupVO pickupVO) {
         pickupDAO.save(pickupVO);
     }
