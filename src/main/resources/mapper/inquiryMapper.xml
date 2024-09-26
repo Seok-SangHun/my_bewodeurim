@@ -1,14 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.app.bewodeurim.mapper.inquiry.InquiryMapper">
-    <!-- 1:1 상담 문의 작성   -->
+
     <insert id="insert">
         INSERT INTO TBL_INQUIRY (ID, MEMBER_ID, INQUIRY_TYPE, INQUIRY_TITLE, INQUIRY_CONTENT)
         VALUES (SEQ_INQUIRY.NEXTVAL, #{memberId}, #{inquiryType}, #{inquiryTitle}, #{inquiryContent})
     </insert>
 
-    <!-- 특정 회원의 상담 내역 조회 -->
-    <select id="findByMemberId" resultType="com.app.bewodeurim.domain.inquiry.InquiryVO">
-        SELECT * FROM TBL_INQUIRY WHERE MEMBER_ID = #{memberId}
+    <select id="selectAll" resultType="inquiryDTO">
+        SELECT INQUIRY_TITLE
+        FROM
+        (
+            SELECT INQUIRY_TITLE, R
+            FROM
+            (
+                SELECT INQUIRY_TITLE, ROWNUM AS R
+                FROM
+                (
+                    SELECT INQUIRY_TITLE
+                    FROM TBL_INQUIRY
+                    ORDER BY ID DESC
+                )
+                WHERE ROWNUM <= #{pagination.endRow}
+            )
+        )
+        WHERE R >= #{pagination.startRow}
     </select>
 </mapper>

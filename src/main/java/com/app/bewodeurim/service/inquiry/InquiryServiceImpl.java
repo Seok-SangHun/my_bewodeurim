@@ -1,6 +1,8 @@
 package com.app.bewodeurim.service.inquiry;
 
+import com.app.bewodeurim.domain.inquiry.InquiryDTO;
 import com.app.bewodeurim.domain.inquiry.InquiryVO;
+import com.app.bewodeurim.domain.pickup.Pagination;
 import com.app.bewodeurim.repository.inquiry.InquiryDAO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;
@@ -17,12 +19,20 @@ public class InquiryServiceImpl implements InquiryService {
     public final InquiryDAO inquiryDAO;
 
     @Override
-    public void completeInquiry(InquiryVO inquiryVO) {
+    public void write(InquiryVO inquiryVO) {
         inquiryDAO.save(inquiryVO);
     }
 
     @Override
-    public List<InquiryVO> getInquiriesByMemberId(Long memberId) {
-        return inquiryDAO.findByMemberId(memberId);
+    public List<InquiryDTO> getList(Pagination pagination) {
+        return inquiryDAO.findAll(pagination);
     }
+
+    public int getTotal() {
+        return inquiryDAO.getTotal();
+    }
+//    @Override
+//    public List<InquiryVO> getInquiriesByMemberId(Long memberId) {
+//        return inquiryDAO.findByMemberId(memberId);
+//    }
 }

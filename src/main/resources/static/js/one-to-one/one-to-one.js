@@ -1,6 +1,6 @@
 // 나의 삼담 내역 페이지로 이동
 document.getElementById('myCounselBtn').addEventListener('click', (e) => {
-    window.location.href = "/one-to-one/my_counsel";
+    window.location.href = '/one-to-one/my_counsel';
 });
 
 // 탭 활성화
