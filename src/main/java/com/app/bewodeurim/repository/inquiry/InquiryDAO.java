@@ -21,7 +21,7 @@ public class InquiryDAO {
         inquiryMapper.insert(inquiryVO);
     }
 
-    // 나의 문의 목록을 offset과 limit으로 가져오는 메서드
+    // 나의 문의 목록을 전체 조회
     public List<InquiryDTO> findAll(Pagination pagination) {
         return inquiryMapper.selectAll(pagination);
     }

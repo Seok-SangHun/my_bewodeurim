@@ -7,23 +7,16 @@
         VALUES (SEQ_INQUIRY.NEXTVAL, #{memberId}, #{inquiryType}, #{inquiryTitle}, #{inquiryContent})
     </insert>
 
-    <select id="selectAll" resultType="inquiryDTO">
+    <select id="selectAll" resultType="com.app.bewodeurim.domain.inquiry.InquiryDTO">
+        SELECT * FROM (
+        SELECT A.*, ROWNUM RNUM
+        FROM (
         SELECT INQUIRY_TITLE
-        FROM
-        (
-            SELECT INQUIRY_TITLE, R
-            FROM
-            (
-                SELECT INQUIRY_TITLE, ROWNUM AS R
-                FROM
-                (
-                    SELECT INQUIRY_TITLE
-                    FROM TBL_INQUIRY
-                    ORDER BY ID DESC
-                )
-                WHERE ROWNUM <= #{pagination.endRow}
-            )
+        FROM TBL_INQUIRY
+        ORDER BY ID DESC
+        ) A
+        WHERE ROWNUM <= #{pagination.endRow}
         )
-        WHERE R >= #{pagination.startRow}
+        WHERE RNUM >= #{pagination.startRow}
     </select>
 </mapper>
