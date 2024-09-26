@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.app.bewodeurim.mapper.area.RegionMapper">
+
+    <insert id="insertRegion">
+        INSERT INTO TBL_REGION(ID,CITY_ID,REGION_NAME)
+        VALUES (SEQ_REGION.NEXTVAL,#{cityName},#{regionName})
+    </insert>
+</mapper>

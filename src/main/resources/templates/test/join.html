@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>기사 회원가입</title>
+</head>
+<body>
+<form th:action="@{/member/login}" method="post" th:object="${driverDTO}">
+    <div>
+        <label>
+            <input type="text" placeholder="이름" th:field="*{memberName}">
+            <input type="text" placeholder="전화번호" th:field="*{memberPhoneNumber}">
+        </label>
+    </div>
+    <div>
+        <label>
+
+        </label>
+    </div>
+    <div>
+        <label>
+            <input type="text" placeholder="이메일" th:field="*{memberEmail}">
+            <input type="text" placeholder="비밀번호" th:field="*{memberPassword}">
+        </label>
+    </div>
+    <div>
+        <label>
+            <input type="text" placeholder="우편번호" th:field="*{memberAddressCode}">
+            <input type="text" placeholder="주소" th:field="*{memberAddressBasic}">
+            <input type="text" placeholder="상세주소" th:field="*{memberAddressDetail}">
+        </label>
+    </div>
+<!--    <div>-->
+<!--        <label>-->
+<!--            <input type="text" placeholder="은행명" th:field="*{driverBank}">-->
+<!--            <input type="text" placeholder="계좌" th:field="*{driverBankAccount}">-->
+<!--        </label>-->
+<!--    </div>-->
+    <div>
+        <label>
+            <select name="driverBank" th:field="*{driverBank}">
+
+                <option value="o" selected>::은행선택::</option>
+                <option value="NH"> 농협</option>
+
+                <option value="WR" > 우리</option>
+
+                <option value="KKO"> 카카오</option>
+
+                <option value="SH"> 신한</option>
+
+            </select>
+            <input type="text" placeholder="계좌" th:field="*{driverBankAccount}">
+        </label>
+    </div>
+<!--    <div>-->
+<!--        <label>-->
+<!--            <select name="cityName" th:field="*{cityName}">-->
+
+<!--                <option value="cityName" selected>지역</option>-->
+<!--                <option value="seoul"> 서울</option>-->
+
+<!--            </select>-->
+<!--            <select name="regionName" th:field="*{regionName}">-->
+
+<!--                <option value="regionName" selected>시/군/구</option>-->
+<!--                <option value="seoul"> 강남구</option>-->
+
+<!--                <option value="WR" > 마포구</option>-->
+
+<!--                <option value="KKO"> 영등포구</option>-->
+
+<!--                <option value="SH"> 서대문구</option>-->
+
+<!--            </select>-->
+
+<!--        </label>-->
+<!--    </div>-->
+    <button>완료</button>
+</form>
+</body>
+</html>

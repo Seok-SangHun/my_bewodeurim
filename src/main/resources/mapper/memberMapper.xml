@@ -6,6 +6,6 @@
                SELECT SEQ_MEMBER.NEXTVAL FROM DUAL
         </selectKey>
         INSERT INTO TBL_MEMBER (ID, MEMBER_NAME, MEMBER_EMAIL, MEMBER_ADDRESS_CODE, MEMBER_ADDRESS_BASIC, MEMBER_ADDRESS_DETAIL, MEMBER_PHONE_NUMBER, MEMBER_PASSWORD)
-        VALUES (#{id},#{memberName},#{memberPhoneNumber},#{memberEmail},#{memberAddressCode},#{memberAddressBasic},#{memberAddressDetail},#{memberPassword})
+        VALUES (#{id},#{memberName},#{memberEmail},#{memberAddressCode},#{memberAddressBasic},#{memberAddressDetail},#{memberPhoneNumber},#{memberPassword})
     </insert>
 </mapper>

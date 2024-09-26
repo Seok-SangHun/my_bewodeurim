@@ -16,4 +16,6 @@ public class DriverVO {
     private String driverBankAccount;
     private String createdDate;
     private String updatedDate;
+
+
 }
