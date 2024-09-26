@@ -11,12 +11,18 @@
         SELECT * FROM (
         SELECT A.*, ROWNUM RNUM
         FROM (
-        SELECT INQUIRY_TITLE
+        SELECT INQUIRY_TITLE, INQUIRY_TYPE
         FROM TBL_INQUIRY
         ORDER BY ID DESC
         ) A
+        <![CDATA[
         WHERE ROWNUM <= #{pagination.endRow}
         )
         WHERE RNUM >= #{pagination.startRow}
+        ]]>
+    </select>
+
+    <select id="selectTotal">
+        SELECT COUNT(*) FROM TBL_INQUIRY
     </select>
 </mapper>

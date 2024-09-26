@@ -38,7 +38,7 @@ public class InquiryMapperTests {
     // 1. 임의의 데이터를 생성하여 삽입하는 테스트
     @Test
     public void testInsertInquiries() {
-        for (int i = 1; i <= 10; i++) { // 임의로 10개의 데이터를 삽입
+        for (int i = 1; i <= 50; i++) { // 임의로 50개의 데이터를 삽입
             InquiryDTO inquiryDTO = new InquiryDTO();
             inquiryDTO.setMemberId(1L); // 회원 ID 설정
             inquiryDTO.setInquiryType("문의 유형 " + i); // 문의 유형
@@ -55,7 +55,7 @@ public class InquiryMapperTests {
     public void testSelectInquiries() {
         Pagination pagination = new Pagination();
         pagination.setPage(1); // 첫 번째 페이지 조회
-        pagination.setRowCount(5); // 한 번에 5개의 데이터를 조회
+        pagination.setRowCount(10); // 한 번에 10개의 데이터를 조회
 
         pagination.setTotal(inquiryMapper.selectTotal()); // 총 데이터 개수 설정
         pagination.progress(); // 페이징 처리 진행

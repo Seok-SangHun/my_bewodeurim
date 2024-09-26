@@ -28,6 +28,7 @@ public class InquiryServiceImpl implements InquiryService {
         return inquiryDAO.findAll(pagination);
     }
 
+    @Override
     public int getTotal() {
         return inquiryDAO.getTotal();
     }
