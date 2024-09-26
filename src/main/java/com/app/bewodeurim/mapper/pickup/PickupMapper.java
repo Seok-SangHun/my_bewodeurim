@@ -13,8 +13,6 @@ import java.util.Optional;
 
 @Mapper
 public interface PickupMapper {
-    public Optional<PlanVO> selectPlan(Long id);
-    public Optional<MemberVO> selectMember(Long id);
     public void insert(PickupVO pickupVO);
     public List<PickupDTO> selectAll(@Param("pagination") Pagination pagination, @Param("order") String order);
     public Optional<PickupDTO> selectById(Long id);

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.Optional;
 
@@ -28,9 +29,6 @@ public class PickupController {
     private final DriverPickupService driverPickupService;
     private final HttpSession session;
     private final DriverPickupDAO driverPickupDAO;
-
-    @GetMapping("apply")
-    public void goToApplyForm(HttpServletResponse response) {;}
 
     @GetMapping("/mobile-allRequest/mobile-allRequest-body")
     public void getList(Pagination pagination, String order, Model model){
@@ -44,37 +42,23 @@ public class PickupController {
         pagination.setTotal(pickupService.getTotal());
         pagination.progress();
 
-//        model.addAttribute("nextPage", pickupService.getPickups(pagination, String.valueOf(pickupDTO.getId())).size());
         // 게시물 목록과 회원 정보를 모델에 추가
         model.addAttribute("pickups", pickupService.getPickups(pagination, order));
+        log.info("{}",order);
         model.addAttribute("totalCount", totalCount); // 총 개수를 모델에 추가
         model.addAttribute("order", order); // order 값을 모델에 추가
     }
 
-//    @GetMapping("/mobile-detailRequest/mobile-detailRequest-body")
-//    public void goTodetailForm(Model model, HttpSession session){
-//        PickupDTO pickupDTO = (PickupDTO) session.getAttribute("pickup");
-//        model.addAttribute("pickup", pickupDTO);
-//    }
-
-//    @GetMapping("/mobile-detailRequest/mobile-detailRequest-body")
-//    public void goToDetailForm(@RequestParam("id") Long pickupId, Model model) {
-//        // 전달받은 id로 픽업 데이터를 조회
-//        Optional<PickupDTO> pickupDTO = pickupService.getPickup(pickupId);
-//
-//        // 조회된 픽업 데이터를 모델에 추가
-//        model.addAttribute("pickup", pickupDTO);
-//    }
 
     @GetMapping("/mobile-detailRequest/mobile-detailRequest-body")
     public void goToDetailForm(@RequestParam("id") Long id, HttpSession session, Model model) {
         // ID로 픽업 데이터 조회
-        Optional<PickupDTO> optionalPickupDTO = pickupService.getPickup(id);
+        Optional<PickupDTO> PickupDTO = pickupService.getPickup(id);
 
 
         // 픽업 데이터가 존재하는 경우
-        if (optionalPickupDTO.isPresent()) {
-            PickupDTO pickupDTO = optionalPickupDTO.get();
+        if (PickupDTO.isPresent()) {
+            PickupDTO pickupDTO = PickupDTO.get();
 
             // 조회된 픽업 데이터를 세션에 저장
             session.setAttribute("pickup", pickupDTO);
@@ -87,6 +71,14 @@ public class PickupController {
         }
     }
 
+    @PostMapping("/mobile-detailRequest/mobile-detailRequest-body")
+    public RedirectView update(PickupDTO pickupDTO, HttpSession session){
+        log.info(pickupDTO.toString());
+        pickupService.update(pickupDTO.toVO());
+        session.setAttribute("pickup", pickupDTO.toVO());
+        return new RedirectView("/member/read?id=" + pickupDTO.getId());
+    }
+
     @GetMapping("/mobile-myRequest/mobile-myRequest-body")
     public void pickupList(Pagination pagination, Model model){
         DriverVO driverVO = (DriverVO) session.getAttribute("driver");
@@ -96,7 +88,6 @@ public class PickupController {
         model.addAttribute("pickups", driverPickupService.getPickupList(pagination, driverVO.getId()));
         pagination.setPage(pagination.getPage() + 1);
         model.addAttribute("nextPage", driverPickupService.getPickupList(pagination, driverVO.getId()).size());
-
     }
 
 

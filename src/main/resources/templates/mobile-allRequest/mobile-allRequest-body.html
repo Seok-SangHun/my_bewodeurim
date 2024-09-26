@@ -318,33 +318,33 @@
 
                             <div class="side">
                                 <div class="select-type3">
-                                    <select
-                                        id="orderType"
-                                        style="display: none"
-                                    >
-                                        <option
-                                            class="title"
-                                            selected=""
-                                            value="reco"
-                                        >
-                                            추천순
-                                        </option>
-                                        <option class="title" value="new">
-                                            최신순
-                                        </option>
-                                        <option value="end">가까운 순</option>
-                                    </select>
+<!--                                    <select-->
+<!--                                        id="orderType"-->
+<!--                                        style="display: none"-->
+<!--                                    >-->
+<!--                                        <option-->
+<!--                                            class="title"-->
+<!--                                            selected=""-->
+<!--                                            value="reco"-->
+<!--                                        >-->
+<!--                                            추천순-->
+<!--                                        </option>-->
+<!--                                        <option class="title" value="new">-->
+<!--                                            최신순-->
+<!--                                        </option>-->
+<!--                                        <option value="end">가까운 순</option>-->
+<!--                                    </select>-->
                                     <div class="nice-select" tabindex="0">
-                                        <span class="current">추천순</span>
+                                        <span class="current" id="orderName">최신순</span>
                                         <ul class="list">
+                                            <li data-value="new" class="option selected focus">
+                                                최신순
+                                            </li>
                                             <li
                                                 data-value="reco"
-                                                class="option selected focus"
+                                                class="option"
                                             >
-                                                추천순
-                                            </li>
-                                            <li data-value="new" class="option">
-                                                최신순
+                                                요금제 순
                                             </li>
                                             <li data-value="end" class="option">
                                                 가까운 순
@@ -428,17 +428,64 @@
             let page = document.getElementById("page").value;
             const nextPage = [[${nextPage}]];
 
+            const niceSelects = document.querySelectorAll(".nice-select");
+
+            if (order === 'plan') {
+                // 'reco'에 해당하는 li 요소 선택
+                var recoOption = document.querySelector('li[data-value="reco"]');
+
+                // 기존의 selected 및 focus 클래스를 제거하고 새로운 클래스를 추가
+                recoOption.classList.add('selected', 'focus');
+
+                // 'current' span의 텍스트를 변경
+                var currentSpan = document.getElementById("orderName")
+                currentSpan.textContent = recoOption.textContent;
+
+                // 다른 option에서 selected 및 focus 클래스를 제거 (선택적으로)
+                var otherOptions = document.querySelectorAll('.option');
+                otherOptions.forEach(function(option) {
+                    if (option !== recoOption) {
+                        option.classList.remove('selected', 'focus');
+                    }
+                });
+            }
+
+
+            niceSelects.forEach((niceSelect) => {
+                const currentSpan = niceSelect.querySelector(".current");
+                const options = niceSelect.querySelectorAll(".option");
+
+                options.forEach((option) => {
+                    option.addEventListener("click", () => {
+                        // 선택된 값에 따라 페이지 이동
+                        const value = option.getAttribute('data-value');
+                        if (value === 'new') {
+                            window.location.href = `/mobile-allRequest/mobile-allRequest-body?page=${page}&order=recent`;
+                        } else if (value === 'reco') {
+                            window.location.href = `/mobile-allRequest/mobile-allRequest-body?page=${page}&order=plan`;
+                        } else if (value === 'end') {
+                            window.location.href = `/mobile-allRequest/mobile-allRequest-body?page=${page}&order=nearby`;
+                        }
+                    });
+                });
+            });
+
+
             // 데이터 로그로 출력해서 확인
             console.log("Pagination:", pagination);
             console.log("Pickups:", pickups);
 
             let text = '';
             pickups.forEach((pickup) => {
+                // planGrade 값에 따라 다른 class 설정
+                const statusClass = pickup.planGrade === "프리미엄" ? "status-premium"
+                    : pickup.planGrade === "일반" ? "status-standard"
+                        : "status-light";
                 text += `
                     <li>
                         <ul class="board-type5">
                             <div class="plan-top">
-                                <span class="flag-type status-light">${pickup.planGrade}</span>
+                                <span class="flag-type ${statusClass}">${pickup.planGrade}</span>
                                 <div class="tag-box">
                                     <span class="tag-type2">오늘</span>
                                     <span class="tag-type2">${pickup.memberAddressBasic}</span>
@@ -472,14 +519,17 @@
             if(pickups.length < totalCount){
                 more.addEventListener("click", (e) => {
                     page++;
-                    location.href = `/mobile-allRequest/mobile-allRequest-body?page=${page}`
+                    location.href = `/mobile-allRequest/mobile-allRequest-body?page=${page}&order=${order}`
 
                 })
             }else{
                 more.style.display='none';
             }
 
-    </script>
 
+            if(order === 'popular'){
+            //     popular로 선택되게 스타일 적용
+            }
+    </script>
     <script src="/js/mobile-allRequest/mobile-allRequest-body.js"></script>
 </html>

@@ -27,7 +27,6 @@ public class PickupMapperTests {
         for(int i=0; i<34; i++) {
             pickupDTO.setPickupNumber("PICKUP"+i);
             pickupDTO.setMemberId(1L); // 실제 회원 ID로 설정
-            pickupDTO.setDriverId(1L); // 실제 운전사 ID로 설정
             pickupDTO.setPickupSchedule("2024-09-25 10:00");
             pickupDTO.setPickupEnter("2024-09-25 09:00");
             pickupDTO.setPickupRequestContent("요청 내용"+i);
@@ -40,7 +39,7 @@ public class PickupMapperTests {
     public void testSelectAll(){
         Pagination pagination = new Pagination();
         String order = "recent";
-        pagination.setPage(3);
+        pagination.setPage(1);
         pagination.setTotal(pickupMapper.selectTotal());
         pagination.progress();
         List<PickupDTO> posts = pickupMapper.selectAll(pagination, order);
@@ -53,20 +52,6 @@ public class PickupMapperTests {
         Long id = 3L;
         Optional<PickupDTO> pickup = pickupMapper.selectById(id);
         pickup.ifPresent(dto -> log.info("Pickup: {}", dto));
-    }
-
-    @Test
-    public void testSelectPlan() {
-        Long id = 1L;
-        Optional<PlanVO> plan = pickupMapper.selectPlan(id);
-        plan.ifPresent(p -> log.info("Plan: {}", p));
-    }
-
-    @Test
-    public void testSelectMember() {
-        Long id = 1L;
-        Optional<MemberVO> member = pickupMapper.selectMember(id);
-        member.ifPresent(m -> log.info("Member: {}", m));
     }
 
     @Test
