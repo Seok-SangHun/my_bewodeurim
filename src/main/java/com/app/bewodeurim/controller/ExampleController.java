@@ -13,5 +13,8 @@ public class ExampleController {
         return "payment/payment";
     }
 
-
+    @GetMapping("/payment-success")
+    public String paymentSuccess() {
+        return "payment/payment-success";
+    }
 }
