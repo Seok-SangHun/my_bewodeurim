@@ -10,8 +10,8 @@ import org.springframework.stereotype.Repository;
 public class PlanDAO {
     private final PlanMapper planMapper;
 
-    public void find(PlanVO planVO) {
-        planMapper.findById(planVO.getId());
-
+    public PlanVO findById(Long planId) {
+        return planMapper.findById(planId);
     }
 }
+

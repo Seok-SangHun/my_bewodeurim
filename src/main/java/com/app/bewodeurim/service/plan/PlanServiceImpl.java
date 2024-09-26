@@ -12,4 +12,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Primary
 @Transactional(readOnly = true)
 public class PlanServiceImpl implements PlanService {
+    private final PlanDAO planDAO;
+
+    @Override
+    public PlanVO getPlanById(Long planId) {
+        return planDAO.findById(planId);
+    }
 }

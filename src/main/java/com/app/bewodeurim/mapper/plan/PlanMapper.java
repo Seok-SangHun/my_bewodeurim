@@ -5,5 +5,5 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface PlanMapper {
-    void findById(Long planId);
+    PlanVO findById(Long planId);  // 요금제 ID로 요금제 조회
 }

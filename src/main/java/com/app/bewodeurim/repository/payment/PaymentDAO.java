@@ -13,4 +13,9 @@ public class PaymentDAO {
     public void save(PaymentVO paymentVO) {
         paymentMapper.save(paymentVO);
     }
+
+    public void select(PaymentVO paymentVO) {
+        paymentMapper.select(paymentVO);
+    }
 }
+
