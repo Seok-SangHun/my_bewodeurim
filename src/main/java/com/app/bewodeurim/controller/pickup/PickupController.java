@@ -55,7 +55,6 @@ public class PickupController {
         // ID로 픽업 데이터 조회
         Optional<PickupDTO> PickupDTO = pickupService.getPickup(id);
 
-
         // 픽업 데이터가 존재하는 경우
         if (PickupDTO.isPresent()) {
             PickupDTO pickupDTO = PickupDTO.get();
@@ -75,9 +74,17 @@ public class PickupController {
     public RedirectView update(PickupDTO pickupDTO, HttpSession session){
         log.info(pickupDTO.toString());
         pickupService.update(pickupDTO.toVO());
+
+        // 세션에서 driverID를 가져옴
+        DriverVO driverVO = (DriverVO) session.getAttribute("driver");
+
+        // 세션에 업데이트된 pickup 정보 저장
         session.setAttribute("pickup", pickupDTO.toVO());
-        return new RedirectView("/member/read?id=" + pickupDTO.getId());
+
+        // driverID를 세션에서 받아와서 다음 페이지로 이동
+        return new RedirectView("/mobile-myRequest/mobile-myRequest-body?driverId=" + driverVO.getId());
     }
+
 
     @GetMapping("/mobile-myRequest/mobile-myRequest-body")
     public void pickupList(Pagination pagination, Model model){
