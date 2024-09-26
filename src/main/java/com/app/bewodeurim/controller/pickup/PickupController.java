@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.Optional;
 
@@ -68,6 +69,14 @@ public class PickupController {
             // 데이터가 존재하지 않을 경우 적절한 처리를 추가 (예: 에러 페이지로 리다이렉트)
             model.addAttribute("errorMessage", "픽업 데이터가 존재하지 않습니다.");
         }
+    }
+
+    @PostMapping("/mobile-detailRequest/mobile-detailRequest-body")
+    public RedirectView update(PickupDTO pickupDTO, HttpSession session){
+        log.info(pickupDTO.toString());
+        pickupService.update(pickupDTO.toVO());
+        session.setAttribute("pickup", pickupDTO.toVO());
+        return new RedirectView("/member/read?id=" + pickupDTO.getId());
     }
 
     @GetMapping("/mobile-myRequest/mobile-myRequest-body")

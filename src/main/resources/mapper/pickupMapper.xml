@@ -28,41 +28,41 @@
         PL.PLAN_MAX_MEMBERS
         FROM TBL_PICKUP P
         JOIN TBL_MEMBER M ON P.MEMBER_ID = M.ID
-        LEFT JOIN TBL_PAYMENT PA ON M.ID = PA.MEMBER_ID
-        LEFT JOIN TBL_PLAN PL ON PA.PLAN_ID = PL.ID
+        JOIN TBL_PAYMENT PA ON M.ID = PA.MEMBER_ID
+        JOIN TBL_PLAN PL ON PA.PLAN_ID = PL.ID
         WHERE P.ID = #{id}
     </select>
 
     <select id="selectAll" resultType="com.app.bewodeurim.domain.pickup.PickupDTO">
-        SELECT P2.ID, M.MEMBER_ADDRESS_CODE, M.MEMBER_ADDRESS_BASIC, M.MEMBER_ADDRESS_DETAIL,
-        P2.PICKUP_NUMBER, P2.MEMBER_ID, P2.DRIVER_ID, P2.PICKUP_SCHEDULE,
-        P2.PICKUP_ENTER, P2.PICKUP_REQUEST_CONTENT, P2.PICKUP_STATUS,
-        P2.CREATED_DATE, P2.UPDATED_DATE, PL.PLAN_PRICE, PL.PLAN_GRADE
+        SELECT P2.ID, P2.MEMBER_ID, DRIVER_ID, PICKUP_NUMBER, PICKUP_SCHEDULE, PICKUP_ENTER, PICKUP_REQUEST_CONTENT, PICKUP_STATUS, P2.CREATED_DATE, P2.UPDATED_DATE, M.MEMBER_ADDRESS_CODE, M.MEMBER_ADDRESS_BASIC, M.MEMBER_ADDRESS_DETAIL,PL.PLAN_PRICE, PL.PLAN_GRADE
         FROM TBL_MEMBER M
         JOIN (
-                SELECT ROWNUM R, ID, PICKUP_NUMBER, MEMBER_ID, DRIVER_ID,
-                PICKUP_SCHEDULE, PICKUP_ENTER, PICKUP_REQUEST_CONTENT,
-                PICKUP_STATUS, CREATED_DATE, UPDATED_DATE
+                SELECT ROWNUM R, ID, MEMBER_ID, DRIVER_ID, PICKUP_NUMBER, PICKUP_SCHEDULE, PICKUP_ENTER, PICKUP_REQUEST_CONTENT, PICKUP_STATUS, CREATED_DATE, UPDATED_DATE
                 FROM (
-                        SELECT ID, PICKUP_NUMBER, MEMBER_ID, DRIVER_ID,
-                        PICKUP_SCHEDULE, PICKUP_ENTER, PICKUP_REQUEST_CONTENT,
-                        PICKUP_STATUS, CREATED_DATE, UPDATED_DATE
+                        SELECT P.ID, P.MEMBER_ID, DRIVER_ID, PICKUP_NUMBER, PICKUP_SCHEDULE, PICKUP_ENTER, PICKUP_REQUEST_CONTENT, PICKUP_STATUS, P.CREATED_DATE, P.UPDATED_DATE
                         FROM TBL_PICKUP P
+                            JOIN TBL_MEMBER M ON M.ID = P.MEMBER_ID
+                            JOIN TBL_PAYMENT PA ON M.ID = PA.MEMBER_ID
+                            JOIN TBL_PLAN PL ON PA.PLAN_ID = PL.ID
                         ORDER BY
                         <choose>
-                            <when test="order == 'recent'.toString()">P.ID</when>
-                            <otherwise>ID</otherwise>
+                            <when test="order == 'recent'.toString()">ID DESC</when>
+                            <otherwise>PL.PLAN_PRICE DESC</otherwise>
                         </choose>
-                        ASC
                 ) P1
                 <![CDATA[
                 WHERE ROWNUM <= #{pagination.endRow}
                 ) P2
         ON M.ID = P2.MEMBER_ID
-        LEFT JOIN TBL_PAYMENT PA ON M.ID = PA.MEMBER_ID
-        LEFT JOIN TBL_PLAN PL ON PA.PLAN_ID = PL.ID
-        AND P2.R >= #{pagination.startRow}
+        JOIN TBL_PAYMENT PA ON M.ID = PA.MEMBER_ID
+        JOIN TBL_PLAN PL ON PA.PLAN_ID = PL.ID
+        WHERE P2.R >= #{pagination.startRow}
          ]]>
+        ORDER BY
+        <choose>
+            <when test="order == 'recent'.toString()">P2.ID DESC</when>
+            <otherwise>PL.PLAN_PRICE DESC</otherwise>
+        </choose>
     </select>
 
     <select id="selectTotal">

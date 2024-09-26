@@ -19,26 +19,26 @@ CREATE SEQUENCE SEQ_PICKUP;
 
 SELECT * FROM TBL_PICKUP;
 
-INSERT INTO TBL_PICKUP (
-    ID,
-    MEMBER_ID,
-    DRIVER_ID,
-    PICKUP_NUMBER,
-    PICKUP_SCHEDULE,
-    PICKUP_ENTER,
-    PICKUP_REQUEST_CONTENT,
-    PICKUP_STATUS,
-    CREATED_DATE,
-    UPDATED_DATE
-) VALUES (
-             SEQ_PICKUP.NEXTVAL,
-             2,
-             null,
-             'PICK2323413',
-             '2024-09-30 10:00',
-             '자율 출입 가능',
-             '문 앞에 두시면 됩니다.',
-             '요청',
-             SYSDATE,
-             SYSDATE
-         );
+SELECT R, P2.ID, P2.MEMBER_ID, P2.DRIVER_ID, P2.PICKUP_NUMBER, P2.PICKUP_SCHEDULE, P2.PICKUP_ENTER,
+       P2.PICKUP_REQUEST_CONTENT, P2.PICKUP_STATUS, P2.CREATED_DATE, P2.UPDATED_DATE
+FROM (
+         SELECT ROWNUM R, P1.*
+         FROM (
+                  SELECT P.ID, P.MEMBER_ID, P.DRIVER_ID, P.PICKUP_NUMBER, P.PICKUP_SCHEDULE, P.PICKUP_ENTER,
+                         P.PICKUP_REQUEST_CONTENT, P.PICKUP_STATUS, P.CREATED_DATE, P.UPDATED_DATE,
+                         M.MEMBER_ADDRESS_CODE, M.MEMBER_ADDRESS_BASIC, M.MEMBER_ADDRESS_DETAIL,
+                         PL.PLAN_PRICE, PL.PLAN_GRADE
+                  FROM TBL_PICKUP P
+                           JOIN TBL_MEMBER M ON M.ID = P.MEMBER_ID
+                           JOIN TBL_PAYMENT PA ON M.ID = PA.MEMBER_ID
+                           JOIN TBL_PLAN PL ON PA.PLAN_ID = PL.ID
+                  ORDER BY PL.PLAN_PRICE DESC
+              ) P1
+         WHERE ROWNUM <= 36
+     ) P2
+ORDER BY P2.PLAN_PRICE DESC;
+
+
+
+
+

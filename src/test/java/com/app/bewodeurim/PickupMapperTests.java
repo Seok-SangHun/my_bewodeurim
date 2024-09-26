@@ -39,7 +39,7 @@ public class PickupMapperTests {
     public void testSelectAll(){
         Pagination pagination = new Pagination();
         String order = "recent";
-        pagination.setPage(3);
+        pagination.setPage(1);
         pagination.setTotal(pickupMapper.selectTotal());
         pagination.progress();
         List<PickupDTO> posts = pickupMapper.selectAll(pagination, order);
