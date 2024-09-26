@@ -5,11 +5,9 @@ import com.app.bewodeurim.domain.payment.PaymentVO;
 import java.util.List;
 
 public interface PaymentService {
-    public void processPayment(Long MemberId, Long PlanId);
+    void processPayment(Long memberId, Long planId, int price); // 가격을 포함하여 처리
 
     List<PaymentVO> getPaymentsByMemberId(Long memberId);
 
     List<PaymentVO> getAllPayments();
-
-
 }

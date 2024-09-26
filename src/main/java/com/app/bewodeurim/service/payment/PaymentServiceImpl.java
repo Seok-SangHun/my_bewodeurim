@@ -17,18 +17,20 @@ import java.util.List;
 @Primary
 @Transactional
 public class PaymentServiceImpl implements PaymentService {
+
     private final PaymentDAO paymentDAO;
     private final PlanService planService;
 
     @Override
-    public void processPayment(Long memberId, Long planId) {
+    public void processPayment(Long memberId, Long planId, int price) {
+        // 요금제 정보 조회 (TBL_PLAN에서 가져옴)
         PlanVO selectedPlan = planService.getPlanById(planId);
 
         // 결제 정보 생성
         PaymentVO payment = new PaymentVO();
         payment.setMemberId(memberId);
         payment.setPlanId(planId);
-        payment.setPaymentPrice(selectedPlan.getPrice());
+        payment.setPaymentPrice(price);  // 외부에서 전달된 가격 사용
         payment.setPaymentStatus("SUCCESS");
 
         // 결제 정보 저장

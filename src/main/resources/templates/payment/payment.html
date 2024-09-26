@@ -4,35 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/common/common.css" />
-    <link
-            rel="stylesheet"
-            href="/css/payment/payment.css"
-    />
-    <link
-            rel="stylesheet"
-            href="/css/payment/payment-section2.css"
-    />
-    <link
-            rel="stylesheet"
-            href="/css/payment/payment-section3.css"
-    />
-    <link
-            rel="stylesheet"
-            href="/css/payment/payment-section4.css"
-    />
-    <link
-            rel="shortcut icon"
-            href="https://www.freet.co.kr/static/assets/favicons/favicon.png"
-            type="image/x-icon"
-    />
-    <link
-            rel="stylesheet"
-            type="text/css"
-            href="https://www.freet.co.kr/assets/css/font.css?v=20240726"
-    />
+    <link rel="stylesheet" href="/css/payment/payment.css" />
+    <link rel="stylesheet" href="/css/payment/payment-section2.css" />
+    <link rel="stylesheet" href="/css/payment/payment-section3.css" />
+    <link rel="stylesheet" href="/css/payment/payment-section4.css" />
+    <link rel="shortcut icon" href="https://www.freet.co.kr/static/assets/favicons/favicon.png" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="https://www.freet.co.kr/assets/css/font.css?v=20240726" />
+    <script src="https://cdn.bootpay.co.kr/js/bootpay-3.3.1.min.js"></script> <!-- Bootpay SDK 추가 -->
     <title>수거 신청</title>
 </head>
 <body>
+
 <div id="wrap" class="wrap-main">
     <div class="container">
         <section id="content" class="section-usim bottom">
@@ -46,7 +28,7 @@
                         <a href="javascript:void(0)" class="home">
                             <span class="hidden">HOME</span>
                         </a>
-                        <a href="javascript:void(0)"> 수거요청 </a>
+                        <a href="javascript:void(0)"> "수거요청" </a>
                         <strong>수거신청</strong>
                     </div>
                 </div>
@@ -59,33 +41,40 @@
                     <section class="usim-wrap">
                         <div class="step-wrap">
                             <ol>
-                                <li class="active" id="stepone">
+                                <li class="active">
                                     <i class="num">
                                         1
                                         <em class="max">/5</em>
                                     </i>
-                                    <strong>요금제 선택</strong>
+                                    <strong>배출 품목선택</strong>
                                 </li>
-                                <li id="padding">
+                                <li>
                                     <i class="num">
                                         2
                                         <em class="max">/5</em>
                                     </i>
                                     <strong>약관동의</strong>
                                 </li>
-                                <li id="padding">
+                                <li>
                                     <i class="num">
                                         3
                                         <em class="max">/5</em>
                                     </i>
-                                    <strong>결제</strong>
+                                    <strong>배송정보 입력</strong>
                                 </li>
-                                <li id="padding">
+                                <li>
                                     <i class="num">
                                         4
                                         <em class="max">/5</em>
                                     </i>
-                                    <strong>결제 완료</strong>
+                                    <strong>결제</strong>
+                                </li>
+                                <li>
+                                    <i class="num">
+                                        5
+                                        <em class="max">/5</em>
+                                    </i>
+                                    <strong>주문 완료</strong>
                                 </li>
                             </ol>
                             <span class="bar" style="width: 20%"></span>
@@ -94,7 +83,7 @@
                             <li>
                                 <div class="title-wrap">
                                     <h3 class="title-type">
-                                        구독하실 상품을 선택해 주세요
+                                        구독 중인 상품을 선택해 주세요
                                     </h3>
                                 </div>
                                 <div class="chk-list-custom v2">
@@ -131,6 +120,7 @@
                                                 class="select-telco"
                                                 id="freeC-button"
                                         >
+                                            <!-- 여기서부터 -->
                                             <label
                                                     for="item2"
                                                     id="labelFreeC"
@@ -212,12 +202,28 @@
                                                 </div>
                                             </a>
                                         </li>
+                                        <!-- <li>
+                                            <a href="">
+                                                <div class="detail">
+                                                    <p class="tit">
+                                                        <strong
+                                                            >NFC유심
+                                                            (3in1)</strong
+                                                        >
+                                                    </p>
+                                                    <p class="price">
+                                                        <strong
+                                                            >4,400원</strong
+                                                        >
+                                                    </p>
+                                                </div>
+                                            </a>
+                                        </li> -->
                                     </ul>
                                 </div>
                             </li>
                         </ul>
                     </section>
-
                     <aside class="aside-usim">
                         <div class="tip-box pc-only">
                             <p class="tip-type2">
@@ -299,6 +305,13 @@
                                 <a
                                         href="javascript:void(0)"
                                         class="btn-type full disabled"
+                                        id="order-cart-btn0"
+                                        style="display: none"
+                                >주문하기</a
+                                >
+                                <a
+                                        href="javascript:void(0)"
+                                        class="btn-type full disabled"
                                         id="order-cart-btn"
                                         style="display: _"
                                 >
@@ -311,7 +324,7 @@
                         </div>
                     </aside>
                 </section>
-                <!-- 약관동의 -->
+                <!--******************** 약관동의 *************************-->
                 <section
                         class="content-wrap"
                         id="section-step2"
@@ -324,7 +337,7 @@
                                     <i class="num"
                                     >1<em class="max">/5</em></i
                                     >
-                                    <strong>요금제 선택</strong>
+                                    <strong>배출 품목선택</strong>
                                 </li>
                                 <li class="active">
                                     <i class="num"
@@ -336,21 +349,33 @@
                                     <i class="num"
                                     >3<em class="max">/5</em></i
                                     >
-                                    <strong>결제</strong>
+                                    <strong>배송정보 입력</strong>
                                 </li>
                                 <li>
                                     <i class="num"
                                     >4<em class="max">/5</em></i
                                     >
-                                    <strong>결제 완료</strong>
+                                    <strong>결제</strong>
+                                </li>
+                                <li>
+                                    <i class="num"
+                                    >5<em class="max">/5</em></i
+                                    >
+                                    <strong>주문 완료</strong>
                                 </li>
                             </ol>
                             <span class="bar" style="width: 40%"></span>
+                        </div>
+                        <div class="title-wrap">
+                            <h3 class="title-type">
+                                수거 신청을 위한 이용 안내 및 동의
+                            </h3>
                         </div>
                         <div class="agree-wrap">
                             <div class="all-chk">
                                 <!-- selected -->
                                 <div class="chk-box">
+                                    <!-- checked = checked -->
                                     <input
                                             type="checkbox"
                                             id="terms-check-all"
@@ -365,6 +390,29 @@
                                     ></label
                                     >
                                 </div>
+                                <p class="info-text">
+                                    <i class="ico-info3"></i
+                                    ><strong
+                                >유심 수령 후 개통 시 주의
+                                    사항</strong
+                                >
+                                </p>
+                                <ul class="list-type">
+                                    <li>
+                                        개통 시 본인인증이 필요하며
+                                        인증이 불가한 경우 개통이
+                                        불가합니다.<br />(본인인증 수단:
+                                        신용카드, 네이버인증, 토스인증,
+                                        공동인증서, 단, 선불개통 시
+                                        네이버/토스인증은 불가)
+                                    </li>
+                                    <li>
+                                        각 통신사별 회선 제한으로 개통이
+                                        불가할 수 있으니 고객센터를 통해
+                                        고객님의 가용 회선을 미리 확인해
+                                        주시기 바랍니다.
+                                    </li>
+                                </ul>
                             </div>
                             <div class="agree-list">
                                 <ul>
@@ -390,6 +438,14 @@
                                             ></label
                                             >
                                         </div>
+                                        <!-- <a
+                                            href="javascript:void(0)"
+                                            class="btn-arrow"
+                                            ><i class="ico-arrow4"></i
+                                            ><span class="hidden"
+                                                >팝업보기</span
+                                            ></a
+                                        > -->
                                     </li>
                                     <li>
                                         <div class="chk-box">
@@ -413,11 +469,56 @@
                                             ></label
                                             >
                                         </div>
+                                        <!-- <a
+                                            href="javascript:void(0)"
+                                            class="btn-arrow"
+                                            ><i class="ico-arrow4"></i
+                                            ><span class="hidden"
+                                                >팝업보기</span
+                                            ></a
+                                        > -->
+                                    </li>
+                                    <li
+                                            id="terms-box-3"
+                                            style="display: none"
+                                    >
+                                        <div class="chk-box">
+                                            <input
+                                                    type="checkbox"
+                                                    class="terms-check"
+                                                    id="terms-check-3"
+                                            />
+                                            <label
+                                                    class="checkbox"
+                                                    for="terms-check-3"
+                                            ></label>
+                                            <label for="terms-check-3"
+                                            ><strong
+                                                    id="terms-title-3"
+                                            >이벤트·혜택
+                                                정보/광고정보 제공을
+                                                위한 개인정보 제3자
+                                                제공 동의<em
+                                                        class="focus"
+                                                >(선택)</em
+                                                ></strong
+                                            ></label
+                                            >
+                                        </div>
+                                        <a
+                                                href="javascript:void(0)"
+                                                class="btn-arrow"
+                                        ><i class="ico-arrow4"></i
+                                        ><span class="hidden"
+                                        >팝업보기</span
+                                        ></a
+                                        >
                                     </li>
                                 </ul>
                             </div>
                         </div>
                         <div class="btn-fixed-wrap">
+                            <div class="bottom-gra"></div>
                             <div class="btn-wrap">
                                 <a
                                         href="javascript:void(0)"
@@ -428,169 +529,634 @@
                             </div>
                         </div>
                     </section>
+                    <aside class="aside-usim-order pc-only">
+                        <div class="title-bg">
+                            <h3>주문상품</h3>
+                        </div>
+                        <div class="usim-order-list">
+                            <ul class="order-list-container">
+                                <li class="order-item">
+                                    <div class="row">
+                                        <p class="name">
+                                            라이트(1인 권장 구독제)
+                                        </p>
+                                        <p class="num">1개</p>
+                                    </div>
+                                    <div class="row">
+                                        <p class="price">10,000원</p>
+                                        <p class="total">10,000원</p>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="total-wrap">
+                                <p class="t-r">
+                                    총
+                                    <span class="cart-total-amt"
+                                    >10,000원</span
+                                    >
+                                </p>
+                            </div>
+                        </div>
+                    </aside>
                 </section>
-                <!-- 결제 -->
+
+                <!--******************** 수거지 정보 입력 *************************-->
+                <!-- 수거지정보 입력 -->
+<!--                <section-->
+<!--                        class="content-wrap"-->
+<!--                        id="section-step3"-->
+<!--                        style="display: none"-->
+<!--                >-->
+<!--                    <section class="usim-wrap">-->
+<!--                        <div class="step-wrap">-->
+<!--                            <ol>-->
+<!--                                <li class="done">-->
+<!--                                    <i class="num"-->
+<!--                                    >1<em class="max">/5</em></i-->
+<!--                                    >-->
+<!--                                    <strong>배출 품목선택</strong>-->
+<!--                                </li>-->
+<!--                                <li class="done">-->
+<!--                                    <i class="num"-->
+<!--                                    >2<em class="max">/5</em></i-->
+<!--                                    >-->
+<!--                                    <strong>약관동의</strong>-->
+<!--                                </li>-->
+<!--                                <li class="active">-->
+<!--                                    <i class="num"-->
+<!--                                    >3<em class="max">/5</em></i-->
+<!--                                    >-->
+<!--                                    <strong>배송정보 입력</strong>-->
+<!--                                </li>-->
+<!--                                <li>-->
+<!--                                    <i class="num"-->
+<!--                                    >4<em class="max">/5</em></i-->
+<!--                                    >-->
+<!--                                    <strong>결제</strong>-->
+<!--                                </li>-->
+<!--                                <li>-->
+<!--                                    <i class="num"-->
+<!--                                    >5<em class="max">/5</em></i-->
+<!--                                    >-->
+<!--                                    <strong>주문 완료</strong>-->
+<!--                                </li>-->
+<!--                            </ol>-->
+<!--                            <span class="bar" style="width: 60%"></span>-->
+<!--                        </div>-->
+<!--                        <div class="title-wrap">-->
+<!--                            <h3 class="title-type step4-type-0">-->
+<!--                                배송지 주소를 입력해주세요-->
+<!--                            </h3>-->
+<!--                            <h3-->
+<!--                                    class="title-type step4-type-1"-->
+<!--                                    style="display: none"-->
+<!--                            >-->
+<!--                                아래 주소로 배송해 드릴까요?-->
+<!--                            </h3>-->
+<!--                        </div>-->
+<!--                        <div class="form-wrap">-->
+<!--                            <div class="form-box">-->
+<!--                                <div class="form-item">-->
+<!--                                    <div class="form-flex">-->
+<!--                                        <input-->
+<!--                                                type="text"-->
+<!--                                                id="step4-zip"-->
+<!--                                                placeholder="&nbsp;"-->
+<!--                                                disabled=""-->
+<!--                                        />-->
+<!--                                        <label for="" class="title"-->
+<!--                                        >우편번호</label-->
+<!--                                        >-->
+<!--                                        <button-->
+<!--                                                type="submit"-->
+<!--                                                class="btn-form"-->
+<!--                                        >-->
+<!--                                            주소찾기-->
+<!--                                        </button>-->
+<!--                                    </div>-->
+<!--                                    <span-->
+<!--                                            class="invalid-feedback"-->
+<!--                                    ></span>-->
+<!--                                </div>-->
+<!--                                <div class="form-item">-->
+<!--                                    <input-->
+<!--                                            type="text"-->
+<!--                                            id="step4-addr1"-->
+<!--                                            placeholder="&nbsp;"-->
+<!--                                            disabled=""-->
+<!--                                    />-->
+<!--                                    <label for="" class="title"-->
+<!--                                    >기본주소</label-->
+<!--                                    >-->
+<!--                                    <span-->
+<!--                                            class="invalid-feedback"-->
+<!--                                    ></span>-->
+<!--                                </div>-->
+<!--                                <div class="form-item">-->
+<!--                                    <input-->
+<!--                                            type="text"-->
+<!--                                            id="step4-addr1"-->
+<!--                                            placeholder="&nbsp;"-->
+<!--                                            disabled=""-->
+<!--                                    />-->
+<!--                                    <label for="" class="title"-->
+<!--                                    >상세주소</label-->
+<!--                                    >-->
+<!--                                    <span-->
+<!--                                            class="invalid-feedback"-->
+<!--                                    ></span>-->
+<!--                                </div>-->
+<!--                                <div class="form-item">-->
+<!--                                    <input-->
+<!--                                            type="text"-->
+<!--                                            class="step4-addr-input"-->
+<!--                                            id="step4-addr2"-->
+<!--                                            placeholder="&nbsp;"-->
+<!--                                    />-->
+<!--                                    <label for="" class="title"-->
+<!--                                    >기타 요청사항</label-->
+<!--                                    >-->
+<!--                                    <span-->
+<!--                                            class="invalid-feedback"-->
+<!--                                    ></span>-->
+<!--                                </div>-->
+<!--                                <input-->
+<!--                                        type="hidden"-->
+<!--                                        id="step4-addressType"-->
+<!--                                        value="R"-->
+<!--                                />-->
+<!--                                &lt;!&ndash; <div-->
+<!--                                    id="findZipLayer2"-->
+<!--                                    style="-->
+<!--                                        display: none;-->
+<!--                                        position: fixed;-->
+<!--                                        overflow: hidden;-->
+<!--                                        z-index: 999;-->
+<!--                                        width: 480px;-->
+<!--                                        height: 520px;-->
+<!--                                        border: 5px solid;-->
+<!--                                        left: 505px;-->
+<!--                                        top: 47.1714px;-->
+<!--                                    "-->
+<!--                                >-->
+<!--                                    <img-->
+<!--                                        src="https://i1.daumcdn.net/localimg/localimages/07/postcode/320/close.png"-->
+<!--                                        id="btnCloseLayer"-->
+<!--                                        style="-->
+<!--                                            cursor: pointer;-->
+<!--                                            position: absolute;-->
+<!--                                            right: -3px;-->
+<!--                                            top: -3px;-->
+<!--                                            z-index: 1;-->
+<!--                                            width: 20px;-->
+<!--                                            height: 20px;-->
+<!--                                        "-->
+
+<!--                                        alt="닫기 버튼"-->
+<!--                                    /> &ndash;&gt;-->
+<!--                            </div>-->
+<!--                            &lt;!&ndash; <div-->
+<!--                                class="btn-wrap step4-type-1"-->
+<!--                                style="display: none"-->
+<!--                            >-->
+<!--                                <a-->
+<!--                                    href="javascript:void(0)"-->
+<!--                                    class="btn-type4"-->
+<!--                                    >주소 다시 확인해볼래요<i-->
+<!--                                        class="ico-arrow5"-->
+<!--                                    ></i-->
+<!--                                ></a>-->
+<!--                            </div> &ndash;&gt;-->
+<!--                        </div>-->
+<!--                        <div class="btn-fixed-wrap">-->
+<!--                            <div class="btn-wrap">-->
+<!--                                <a-->
+<!--                                        href="javascript:void(0)"-->
+<!--                                        class="btn-type step4-type-0"-->
+<!--                                >다음</a-->
+<!--                                >-->
+<!--                                <a-->
+<!--                                        href="javascript:void(0)"-->
+<!--                                        class="btn-type step4-type-1"-->
+<!--                                        style="display: none"-->
+<!--                                >이 주소로 받을게요</a-->
+<!--                                >-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        &lt;!&ndash; </div> &ndash;&gt;-->
+<!--                    </section>-->
+<!--                    <aside class="aside-usim-order pc-only">-->
+<!--                        <div class="title-bg">-->
+<!--                            <h3>주문상품</h3>-->
+<!--                        </div>-->
+<!--                        <div class="usim-order-list">-->
+<!--                            <ul class="order-list-container">-->
+<!--                                <li class="order-item">-->
+<!--                                    <div class="row">-->
+<!--                                        <p class="name">-->
+<!--                                            라이트(1인 권장 구독제)-->
+<!--                                        </p>-->
+<!--                                        <p class="num">1개</p>-->
+<!--                                    </div>-->
+<!--                                    <div class="row">-->
+<!--                                        <p class="price">10,000원</p>-->
+<!--                                        <p class="total">10,000원</p>-->
+<!--                                    </div>-->
+<!--                                </li>-->
+<!--                            </ul>-->
+<!--                            <div class="total-wrap">-->
+<!--                                <p class="t-r">-->
+<!--                                    총-->
+<!--                                    <span class="cart-total-amt"-->
+<!--                                    >10,000원</span-->
+<!--                                    >-->
+<!--                                </p>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </aside>-->
+<!--                </section>-->
+                <!-- 수거 시간 -->
                 <section
                         class="content-wrap"
                         id="section-step4"
                         style="display: none"
                 >
-                    <section class="usim-wrap">
-                        <div class="step-wrap">
-                            <ol>
-                                <li class="done">
-                                    <i class="num"
-                                    >1<em class="max">/5</em></i
+                    <!--  -->
+                    <section
+                            class="content-wrap"
+                            id="section-step"
+                            style="display: _"
+                    >
+                        <section class="usim-wrap">
+                            <div class="step-wrap">
+                                <ol>
+                                    <li class="done">
+                                        <i class="num"
+                                        >1<em class="max">/5</em></i
+                                        >
+                                        <strong>배출 품목선택</strong>
+                                    </li>
+                                    <li class="done">
+                                        <i class="num"
+                                        >2<em class="max">/5</em></i
+                                        >
+                                        <strong>약관동의</strong>
+                                    </li>
+                                    <li class="done">
+                                        <i class="num"
+                                        >3<em class="max">/5</em></i
+                                        >
+                                        <strong>배송정보 입력</strong>
+                                    </li>
+                                    <li class="active">
+                                        <i class="num"
+                                        >4<em class="max">/5</em></i
+                                        >
+                                        <strong>결제</strong>
+                                    </li>
+                                    <li>
+                                        <i class="num"
+                                        >5<em class="max">/5</em></i
+                                        >
+                                        <strong>주문 완료</strong>
+                                    </li>
+                                </ol>
+                                <span
+                                        class="bar"
+                                        style="width: 80%"
+                                ></span>
+                            </div>
+                            <div class="title-wrap">
+                                <h3 class="title-type">
+                                    수거 희망시간을 선택해주세요
+                                </h3>
+                            </div>
+                            <div class="chk-list-custom">
+                                <ul>
+                                    <li class="timeList">
+                                        <label for="item1">
+                                            <div class="detail">
+                                                <i class="ico-visa"></i>
+                                                <p class="tit">
+                                                    09월 05일
+                                                </p>
+                                                <div class="tit-detail">
+                                                            <span
+                                                            >06:00 ~
+                                                                22:00</span
+                                                            >
+                                                </div>
+                                            </div>
+                                            <div
+                                                    class="chk-box selected"
+                                            >
+                                                <input
+                                                        type="radio"
+                                                        id="item1"
+                                                        name="paymentMethod"
+                                                        value="card"
+                                                        checked=""
+                                                />
+                                                <label
+                                                        class="checkbox"
+                                                        for="item1"
+                                                ></label>
+                                            </div>
+                                        </label>
+                                    </li>
+                                    <li class="timeList">
+                                        <label for="item2">
+                                            <div class="detail">
+                                                <i
+                                                        class="ico-laptop"
+                                                ></i>
+                                                <p class="tit">
+                                                    09월 05일
+                                                </p>
+                                                <div class="tit-detail">
+                                                            <span
+                                                            >22:00 ~
+                                                                06:00</span
+                                                            >
+                                                </div>
+                                            </div>
+                                            <div class="chk-box">
+                                                <input
+                                                        type="radio"
+                                                        id="item2"
+                                                        name="paymentMethod"
+                                                        value="bank"
+                                                />
+                                                <label
+                                                        class="checkbox"
+                                                        for="item2"
+                                                ></label>
+                                            </div>
+                                        </label>
+                                    </li>
+                                    <li class="timeList">
+                                        <label for="item4">
+                                            <div class="detail">
+                                                <i
+                                                        class="ico-kakaopay"
+                                                ></i>
+                                                <p class="tit">
+                                                    09월 06일
+                                                </p>
+                                                <div class="tit-detail">
+                                                            <span
+                                                            >06:00 ~
+                                                                22:00</span
+                                                            >
+                                                </div>
+                                            </div>
+                                            <div class="chk-box">
+                                                <input
+                                                        type="radio"
+                                                        id="item4"
+                                                        name="paymentMethod"
+                                                        value="kakaopay"
+                                                />
+                                                <label
+                                                        class="checkbox"
+                                                        for="item4"
+                                                ></label>
+                                            </div>
+                                        </label>
+                                    </li>
+                                    <li class="timeList">
+                                        <label for="item3">
+                                            <div class="detail">
+                                                <i
+                                                        class="ico-payco"
+                                                ></i>
+                                                <p class="tit">
+                                                    09월 06일
+                                                </p>
+                                                <div class="tit-detail">
+                                                            <span
+                                                            >22:00 ~
+                                                                06:00</span
+                                                            >
+                                                </div>
+                                            </div>
+                                            <div class="chk-box">
+                                                <input
+                                                        type="radio"
+                                                        id="item3"
+                                                        name="paymentMethod"
+                                                        value="payco"
+                                                />
+                                                <label
+                                                        class="checkbox"
+                                                        for="item3"
+                                                ></label>
+                                            </div>
+                                        </label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="btn-fixed-wrap">
+                                <div class="bottom-gra"></div>
+                                <div class="btn-wrap">
+                                    <a
+                                            href="javascript:void(0)"
+                                            class="btn-type"
+                                            id="payment-btn"
+                                    >다음</a
                                     >
-                                    <strong>요금제 선택</strong>
-                                </li>
-                                <li class="done">
-                                    <i class="num"
-                                    >2<em class="max">/5</em></i
-                                    >
-                                    <strong>약관동의</strong>
-                                </li>
-                                <li class="active">
-                                    <i class="num"
-                                    >3<em class="max">/5</em></i
-                                    >
-                                    <strong>결제</strong>
-                                </li>
-                                <li>
-                                    <i class="num"
-                                    >4<em class="max">/5</em></i
-                                    >
-                                    <strong>결제 완료</strong>
-                                </li>
-                            </ol>
-                            <span class="bar" style="width: 60%"></span>
+                                </div>
+                            </div>
+                        </section>
+                    </section>
+                    <!--  -->
+                    <aside class="aside-usim-order pc-only">
+                        <div class="title-bg">
+                            <h3>주문상품</h3>
                         </div>
-                        <div class="chk-list-custom">
-                            <ul>
-                                <li class="timeList">
-                                    <label for="item1">
-                                        <div class="detail">
-                                            <p class="tit">09월 05일</p>
-                                            <div class="tit-detail">
-                                                        <span
-                                                        >06:00 ~ 22:00</span
-                                                        >
-                                            </div>
-                                        </div>
-                                        <div class="chk-box selected">
-                                            <input
-                                                    type="radio"
-                                                    id="item1"
-                                                    name="paymentMethod"
-                                                    value="card"
-                                                    checked=""
-                                            />
-                                            <label
-                                                    class="checkbox"
-                                                    for="item1"
-                                            ></label>
-                                        </div>
-                                    </label>
-                                </li>
-                                <li class="timeList">
-                                    <label for="item2">
-                                        <div class="detail">
-                                            <p class="tit">09월 05일</p>
-                                            <div class="tit-detail">
-                                                        <span
-                                                        >22:00 ~ 06:00</span
-                                                        >
-                                            </div>
-                                        </div>
-                                        <div class="chk-box">
-                                            <input
-                                                    type="radio"
-                                                    id="item2"
-                                                    name="paymentMethod"
-                                                    value="bank"
-                                            />
-                                            <label
-                                                    class="checkbox"
-                                                    for="item2"
-                                            ></label>
-                                        </div>
-                                    </label>
+                        <div class="usim-order-list">
+                            <ul class="order-list-container">
+                                <li class="order-item">
+                                    <div class="row">
+                                        <p class="name">
+                                            라이트(1인 권장 구독제)
+                                        </p>
+                                        <p class="num">1개</p>
+                                    </div>
+                                    <div class="row">
+                                        <p class="price">10,000원</p>
+                                        <p class="total">10,000원</p>
+                                    </div>
                                 </li>
                             </ul>
-                        </div>
-                        <div class="btn-fixed-wrap">
-                            <div class="btn-wrap">
-                                <a
-                                        href="javascript:void(0)"
-                                        class="btn-type"
-                                >다음</a
-                                >
+                            <div class="total-wrap">
+                                <p class="t-r">
+                                    총
+                                    <span class="cart-total-amt"
+                                    >10,000원</span
+                                    >
+                                </p>
                             </div>
                         </div>
-                    </section>
+                    </aside>
                 </section>
+
                 <!--주문 완료 -->
                 <section
                         class="content-wrap"
                         id="section-step5"
                         style="display: none"
                 >
-                    <section class="usim-wrap">
-                        <div class="step-wrap">
-                            <ol>
-                                <li class="done">
-                                    <i class="num"
-                                    >1<em class="max">/5</em></i
-                                    >
-                                    <strong>배출 품목선택</strong>
-                                </li>
-                                <li class="done">
-                                    <i class="num"
-                                    >2<em class="max">/5</em></i
-                                    >
-                                    <strong>약관동의</strong>
-                                </li>
-                                <li class="done">
-                                    <i class="num"
-                                    >3<em class="max">/5</em></i
-                                    >
-                                    <strong>결제</strong>
-                                </li>
-                                <li class="active">
-                                    <i class="num"
-                                    >4<em class="max">/5</em></i
-                                    >
-                                    <strong>주문 완료</strong>
-                                </li>
-                            </ol>
-                            <span class="bar" style="width: 80%"></span>
-                        </div>
-                        <div class="title-wrap">
-                            <div class="motion-img">
-                                <img
-                                        src="https://www.freet.co.kr/assets/images/motion/paying.gif"
-                                />
+                    <!--  -->
+                    <section
+                            class="content-wrap"
+                            id="section-step"
+                            style="display: _"
+                    >
+                        <section class="usim-wrap">
+                            <div class="step-wrap">
+                                <ol>
+                                    <li class="done">
+                                        <i class="num"
+                                        >1<em class="max">/5</em></i
+                                        >
+                                        <strong>배출 품목선택</strong>
+                                    </li>
+                                    <li class="done">
+                                        <i class="num"
+                                        >2<em class="max">/5</em></i
+                                        >
+                                        <strong>약관동의</strong>
+                                    </li>
+                                    <li class="done">
+                                        <i class="num"
+                                        >3<em class="max">/5</em></i
+                                        >
+                                        <strong>배송정보 입력</strong>
+                                    </li>
+                                    <li class="done">
+                                        <i class="num"
+                                        >4<em class="max">/5</em></i
+                                        >
+                                        <strong>결제</strong>
+                                    </li>
+                                    <li class="active">
+                                        <i class="num"
+                                        >5<em class="max">/5</em></i
+                                        >
+                                        <strong>주문 완료</strong>
+                                    </li>
+                                </ol>
+                                <span
+                                        class="bar"
+                                        style="width: 80%"
+                                ></span>
                             </div>
-                            <h3 class="title-type">
-                                수거 신청이 완료되었습니다🚚
-                            </h3>
-                        </div>
-                        <div class="chk-list-custom"></div>
-                        <div class="btn-fixed-wrap">
-                            <div class="btn-wrap">
-                                <a
-                                        href="javascript:void(0)"
-                                        class="btn-type"
-                                >수거 요청목록 보기</a
-                                >
+                            <div class="title-wrap">
+                                <div class="motion-img">
+                                    <img
+                                            src="https://www.freet.co.kr/assets/images/motion/paying.gif"
+                                    />
+                                </div>
+                                <h3 class="title-type">
+                                    수거 신청이 완료되었습니다🚚
+                                </h3>
                             </div>
-                        </div>
+                            <div class="chk-list-custom"></div>
+                            <div class="btn-fixed-wrap">
+                                <div class="bottom-gra"></div>
+                                <div class="btn-wrap">
+                                    <a
+                                            href="javascript:void(0)"
+                                            class="btn-type"
+                                    >수거 요청목록 보기</a
+                                    >
+                                </div>
+                            </div>
+                        </section>
                     </section>
+                    <!--
+                    <aside class="aside-usim-order pc-only">
+                        <div class="title-bg">
+                            <h3>주문상품</h3>
+                        </div>
+                        <div class="usim-order-list">
+                            <ul class="order-list-container">
+                                <li class="order-item">
+                                    <div class="row">
+                                        <p class="name">
+                                            SKT 일반유심 (3in1)
+                                        </p>
+                                        <p class="num">1개</p>
+                                    </div>
+                                    <div class="row">
+                                        <p class="price">2,200원</p>
+                                        <p class="total">2,200원</p>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="total-wrap">
+                                <p class="t-r">
+                                    총
+                                    <span class="cart-total-amt"
+                                        >2,200원</span
+                                    >
+                                </p>
+                            </div>
+                        </div>
+                    </aside> -->
                 </section>
             </div>
         </section>
     </div>
 </div>
-</body>
 <script src="/js/payment/payment.js"></script>
+<!-- Bootpay 결제 API 스크립트 -->
+<script>
+    document.getElementById("payment-btn").addEventListener("click", function () {
+        const planId = document.querySelector('input[name="telco"]:checked').value;
+        const memberId = "USER_ID"; // 사용자 ID (로그인된 사용자 정보에서 가져옴)
+        const price = 10000;  // 결제 금액 (요금제에 따라 다르게 설정)
+
+        // Bootpay 결제 요청
+        Bootpay.requestPayment({
+            application_id: "66f5168a3aa7c4faf96e4c5a",  // Bootpay에서 발급받은 REST API Key
+            price: price,  // 결제 금액
+            order_name: "구독 결제",  // 결제명
+            order_id: "ORDER_ID_12345",  // 주문 ID
+            pg: "카카오페이",  // PG사
+            method: "카드",  // 결제 수단
+            tax_free: 0,  // 면세 금액
+            user: {
+                id: memberId,  // 사용자 ID
+                username: "홍길동",  // 사용자 이름
+                phone: "01012345678",  // 사용자 전화번호
+                email: "test@test.com"  // 사용자 이메일
+            },
+            items: [
+                {
+                    id: "ITEM_ID",  // 아이템 ID
+                    name: "테스트 상품",  // 상품명
+                    qty: 1,  // 상품 수량
+                    price: price  // 상품 금액
+                }
+            ],
+            extra: {
+                open_type: "iframe",  // 결제 창 타입
+                card_quota: "0,2,3",  // 할부 개월수
+                escrow: false  // 에스크로 사용 여부
+            }
+        }).then(function (res) {
+            if (res.status === 'success') {
+                // 결제 성공 시 서버로 결제 정보를 전송
+                window.location.href = `/payment/process?paymentId=${res.paymentId}&planId=${planId}&memberId=${memberId}&price=${price}`;
+            } else {
+                alert("결제 실패: " + res.error_message);
+            }
+        }).catch(function (err) {
+            console.error(err);
+        });
+    });
+</script>
+</body>
 </html>
