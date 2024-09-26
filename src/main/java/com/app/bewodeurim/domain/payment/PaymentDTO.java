@@ -13,12 +13,12 @@ public class PaymentDTO {
     private Long id;
     private Long memberId;
     private Long planId;
-    private int price;
-    private String status;
+    private int paymentPrice;
+    private String paymentStatus;
     private String createdDate;
     private String updatedDate;
 
-    public PaymentVO toVO() {return new PaymentVO(id, memberId, planId, price, status, createdDate, updatedDate);}
+    public PaymentVO toVO() {return new PaymentVO(id, memberId, planId, paymentPrice, paymentStatus, createdDate, updatedDate);}
 
 
 }

@@ -44,3 +44,4 @@ INSERT INTO TBL_MEMBER (
              SYSDATE  -- 업데이트 날짜
          );
 
+SELECT * FROM TBL_PAYMENT WHERE MEMBER_ID = 21;

@@ -13,8 +13,8 @@ public class PaymentVO {
     private Long id;
     private Long memberId;
     private Long planId;
-    private int price;
-    private String status;
+    private int paymentPrice;
+    private String paymentStatus;
     private String createdDate;
     private String updatedDate;
 

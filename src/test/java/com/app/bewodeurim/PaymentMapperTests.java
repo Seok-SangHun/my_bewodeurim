@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
@@ -20,12 +22,35 @@ public class PaymentMapperTests {
         PaymentVO payment = new PaymentVO();
         payment.setMemberId(21L);
         payment.setPlanId(41L);
-        payment.setPrice(8000);
-        payment.setStatus("SUCCESS");
+        payment.setPaymentPrice(8000);
+        payment.setPaymentStatus("SUCCESS");
 
-        // 결제 정보 삽입
+
         paymentMapper.save(payment);
 
     }
 
+    @Test
+    public void testFindPaymentsByMemberId() {
+        Long memberId = 21L;
+        List<PaymentVO> payments = paymentMapper.findPaymentsByMemberId(memberId);
+
+        for (PaymentVO payment : payments) {
+            log.info("결제 ID: " + payment.getId());
+            log.info("결제 금액: " + payment.getPaymentPrice());
+            log.info("결제 상태: " + payment.getPaymentStatus());
+        }
+
+    }
+
+
+    @Test
+    public void testFindPayments(){
+        List<PaymentVO> payments = paymentMapper.findAllPayments();
+
+        log.info(payments.toString());
+    }
 }
+
+
+

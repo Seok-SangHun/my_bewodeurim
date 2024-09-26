@@ -10,6 +10,8 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 @Primary
@@ -20,22 +22,26 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     public void processPayment(Long memberId, Long planId) {
-        // 요금제 정보 조회
         PlanVO selectedPlan = planService.getPlanById(planId);
 
         // 결제 정보 생성
         PaymentVO payment = new PaymentVO();
-        payment.setMemberId(memberId);  // 로그인된 사용자 ID
-        payment.setPlanId(planId);      // 선택된 요금제 ID
-        payment.setPrice(selectedPlan.getPrice());  // PLAN_PRICE 값을 PAYMENT_PRICE로 설정
-        payment.setStatus("SUCCESS");   // 결제 상태
+        payment.setMemberId(memberId);
+        payment.setPlanId(planId);
+        payment.setPaymentPrice(selectedPlan.getPrice());
+        payment.setPaymentStatus("SUCCESS");
 
         // 결제 정보 저장
         paymentDAO.save(payment);
     }
 
     @Override
-    public void PaymentView(Long PaymentId){
+    public List<PaymentVO> getPaymentsByMemberId(Long memberId) {
+        return paymentDAO.findPaymentsByMemberId(memberId);
+    }
 
+    @Override
+    public List<PaymentVO> getAllPayments() {
+        return paymentDAO.findAllPayments();
     }
 }

@@ -5,6 +5,8 @@ import com.app.bewodeurim.mapper.payment.PaymentMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 @RequiredArgsConstructor
 public class PaymentDAO {
@@ -14,8 +16,12 @@ public class PaymentDAO {
         paymentMapper.save(paymentVO);
     }
 
-    public void select(PaymentVO paymentVO) {
-        paymentMapper.select(paymentVO);
+    public List<PaymentVO> findPaymentsByMemberId(Long memberId) {
+        return paymentMapper.findPaymentsByMemberId(memberId);
+    }
+
+    public List<PaymentVO> findAllPayments() {
+        return paymentMapper.findAllPayments();
     }
 }
 
