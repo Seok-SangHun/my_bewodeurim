@@ -72,7 +72,7 @@
     <update id="update">
         UPDATE TBL_PICKUP
         SET PICKUP_SCHEDULE = #{pickupSchedule}, PICKUP_ENTER=#{pickupEnter}, PICKUP_REQUEST_CONTENT=#{pickupRequestContent},
-            PICKUP_STATUS =#{pickupStatus}, UPDATED_DATE = CURRENT_TIMESTAMP
+            PICKUP_STATUS =#{pickupStatus}, UPDATED_DATE = CURRENT_TIMESTAMP, DRIVER_ID=#{driverId}
         WHERE ID = #{id}
     </update>
 </mapper>
