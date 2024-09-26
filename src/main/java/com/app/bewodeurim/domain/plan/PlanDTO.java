@@ -21,5 +21,6 @@ public class PlanDTO implements Serializable {
     private String createdDate;
     private String updatedDate;
 
+    public PlanVO toVO(){ return new PlanVO(id, grade, price, boxSize, maxMembers, status, createdDate, updatedDate); }
 
 }
