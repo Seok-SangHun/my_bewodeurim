@@ -1,3 +1,8 @@
+// 나의 삼담 내역 페이지로 이동
+document.getElementById('myCounselBtn').addEventListener('click', (e) => {
+    window.location.href = "/one-to-one/my_counsel";
+});
+
 // 탭 활성화
 const actives = document.querySelectorAll(".tab-type li");
 
@@ -94,34 +99,34 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-// (보안) 이미지&오디오 불러오기
-// 페이지가 로드될 때 처음 호출되어 오디오를 로드합니다.
-window.onload = function () {
-    loadInitialCaptcha();
-};
+// // (보안) 이미지&오디오 불러오기
+// // 페이지가 로드될 때 처음 호출되어 오디오를 로드합니다.
+// window.onload = function () {
+//     loadInitialCaptcha();
+// };
+//
+// function loadInitialCaptcha() {
+//     const randomValue = Math.random();
+//     const captchaImage = document.getElementById("captcha");
+//     const captchaAudio = document.getElementById("captchaAudio");
+//
+//     captchaImage.src =
+//         "https://www.freet.co.kr/customer/captchaImg.do?rand=" + randomValue;
+//     captchaAudio.src =
+//         "https://www.freet.co.kr/customer/captchaAudio.do?rand=" + randomValue;
+//
+//     // 오디오 요소를 미리 로드
+//     captchaAudio.load(); // <- 초기 로드 추가
+// }
 
-function loadInitialCaptcha() {
-    const randomValue = Math.random();
-    const captchaImage = document.getElementById("captcha");
-    const captchaAudio = document.getElementById("captchaAudio");
-
-    captchaImage.src =
-        "https://www.freet.co.kr/customer/captchaImg.do?rand=" + randomValue;
-    captchaAudio.src =
-        "https://www.freet.co.kr/customer/captchaAudio.do?rand=" + randomValue;
-
-    // 오디오 요소를 미리 로드
-    captchaAudio.load(); // <- 초기 로드 추가
-}
-
-function getCaptcha() {
-    loadInitialCaptcha(); // <- 초기 로드를 재사용
-}
-
-function playCaptchaAudio() {
-    const captchaAudio = document.getElementById("captchaAudio");
-    captchaAudio.play();
-}
+// function getCaptcha() {
+//     loadInitialCaptcha(); // <- 초기 로드를 재사용
+// }
+//
+// function playCaptchaAudio() {
+//     const captchaAudio = document.getElementById("captchaAudio");
+//     captchaAudio.play();
+// }
 
 // 파일 이름 출력
 document.addEventListener("DOMContentLoaded", function () {
@@ -213,44 +218,39 @@ moveTop.addEventListener("click", function () {
     });
 });
 
-// modal창
-
-// 자바스크립트 코드
-document.addEventListener("DOMContentLoaded", function () {
-    const modal = document.getElementById("pop-alert2");
-    const cancelButton = document.querySelector(
-        "#pop-alert2 .btn-wrap .btn-type.v3"
-    );
-
-    // 모달 열기 함수
-    function openModal() {
-        modal.style.display = "flex"; // 모달 보이기
-        document.body.style.overflow = "hidden"; // 배경 스크롤 비활성화
-        document.querySelector(".pop-wrap").style.animation = "popUp 0.5s";
-        setTimeout(() => {
-            modalCheck = true;
-        }, 500);
-    }
-
-    // 모달 닫기 함수
-    function closeModal() {
-        document.body.style.overflow = ""; // 배경 스크롤 복원
-        document.querySelector(".pop-wrap").style.animation = "popDown 0.5s";
-        setTimeout(() => {
-            modal.style.display = "none";
-        }, 450);
-    }
-
-    // 취소 버튼 클릭 시 모달 닫기
-    if (cancelButton) {
-        cancelButton.addEventListener("click", closeModal);
-    }
-
-    // 페이지 로드 시 모달 열기
-    openModal();
-});
-
-// 나의 삼담 내역 페이지로 이동
-document.getElementById('myCounselBtn').addEventListener('click', (e) => {
-    window.location.href = "/one-to-one/my_counsel";
-});
+// // modal창
+//
+// // 자바스크립트 코드
+// document.addEventListener("DOMContentLoaded", function () {
+//     const modal = document.getElementById("pop-alert2");
+//     const cancelButton = document.querySelector(
+//         "#pop-alert2 .btn-wrap .btn-type.v3"
+//     );
+//
+//     // 모달 열기 함수
+//     function openModal() {
+//         modal.style.display = "flex"; // 모달 보이기
+//         document.body.style.overflow = "hidden"; // 배경 스크롤 비활성화
+//         document.querySelector(".pop-wrap").style.animation = "popUp 0.5s";
+//         setTimeout(() => {
+//             modalCheck = true;
+//         }, 500);
+//     }
+//
+//     // 모달 닫기 함수
+//     function closeModal() {
+//         document.body.style.overflow = ""; // 배경 스크롤 복원
+//         document.querySelector(".pop-wrap").style.animation = "popDown 0.5s";
+//         setTimeout(() => {
+//             modal.style.display = "none";
+//         }, 450);
+//     }
+//
+//     // 취소 버튼 클릭 시 모달 닫기
+//     if (cancelButton) {
+//         cancelButton.addEventListener("click", closeModal);
+//     }
+//
+//     // 페이지 로드 시 모달 열기
+//     openModal();
+// });
