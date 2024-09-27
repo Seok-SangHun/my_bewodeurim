@@ -5,4 +5,9 @@
         INSERT INTO TBL_LIKED_AREA(ID,DRIVER_ID,REGION_ID)
         VALUES (SEQ_LIKED_AREA.NEXTVAL,#{driverId},#{regionId})
     </insert>
+
+<!--    <select id="selectLikedAreaByDriverId">-->
+<!--        SELECT LA.ID, DRIVER_ID, REGION_ID, DRIVER_NAME FROM TBL_LIKED_AREA LA-->
+<!--        JOIN TBL_DRIVER D on D.ID = LA.DRIVER_ID-->
+<!--    </select>-->
 </mapper>

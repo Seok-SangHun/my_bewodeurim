@@ -11,17 +11,6 @@ CREATE TABLE TBL_DRIVER (
 
 CREATE SEQUENCE SEQ_DRIVER;
 SELECT * FROM TBL_DRIVER;
-INSERT INTO TBL_DRIVER (
-    ID,
-    DRIVER_BANK,
-    DRIVER_BANK_ACCOUNT,
-    CREATED_DATE,
-    UPDATED_DATE
-) VALUES (
-             SEQ_DRIVER.NEXTVAL,  -- 자동 증가 시퀀스를 사용하여 ID 생성
-             1,  -- 실제 존재하는 회원의 ID를 입력 (예: 1번 회원)
-             'KB국민은행',  -- 배달기사의 은행
-             '123-456-789012',  -- 배달기사의 계좌 번호
-             SYSDATE,  -- 배달기사 등록 날짜 (현재 날짜 사용)
-             SYSDATE   -- 업데이트 날짜 (현재 날짜 사용)
-         );
+
+
+

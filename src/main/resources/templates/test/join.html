@@ -2,84 +2,91 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>기사 회원가입</title>
 </head>
 <body>
-<form th:action="@{/member/login}" method="post" th:object="${driverDTO}">
+<form th:action="@{/member/login}" method="post" th:object="${form}">
     <div>
         <label>
-            <input type="text" placeholder="이름" th:field="*{memberName}">
-            <input type="text" placeholder="전화번호" th:field="*{memberPhoneNumber}">
+            <input name="memberName" type="text" placeholder="이름">
+            <input name="memberPhoneNumber" type="text" placeholder="전화번호">
         </label>
     </div>
     <div>
         <label>
-
+            <input name="memberEmail" type="email" placeholder="이메일">
+            <input name="memberPassword" type="password" placeholder="비밀번호">
         </label>
     </div>
     <div>
         <label>
-            <input type="text" placeholder="이메일" th:field="*{memberEmail}">
-            <input type="text" placeholder="비밀번호" th:field="*{memberPassword}">
+            <input name="memberAddressCode" type="text" placeholder="우편번호">
+            <input name="memberAddressBasic" type="text" placeholder="주소">
+            <input name="memberAddressDetail" type="text" placeholder="상세주소">
         </label>
     </div>
     <div>
         <label>
-            <input type="text" placeholder="우편번호" th:field="*{memberAddressCode}">
-            <input type="text" placeholder="주소" th:field="*{memberAddressBasic}">
-            <input type="text" placeholder="상세주소" th:field="*{memberAddressDetail}">
-        </label>
-    </div>
-<!--    <div>-->
-<!--        <label>-->
-<!--            <input type="text" placeholder="은행명" th:field="*{driverBank}">-->
-<!--            <input type="text" placeholder="계좌" th:field="*{driverBankAccount}">-->
-<!--        </label>-->
-<!--    </div>-->
-    <div>
-        <label>
-            <select name="driverBank" th:field="*{driverBank}">
-
-                <option value="o" selected>::은행선택::</option>
-                <option value="NH"> 농협</option>
-
-                <option value="WR" > 우리</option>
-
-                <option value="KKO"> 카카오</option>
-
-                <option value="SH"> 신한</option>
-
+            <select name="driverBank">
+                <option value="" selected disabled>::은행선택::</option>
+                <option value="NH">농협</option>
+                <option value="WR">우리</option>
+                <option value="KKO">카카오</option>
+                <option value="SH">신한</option>
             </select>
-            <input type="text" placeholder="계좌" th:field="*{driverBankAccount}">
+            <input name="driverBankAccount" type="text" placeholder="계좌">
         </label>
     </div>
-<!--    <div>-->
-<!--        <label>-->
-<!--            <select name="cityName" th:field="*{cityName}">-->
-
-<!--                <option value="cityName" selected>지역</option>-->
-<!--                <option value="seoul"> 서울</option>-->
-
-<!--            </select>-->
-<!--            <select name="regionName" th:field="*{regionName}">-->
-
-<!--                <option value="regionName" selected>시/군/구</option>-->
-<!--                <option value="seoul"> 강남구</option>-->
-
-<!--                <option value="WR" > 마포구</option>-->
-
-<!--                <option value="KKO"> 영등포구</option>-->
-
-<!--                <option value="SH"> 서대문구</option>-->
-
-<!--            </select>-->
-
+    <div>
+<!--        <label id="likedAreaLabel" >-->
+        <div th:each="city, iterStat : ${cityDTO}">
+            <select id="city" name="cityName" th:field="*{cityDTOs[__${iterStat.index}__].id}">
+                <option value="" selected disabled>지역</option>
+                <option value="seoul">서울</option>
+            </select>
+        </div>
+        <div th:each="region, iterStat : ${regionDTO}">
+            <select id="region" name="regionName" th:field="*{regionDTOs[__${iterStat.index}__].id}">
+                <option value="" selected disabled>시/군/구</option>
+                <option value="gangnam">강남구</option>
+                <option value="mapo">마포구</option>
+                <option value="youngdeungpo">영등포구</option>
+                <option value="seodaemungu">서대문구</option>
+            </select>
+        </div>
 <!--        </label>-->
-<!--    </div>-->
-    <button>완료</button>
+    </div>
+    <button type="submit">완료</button>
 </form>
+<script th:inline="javascript">
+    const city = [[${city}]]
+    const region = [[${region}]]
+    const likedAreaLabel = document.querySelector("#likedAreaLabel");
+    const selectCity = document.querySelector("#city");
+    const selectRegion = document.querySelector("#region");
+    // Array에 지역 이름X 지역 번호를 담아야함
+    let cityArray = new Array();
+    let regionArray = new Array();
+
+    selectCity.addEventListener("change", (e) => {
+        const cityValue = e.target.value;
+        console.log(cityValue);
+        // likedAreaLabel.innerHTML += `<input type="hidden" name='cityDTO[${0}].id' value="${cityArray[0]}">`;
+        // likedAreaLabel.innerHTML += `<input type="hidden" name='cityDTO[${0}].id' value="${cityArray[0]}">`;
+        likedAreaLabel.innerHTML += `<input type="hidden" name='cityDTO[${1}].id' th:field="*{city[i]}">`;
+        // Array에 번호를 담아야함
+        cityArray.push(city.id)
+    });
+
+    selectRegion.addEventListener("change", (f) => {
+        const regionValue = f.target.value;
+        console.log(regionValue);
+        likedAreaLabel.innerHTML += `<input type="hidden" name='regionDTO[${1}].id' th:field="*{region[i]}">`;
+        // Array에 번호를 담아야함
+        regionArray.push(region.id)
+    });
+</script>
 </body>
 </html>

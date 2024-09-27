@@ -9,6 +9,6 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 public class RegionVO {
     private Long id;
-    private String cityName;
+    private Long cityId;
     private String regionName;
 }

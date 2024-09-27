@@ -1,8 +1,11 @@
 package com.app.bewodeurim.domain.driver;
 
+import com.app.bewodeurim.domain.area.*;
 import com.app.bewodeurim.domain.member.MemberVO;
 import lombok.*;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 @Getter
@@ -27,11 +30,22 @@ public class DriverDTO {
     private String driverBankAccount;
     private String createdDate;
     private String updatedDate;
-//    얘네는 어쩌지??????
-//    private Long cityName;
-//    private Long regionName;
-    private Long cityId;
-    private String cityName;
+
+
+    private List<CityDTO> cityId;
+    //    화면에서 받을 값
+    private List<CityDTO> cityName;
+    //likedArea 테이블에서 필요한 값
+    private List<RegionDTO> regionId;
+    //    화면에서 받을 값
+    private List<RegionDTO> regionName;
+
+//    public LikedAreaVO toLikedAreaVO() {
+//        LikedAreaVO(id,DriverId,regionId)
+//        DriverId는 driverDTO에서 id이다.
+//        return new LikedAreaVO(id,driverId,regionId);
+//    }
+
 
     public DriverVO toDriverVO() {
         return new DriverVO(id, driverBank, driverBankAccount, createdDate, updatedDate);
@@ -41,4 +55,12 @@ public class DriverDTO {
         return new MemberVO(id,memberName,memberEmail,memberAddressCode,memberAddressBasic
         ,memberAddressDetail,memberPhoneNumber,memberStatus,memberType,memberPassword,createdDate,updatedDate);
     }
+
+//    public CityVO toCityVO() {
+//        return new CityVO(cityId,cityName);
+//    }
+//    public RegionVO toRegionVO() {
+//        return new RegionVO(regionId,cityId,regionName);
+//    }
+
 }

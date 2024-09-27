@@ -4,6 +4,13 @@
 
     <insert id="insertRegion">
         INSERT INTO TBL_REGION(ID,CITY_ID,REGION_NAME)
-        VALUES (SEQ_REGION.NEXTVAL,#{cityName},#{regionName})
+        VALUES (SEQ_REGION.NEXTVAL,#{cityId},#{regionName})
     </insert>
+
+    <select id="selectRegionByName">
+        SELECT CITY_NAME, REGION_NAME
+        FROM TBL_REGION R JOIN TBL_CITY C
+        ON R.CITY_ID = C.ID
+        WHERE REGION_NAME = #{regionName} ;
+    </select>
 </mapper>

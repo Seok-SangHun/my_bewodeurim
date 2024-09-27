@@ -11,10 +11,10 @@ import org.springframework.stereotype.Component;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class RegionDTO {
     private Long id;
-    private String cityName;
+    private Long cityId;
     private String regionName;
 
-    public RegionVO toVO() {
-        return new RegionVO(id, cityName, regionName);
+    public RegionVO toRegionVO() {
+        return new RegionVO(id, cityId, regionName);
     }
 }

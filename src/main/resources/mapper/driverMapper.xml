@@ -3,9 +3,6 @@
 <mapper namespace="com.app.bewodeurim.mapper.driver.DriverMapper">
     <insert id="insertDriverInfo">
         INSERT INTO TBL_DRIVER(ID, DRIVER_BANK, DRIVER_BANK_ACCOUNT)
---             (
---             SELECT CITY_NAME,REGION_NAME FROM TBL_DRIVER
---         )
         VALUES (#{id},#{driverBank},#{driverBankAccount})
     </insert>
 </mapper>

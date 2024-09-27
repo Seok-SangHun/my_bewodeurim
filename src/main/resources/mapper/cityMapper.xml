@@ -5,5 +5,4 @@
         INSERT INTO TBL_CITY(ID,CITY_NAME)
         VALUES (SEQ_CITY.NEXTVAL,#{cityName})
     </insert>
-
 </mapper>
