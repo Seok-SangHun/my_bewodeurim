@@ -95,16 +95,32 @@ public class InquiryController {
 //        return "one-to-one/my_counsel"; // my_counsel.html 템플릿 반환
 //    }
 
+//    // 1:1 상담 문의 페이지 (GET)
+//    @GetMapping("/one-to-one/one-to-one")
+//    public void goToOnetoOne(InquiryDTO inquiryDTO) {;}
+
+
+//    // 1:1 상담 문의 작성완료 (POST)
+//    @PostMapping("/one-to-one/one-to-one")
+//    public void write(InquiryDTO inquiryDTO) {
+//        inquiryDTO.setMemberId(((MemberVO) session.getAttribute("member")).getId());
+//
+//        inquiryService.write(inquiryDTO.toVO());
+//    }
+
     // 1:1 상담 문의 페이지 (GET)
     @GetMapping("/one-to-one/one-to-one")
-    public void goToOnetoOne(InquiryDTO inquiryDTO) {;}
+    public String goToOnetoOne(Model model) {
+        model.addAttribute("inquiryDTO", new InquiryDTO());
+        return "one-to-one/one-to-one";
+    }
 
     // 1:1 상담 문의 작성완료 (POST)
     @PostMapping("/one-to-one/one-to-one")
-    public void write(InquiryDTO inquiryDTO) {
+    public RedirectView write(InquiryDTO inquiryDTO) {
         inquiryDTO.setMemberId(((MemberVO) session.getAttribute("member")).getId());
-
         inquiryService.write(inquiryDTO.toVO());
+        return new RedirectView("/one-to-one/my_counsel");
     }
 
     @GetMapping("one-to-one/my_counsel")
