@@ -30,7 +30,7 @@ public class PaymentController {
         paymentService.processPayment(memberId, planId, price);
 
         // 결제 완료 후 성공 페이지로 리다이렉트
-        return "redirect:/payment/success";
+        return "redirect:/payment/payment-success";
     }
 
     // 결제 완료 페이지 (GET 요청)
@@ -38,4 +38,6 @@ public class PaymentController {
     public String paymentSuccess() {
         return "payment/payment-success";  // payment-success 페이지로 이동
     }
+
+
 }

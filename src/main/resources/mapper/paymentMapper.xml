@@ -8,6 +8,8 @@
         VALUES (SEQ_PAYMENT.NEXTVAL, #{memberId}, #{planId}, #{price}, #{status}, SYSDATE, SYSDATE)
     </insert>
 
+<!--    plan 조회를 만들어 -->
+
 <!--    특정 회원 결제 내역 조회-->
     <select id="findPaymentsByMemberId" resultType="com.app.bewodeurim.domain.payment.PaymentVO">
         SELECT ID, MEMBER_ID, PLAN_ID, PAYMENT_PRICE, PAYMENT_STATUS, CREATED_DATE, UPDATED_DATE

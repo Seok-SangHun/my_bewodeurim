@@ -73,10 +73,10 @@ subscribeButtons.forEach((subscribeButton) => {
     });
 });
 
-contentdetailBox.addEventListener("click", () => {
-    order.classList.remove("disabled");
-    cartList.style.display = "block";
-});
+// contentdetailBox.addEventListener("click", () => {
+//     order.classList.remove("disabled");
+//     cartList.style.display = "block";
+// });
 // // *************************************************************************
 const allCheckBox = document.getElementById("terms-check-all");
 const individualCheckBoxes = document.querySelectorAll(".terms-check");
