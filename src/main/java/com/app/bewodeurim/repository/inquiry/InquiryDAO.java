@@ -21,9 +21,9 @@ public class InquiryDAO {
         inquiryMapper.insert(inquiryVO);
     }
 
-    // 나의 문의 목록을 전체 조회
-    public List<InquiryDTO> findAll(Pagination pagination) {
-        return inquiryMapper.selectAll(pagination);
+    // 특정 회원의 상담 내역을 조회하는 메서드
+    public List<InquiryDTO> findByMemberId(Long memberId, Pagination pagination) {
+        return inquiryMapper.selectByMemberId(memberId, pagination);
     }
 
     // 문의 목록 전체 개수 조회

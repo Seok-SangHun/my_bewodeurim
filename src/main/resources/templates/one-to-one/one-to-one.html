@@ -67,8 +67,9 @@
                                     </li>
                                 </ul>
                             </div>
-                            <form action="" id="frm">
+                            <form action="/one-to-one/one-to-one" method="post" id="frm" th:object="${inquiryDTO}">
                                 <div class="form-table">
+                                    <!-- 문의 유형 -->
                                     <dl class="form-dl">
                                         <dt class="form-dt">
                                             문의유형
@@ -192,6 +193,7 @@
                                                     <select
                                                         id="inqType"
                                                         name="inqType"
+                                                        th:field="*{inquiryType}"
                                                         required=""
                                                         style="display: none"
                                                         class="selected"
@@ -203,13 +205,13 @@
                                                         >
                                                             문의유형
                                                         </option>
-                                                        <option value="1">
+                                                        <option value="1" th:selected="*{inquiryType == '1'}">
                                                             수거문의
                                                         </option>
-                                                        <option value="2">
+                                                        <option value="2" th:selected="*{inquiryType == '2'}">
                                                             구독/결제
                                                         </option>
-                                                        <option value="7">
+                                                        <option value="7" th:selected="*{inquiryType == '7'}">
                                                             환불
                                                         </option>
 <!--                                                        <option value="3">-->

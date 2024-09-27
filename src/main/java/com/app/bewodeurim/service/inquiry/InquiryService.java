@@ -11,8 +11,8 @@ public interface InquiryService {
     // 1:1 문의 목록 작성
     public void write(InquiryVO inquiryVO);
 
-    // 나의 상담 목록
-    public List<InquiryDTO> getList(Pagination pagination);
+    // 특정 회원의 상담 목록 조회
+    public List<InquiryDTO> getListByMemberId(Long memberId, Pagination pagination);
 
     // 목록 전체 개수 조회
     public int getTotal();

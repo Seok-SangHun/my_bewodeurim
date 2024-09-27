@@ -15,8 +15,8 @@ public interface InquiryMapper {
     //  1:1 문의 작성
     public void insert(InquiryVO inquiryVO);
 
-    // 나의 문의 내역 조회
-    public List<InquiryDTO> selectAll(@Param("pagination") Pagination pagination);
+    // 특정 회원의 상담 내역을 조회
+    public List<InquiryDTO> selectByMemberId(@Param("memberId") Long memberId, @Param("pagination") Pagination pagination);
 
     // 문의 목록 전체 개수 조회
     public int selectTotal();

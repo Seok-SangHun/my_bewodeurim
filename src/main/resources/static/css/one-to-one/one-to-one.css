@@ -1266,8 +1266,8 @@ input, select {
 }
 
 .chk-box.selected input[type=checkbox]+.checkbox {
-    background: #f0543a;
-    border-color: #f0543a;
+    background: #6adb7b;;
+    border-color: #6adb7b;;
 }
 
 .chk-box.selected input[type=checkbox]~.checkbox:before {
@@ -1350,7 +1350,7 @@ input, select {
 }
 
 .btn-type-sm:hover, .btn-type:hover {
-    background: #e2391d;
+    background: #6ADB7B;
 }
 
 .disabled.btn-type:hover, .disabled.btn-type-sm:hover {

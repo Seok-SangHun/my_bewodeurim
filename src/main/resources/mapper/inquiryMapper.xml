@@ -7,12 +7,13 @@
         VALUES (SEQ_INQUIRY.NEXTVAL, #{memberId}, #{inquiryType}, #{inquiryTitle}, #{inquiryContent})
     </insert>
 
-    <select id="selectAll" resultType="com.app.bewodeurim.domain.inquiry.InquiryDTO">
+    <select id="selectByMemberId" resultType="com.app.bewodeurim.domain.inquiry.InquiryDTO">
         SELECT * FROM (
         SELECT A.*, ROWNUM RNUM
         FROM (
-        SELECT INQUIRY_TITLE, INQUIRY_TYPE
+        SELECT INQUIRY_TITLE, INQUIRY_CONTENT, CREATED_DATE
         FROM TBL_INQUIRY
+        WHERE MEMBER_ID = #{memberId}
         ORDER BY ID DESC
         ) A
         <![CDATA[

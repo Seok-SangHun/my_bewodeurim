@@ -156,7 +156,58 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-// 버튼 자바스크립트
+// // 버튼 자바스크립트
+// document.addEventListener("DOMContentLoaded", function () {
+//     const formDls = document.querySelectorAll(".form-dl");
+//     const procBtn = document.getElementById("procBtn");
+//
+//     function checkFormValidity() {
+//         let allValid = true;
+//
+//         formDls.forEach((dl) => {
+//             const focusElement = dl.querySelector(".focus");
+//             const input = dl.querySelector(
+//                 'input[type="text"], textarea, input[type="checkbox"]'
+//             );
+//
+//             // 필수 요소 중 텍스트와 textarea의 값이 비어있는지, 체크박스가 체크되었는지 확인합니다.
+//             if (focusElement && input) {
+//                 if (input.type === "text" && input.value.trim() === "") {
+//                     allValid = false;
+//                 } else if (
+//                     input.tagName === "TEXTAREA" &&
+//                     (input.value.length < 10 || input.value.length > 1500)
+//                 ) {
+//                     allValid = false;
+//                 } else if (input.type === "checkbox" && !input.checked) {
+//                     allValid = false;
+//                 }
+//             }
+//         });
+//
+//         // 모든 필드가 유효하면 disabled 클래스를 제거하고, 그렇지 않으면 추가합니다.
+//         if (allValid) {
+//             procBtn.classList.remove("disabled");
+//         } else {
+//             procBtn.classList.add("disabled");
+//         }
+//     }
+//
+//     // input과 textarea, checkbox에 이벤트 리스너를 추가합니다.
+//     formDls.forEach((dl) => {
+//         const inputs = dl.querySelectorAll(
+//             'input[type="text"], textarea, input[type="checkbox"]'
+//         );
+//         inputs.forEach((input) => {
+//             input.addEventListener("input", checkFormValidity);
+//             input.addEventListener("change", checkFormValidity);
+//         });
+//     });
+//
+//     // 페이지 로드 시 초기 상태를 확인합니다.
+//     checkFormValidity();
+// });
+
 document.addEventListener("DOMContentLoaded", function () {
     const formDls = document.querySelectorAll(".form-dl");
     const procBtn = document.getElementById("procBtn");
@@ -193,19 +244,26 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // input과 textarea, checkbox에 이벤트 리스너를 추가합니다.
+    // 폼 필드의 입력 변화에 따라 유효성 검사 실행
     formDls.forEach((dl) => {
-        const inputs = dl.querySelectorAll(
-            'input[type="text"], textarea, input[type="checkbox"]'
-        );
-        inputs.forEach((input) => {
+        const input = dl.querySelector('input[type="text"], textarea, input[type="checkbox"]');
+        if (input) {
             input.addEventListener("input", checkFormValidity);
-            input.addEventListener("change", checkFormValidity);
-        });
+        }
     });
 
-    // 페이지 로드 시 초기 상태를 확인합니다.
-    checkFormValidity();
+    // 문의 접수하기 버튼 클릭 시 폼 제출 및 페이지 이동 처리
+    procBtn.addEventListener("click", function (event) {
+        if (!procBtn.classList.contains("disabled")) {
+            // 폼이 유효하다면 폼을 제출하고 페이지를 이동시킵니다.
+            document.getElementById("frm").submit(); // 폼을 서버로 제출
+
+            // 서버에서 처리 후 페이지 이동
+            window.location.href = '/one-to-one/my_counsel'; // 페이지 이동
+        } else {
+            event.preventDefault(); // 버튼이 비활성화되어 있으면 아무 동작도 하지 않음
+        }
+    });
 });
 
 // 위로 올라가는 아이콘

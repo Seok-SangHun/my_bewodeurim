@@ -18,14 +18,16 @@ import java.util.List;
 public class InquiryServiceImpl implements InquiryService {
     public final InquiryDAO inquiryDAO;
 
+    // 1:1 문의 목록 작성
     @Override
     public void write(InquiryVO inquiryVO) {
         inquiryDAO.save(inquiryVO);
     }
 
+    // 특정 회원의 상담 목록 조회
     @Override
-    public List<InquiryDTO> getList(Pagination pagination) {
-        return inquiryDAO.findAll(pagination);
+    public List<InquiryDTO> getListByMemberId(Long memberId, Pagination pagination) {
+        return inquiryDAO.findByMemberId(memberId, pagination);
     }
 
     @Override
