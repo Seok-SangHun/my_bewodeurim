@@ -24,12 +24,18 @@ public class PickupDAO {
     public List<PickupDTO> findAll(Pagination pagination, String order){
         return pickupMapper.selectAll(pagination, order);
     }
+    public List<PickupDTO> myFindAll(Pagination pagination, String order,Long driverId){
+        return pickupMapper.mySelectAll(pagination, order, driverId);
+    }
 
     public Optional<PickupDTO> findById(Long id){
         return pickupMapper.selectById(id);
     }
     public int getTotal(){
         return pickupMapper.selectTotal();
+    }
+    public int getMyTotal(){
+        return pickupMapper.mySelectTotal();
     }
     public void setPickup(PickupVO pickupVO){
         pickupMapper.update(pickupVO);
