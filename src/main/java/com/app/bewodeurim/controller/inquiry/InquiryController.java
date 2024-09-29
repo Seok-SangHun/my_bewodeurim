@@ -183,7 +183,7 @@ public class InquiryController {
     // faq/faq 경로로 GET 요청을 처리하여 페이지를 출력
     @GetMapping("/faq/faq")
     public String showFaqList(@RequestParam(defaultValue = "1") int page, Model model) {
-        int pageSize = 10; // 한 번에 표시할 FAQ 수
+        int pageSize = 15; // 한 번에 표시할 FAQ 수
         List<FaqDTO> faqList = faqService.getFaqList(page, pageSize); // 페이지에 맞는 FAQ 목록 조회
         int totalCount = faqService.getTotalCount(); // 전체 FAQ 수 가져오기
 

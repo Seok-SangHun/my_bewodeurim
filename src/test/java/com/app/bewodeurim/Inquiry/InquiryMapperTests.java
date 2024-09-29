@@ -1,16 +1,12 @@
-package com.app.bewodeurim;
+package com.app.bewodeurim.Inquiry;
 
 import com.app.bewodeurim.domain.inquiry.InquiryDTO;
-import com.app.bewodeurim.domain.member.MemberVO;
 import com.app.bewodeurim.domain.pickup.Pagination;
 import com.app.bewodeurim.mapper.inquiry.InquiryMapper;
-import com.app.bewodeurim.mapper.member.MemberMapper;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.annotations.Mapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -137,6 +133,8 @@ public class InquiryMapperTests {
         assert inquiriesPage1.size() == 10 : "첫 번째 조회된 데이터가 10개가 아닙니다.";
         assert inquiriesPage2.size() == 10 : "두 번째 조회된 데이터가 10개가 아닙니다.";
     }
+
+
 }
 
 

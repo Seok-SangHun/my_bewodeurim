@@ -1833,7 +1833,8 @@
     </body>
     <script th:inline="javascript">
         const faqListHtml = document.getElementById("faqListHtml");
-        let currentPage = 1; // 현재 페이지
+        let currentPage = 0; // 현재 페이지
+        let visibleCount = 0;
         const totalCount = [[${totalCount}]]; // 전체 FAQ 수
         const faqList = [[${faqList}]]; // 현재 페이지의 FAQ 목록
 
@@ -1861,17 +1862,19 @@
 
         loadFaqList(faqList);
 
-        // 더보기 버튼 클릭 시 추가 10개 로드
+        // 더보기 버튼 클릭 시 추가로 서버에서 10개씩 FAQ 데이터를 가져오기
         document.getElementById('moreBtn').addEventListener('click', function() {
-            currentPage++; // 페이지 증가
+            currentPage++; // 페이지 수 증가
             fetch(`/faq/loadMore?page=${currentPage}`)
                 .then(response => response.json())
                 .then(data => {
-                    loadFaqList(data.faqList); // 새로운 데이터를 목록에 추가
+                    loadFaqList(data.faqList); // 서버에서 가져온 FAQ 데이터를 이어서 출력
 
-                    // 모든 데이터를 불러왔으면 더보기 버튼 숨김
-                    if ((currentPage) * 10 >= totalCount) { // 수정된 로직
-                        document.getElementById('moreBtn').style.display = 'none'; // 더보기 버튼 숨김
+                    visibleCount += data.faqList.length; // 출력된 항목 수 업데이트
+
+                    // 모든 데이터를 불러왔으면 더보기 버튼 숨기기
+                    if (visibleCount >= totalCount) {
+                        document.getElementById('moreBtn').style.display = 'none';
                     }
                 });
         });
