@@ -37,183 +37,193 @@
                     </h1>
                 </div>
                 <div class="container">
-                    <section id="content" class="section-plan bottom">
-                        <article class="plan-detail" id="detail-plan-render">
-                            <div class="plan-infomation">
-                                <div class="plan-inner-box">
-                                    <div class="plan-box">
-                                        <div class="plan-top">
-                                            <span class="flag-type status-light" th:text="${pickup.planGrade}"></span>
-                                            <div class="tag-box">
-                                                <span class="tag-type2">
-                                                    오늘
-                                                </span>
-                                                <span class="tag-type2" th:text="${pickup.memberAddressBasic}">
+                    <form action="/mobile-detailRequest/mobile-detailRequest-body" method="post" th:object="${pickup}">
+                        <section id="content" class="section-plan bottom">
+                            <article class="plan-detail" id="detail-plan-render">
+                                <div class="plan-infomation">
+                                    <div class="plan-inner-box">
+                                        <div class="plan-box">
+                                            <div class="plan-top">
+                                                <span class="flag-type" th:classappend="${pickup.planGrade == '프리미엄' ? 'status-premium' : pickup.planGrade == '일반' ? 'status-standard' : 'status-light'}" th:text="${pickup.planGrade}"></span>
+                                                <div class="tag-box">
+                                                    <span class="tag-type2">
+                                                        오늘
+                                                    </span>
+                                                    <span class="tag-type2" th:text="${pickup.memberAddressBasic}">
 
-                                                </span>
-                                                <span class="tag-type2" th:text="${pickup.pickupStatus}">
+                                                    </span>
+                                                    <span class="tag-type2" th:text="${pickup.pickupStatus}">
 
-                                                </span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="plan-title">
+                                                <h3
+                                                    class="title"
+                                                    id="parent_svcName" th:text="${pickup.memberAddressBasic}"
+                                                >
+
+                                                </h3>
+                                                <p class="desc" th:text="${pickup.memberAddressDetail}">
+
+                                                </p>
+                                            </div>
+                                            <div class="box-type3">
+                                                <div class="box-item">
+                                                    <div class="box-img-wrapper">
+                                                        <i class="ico-call3"></i>
+                                                    </div>
+                                                    <div class="box-content">
+                                                        <dl>
+                                                            <dt class="title" th:text="${pickup.planGrade}">
+
+                                                            </dt>
+                                                            <dd class="caption" th:text="${pickup.planMaxMembers} + '인 가구 권장 구독'">
+
+                                                            </dd>
+                                                        </dl>
+                                                    </div>
+                                                </div>
+                                                <div class="box-item">
+                                                    <div class="box-img-wrapper">
+                                                        <i class="ico-message2"></i>
+                                                    </div>
+                                                    <div class="box-content">
+                                                        <dl>
+                                                            <dt class="title">
+                                                                수거 거리
+                                                            </dt>
+                                                            <dd class="caption">
+                                                                총 8.7km
+                                                            </dd>
+                                                        </dl>
+                                                    </div>
+                                                </div>
+                                                <div class="box-item">
+                                                    <div class="box-img-wrapper">
+                                                        <i class="ico-data2"></i>
+                                                    </div>
+                                                    <div class="box-content">
+                                                        <dl>
+                                                            <dt class="title">
+                                                                배달료
+                                                            </dt>
+                                                            <dd class="caption" th:text="${pickup.planDeliveryFee} +'원'">
+
+                                                            </dd>
+                                                        </dl>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="plan-title">
-                                            <h3
-                                                class="title"
-                                                id="parent_svcName" th:text="${pickup.memberAddressBasic}"
-                                            >
-
-                                            </h3>
-                                            <p class="desc" th:text="${pickup.memberAddressDetail}">
-
-                                            </p>
-                                        </div>
-                                        <div class="box-type3">
-                                            <div class="box-item">
-                                                <div class="box-img-wrapper">
-                                                    <i class="ico-call3"></i>
-                                                </div>
-                                                <div class="box-content">
+                                        <div class="plan-price">
+                                            <div class="bottom-box">
+                                                <div class="box-type2">
+                                                    <div class="box-title boxTitle">
+                                                        <dl class="boxTitle-dl">
+                                                            <dt>
+                                                                <strong
+                                                                    >접수
+                                                                    정보</strong
+                                                                >
+                                                            </dt>
+                                                            <dd>
+                                                                <strong th:text="'주문번호: ' + ${pickup.pickupNumber}"></strong>
+                                                            </dd>
+                                                        </dl>
+                                                    </div>
+                                                    <div class="border"></div>
                                                     <dl>
-                                                        <dt class="title" th:text="${pickup.planGrade}">
-
+                                                        <dt>
+                                                            <strong>주문명</strong>
                                                         </dt>
-                                                        <dd class="caption" th:text="${pickup.planMaxMembers} + '인 가구 권장 구독'">
-
-                                                        </dd>
+                                                        <dd>쓰레기 수거</dd>
                                                     </dl>
-                                                </div>
-                                            </div>
-                                            <div class="box-item">
-                                                <div class="box-img-wrapper">
-                                                    <i class="ico-message2"></i>
-                                                </div>
-                                                <div class="box-content">
                                                     <dl>
-                                                        <dt class="title">
-                                                            수거 거리
-                                                        </dt>
-                                                        <dd class="caption">
-                                                            총 8.7km
-                                                        </dd>
-                                                    </dl>
-                                                </div>
-                                            </div>
-                                            <div class="box-item">
-                                                <div class="box-img-wrapper">
-                                                    <i class="ico-data2"></i>
-                                                </div>
-                                                <div class="box-content">
-                                                    <dl>
-                                                        <dt class="title">
-                                                            배달료
-                                                        </dt>
-                                                        <dd class="caption" th:text="${pickup.planDeliveryFee} +'원'">
-
-                                                        </dd>
-                                                    </dl>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="plan-price">
-                                        <div class="bottom-box">
-                                            <div class="box-type2">
-                                                <div class="box-title boxTitle">
-                                                    <dl class="boxTitle-dl">
                                                         <dt>
                                                             <strong
-                                                                >접수
-                                                                정보</strong
+                                                                >배출 품목</strong
                                                             >
                                                         </dt>
-                                                        <dd>
-                                                            <strong th:text="'주문번호: ' + ${pickup.pickupNumber}"></strong>
+                                                        <dd th:text="${pickup.planBoxSize} + '호 박스'"></dd>
+                                                    </dl>
+                                                    <dl>
+                                                        <dt>
+                                                            <strong
+                                                                >수거신청일</strong
+                                                            >
+                                                        </dt>
+                                                        <dd  th:text="${pickup.createdDate}">
+
                                                         </dd>
                                                     </dl>
+                                                    <dl>
+                                                        <dt>
+                                                            <strong
+                                                                >수거 일정</strong
+                                                            >
+                                                        </dt>
+                                                        <dd th:text="${pickup.pickupSchedule}">
+    <!--                                                        09월 03일 22:00 ~ 06:00-->
+                                                        </dd>
+                                                    </dl>
+                                                    <dl>
+                                                        <dt>
+                                                            <strong
+                                                                >출입 방법</strong
+                                                            >
+                                                        </dt>
+                                                        <dd th:text="${pickup.pickupEnter}"></dd>
+                                                    </dl>
+                                                    <dl>
+                                                        <dt>
+                                                            <strong
+                                                                >기타
+                                                                요청사항</strong
+                                                            >
+                                                        </dt>
+                                                        <dd th:text="${pickup.pickupRequestContent}"></dd>
+                                                    </dl>
                                                 </div>
-                                                <div class="border"></div>
-                                                <dl>
-                                                    <dt>
-                                                        <strong>주문명</strong>
-                                                    </dt>
-                                                    <dd>쓰레기 수거</dd>
-                                                </dl>
-                                                <dl>
-                                                    <dt>
-                                                        <strong
-                                                            >배출 품목</strong
+                                                <div class="box-content">
+                                                    <div class="call-service">
+                                                        <a
+                                                            href="010*1234*1234"
+                                                            class="caption"
                                                         >
-                                                    </dt>
-                                                    <dd th:text="${pickup.planBoxSize} + '호 박스'"></dd>
-                                                </dl>
-                                                <dl>
-                                                    <dt>
-                                                        <strong
-                                                            >수거신청일</strong
-                                                        >
-                                                    </dt>
-                                                    <dd  th:text="${pickup.createdDate}">
-
-                                                    </dd>
-                                                </dl>
-                                                <dl>
-                                                    <dt>
-                                                        <strong
-                                                            >수거 일정</strong
-                                                        >
-                                                    </dt>
-                                                    <dd th:text="${pickup.pickupSchedule}">
-<!--                                                        09월 03일 22:00 ~ 06:00-->
-                                                    </dd>
-                                                </dl>
-                                                <dl>
-                                                    <dt>
-                                                        <strong
-                                                            >출입 방법</strong
-                                                        >
-                                                    </dt>
-                                                    <dd th:text="${pickup.pickupEnter}"></dd>
-                                                </dl>
-                                                <dl>
-                                                    <dt>
-                                                        <strong
-                                                            >기타
-                                                            요청사항</strong
-                                                        >
-                                                    </dt>
-                                                    <dd th:text="${pickup.pickupRequestContent}"></dd>
-                                                </dl>
-                                            </div>
-                                            <div class="box-content">
-                                                <div class="call-service">
-                                                    <a
-                                                        href="010*1234*1234"
-                                                        class="caption"
-                                                    >
-                                                        <strong>
-                                                            파트너 지원센터에
-                                                            전화
-                                                        </strong>
-                                                    </a>
+                                                            <strong>
+                                                                파트너 지원센터에
+                                                                전화
+                                                            </strong>
+                                                        </a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="plan-content">
-                                <div class="btn-fixed-wrap">
-                                    <div class="bottom-gra"></div>
-                                    <div
-                                        class="btn-wrap"
-                                        id="detail-plan-mobile-render"
-                                    >
-                                        <a href="" class="btn-type">수거하기</a>
+<!--                                <input type="hidden" th:field="${driver.id}">-->
+                                <input type="hidden" th:field="*{id}"> <!-- ID -->
+<!--                                <input type="hidden" th:field="*{driverId}"> &lt;!&ndash; Driver ID &ndash;&gt;-->
+                                <input type="hidden" th:field="*{pickupSchedule}"> <!-- Pickup Schedule -->
+                                <input type="hidden" th:field="*{pickupEnter}"> <!-- Pickup Enter -->
+                                <input type="hidden" th:field="*{pickupRequestContent}"> <!-- Pickup Request Content -->
+                                <input type="hidden" th:field="*{pickupStatus}"> <!-- Pickup Status -->
+                                <input type="hidden" th:field="*{updatedDate}">
+                                <div class="plan-content">
+                                    <div class="btn-fixed-wrap">
+                                        <div class="bottom-gra"></div>
+                                        <div
+                                            class="btn-wrap"
+                                            id="detail-plan-mobile-render"
+                                        >
+                                            <button class="btn-type">수거하기</button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </article>
-                    </section>
+                            </article>
+                        </section>
+                    </form>
                 </div>
             </div>
         </div>
