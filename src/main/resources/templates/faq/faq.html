@@ -1831,5 +1831,50 @@
             </section>
         </div>
     </body>
+    <script th:inline="javascript">
+        const faqListHtml = document.getElementById("faqListHtml");
+        let currentPage = 1; // 현재 페이지
+        const totalCount = [[${totalCount}]]; // 전체 FAQ 수
+        const faqList = [[${faqList}]]; // 현재 페이지의 FAQ 목록
+
+        function loadFaqList(faqs) {
+            let html = '';
+            faqs.forEach(faq => {
+                html += `
+                <li class="board-item">
+                    <dl>
+                        <dt>
+                            <a href="javascript:void(0);" class="js_accordion">
+                                <span class="tag-type2 v3">공통</span>
+                                <p>${faq.question}</p>
+                                <i class="ico-up3"></i>
+                            </a>
+                        </dt>
+                        <dd>
+                            <p>${faq.answer}</p>
+                        </dd>
+                    </dl>
+                </li>`;
+            });
+            faqListHtml.innerHTML += html; // 기존 FAQ 목록에 추가
+        }
+
+        loadFaqList(faqList);
+
+        // 더보기 버튼 클릭 시 추가 10개 로드
+        document.getElementById('moreBtn').addEventListener('click', function() {
+            currentPage++; // 페이지 증가
+            fetch(`/faq/loadMore?page=${currentPage}`)
+                .then(response => response.json())
+                .then(data => {
+                    loadFaqList(data.faqList); // 새로운 데이터를 목록에 추가
+
+                    // 모든 데이터를 불러왔으면 더보기 버튼 숨김
+                    if ((currentPage) * 10 >= totalCount) { // 수정된 로직
+                        document.getElementById('moreBtn').style.display = 'none'; // 더보기 버튼 숨김
+                    }
+                });
+        });
+    </script>
     <script src="/js/faq/faq.js"></script>
 </html>

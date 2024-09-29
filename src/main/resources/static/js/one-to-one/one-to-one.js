@@ -252,18 +252,26 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // 문의 접수하기 버튼 클릭 시 폼 제출 및 페이지 이동 처리
     procBtn.addEventListener("click", function (event) {
-        if (!procBtn.classList.contains("disabled")) {
-            // 폼이 유효하다면 폼을 제출하고 페이지를 이동시킵니다.
-            document.getElementById("frm").submit(); // 폼을 서버로 제출
-
-            // 서버에서 처리 후 페이지 이동
-            window.location.href = '/one-to-one/my_counsel'; // 페이지 이동
+        if (this.classList.contains("disabled")) {
+            event.preventDefault(); // 버튼이 비활성화 상태이면 폼 제출 방지
         } else {
-            event.preventDefault(); // 버튼이 비활성화되어 있으면 아무 동작도 하지 않음
+            document.getElementById("inquiryForm").submit(); // 유효할 때만 폼 제출
         }
     });
+
+    // // 문의 접수하기 버튼 클릭 시 폼 제출 및 페이지 이동 처리
+    // procBtn.addEventListener("click", function (event) {
+    //     if (!procBtn.classList.contains("disabled")) {
+    //         // 폼이 유효하다면 폼을 제출하고 페이지를 이동시킵니다.
+    //         document.getElementById("inquiryForm").submit(); // 폼을 서버로 제출
+    //
+    //         // // 서버에서 처리 후 페이지 이동
+    //         // window.location.href = '/one-to-one/my_counsel'; // 페이지 이동
+    //     } else {
+    //         event.preventDefault(); // 버튼이 비활성화되어 있으면 아무 동작도 하지 않음
+    //     }
+    // });
 });
 
 // 위로 올라가는 아이콘
