@@ -1,14 +1,16 @@
 package com.app.bewodeurim.controller.payment;
 
-import ch.qos.logback.core.model.Model;
-import com.app.bewodeurim.service.payment.PaymentService;
+import com.app.bewodeurim.domain.plan.PlanVO;
+import com.app.bewodeurim.service.plan.PlanService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -16,28 +18,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/payment/*")
 public class PaymentController {
 
-    private final PaymentService paymentService;
+    private final PlanService planService;
 
-    // 결제 처리 후 성공 페이지로 리다이렉트
-    @PostMapping("/process")
-    public String processPayment(@RequestParam("paymentId") String paymentId,
-                                 @RequestParam("planId") Long planId,
-                                 @RequestParam("memberId") Long memberId,
-                                 @RequestParam("price") int price) {
-        log.info("Bootpay 결제 성공 - 결제 ID: {}", paymentId);
-
-        // 결제 정보 생성 및 저장 (TBL_PLAN에서 요금제 정보 조회)
-        paymentService.processPayment(memberId, planId, price);
-
-        // 결제 완료 후 성공 페이지로 리다이렉트
-        return "redirect:/payment/payment-success";
+    @GetMapping("/payment")
+    public String paymentPage(Model model) {
+        // 모든 Plan 데이터를 가져옴
+        List<PlanVO> plans = planService.getAllPlans();
+        model.addAttribute("plans", plans); // Model에 plans를 담아 View로 전달
+        return "payment/payment"; // 기존의 payment.html을 사용
     }
 
-    // 결제 완료 페이지 (GET 요청)
-    @GetMapping("/success")
-    public String paymentSuccess() {
-        return "payment/payment-success";  // payment-success 페이지로 이동
+    // Plan ID로 요금제 정보 조회하는 컨트롤러 메서드
+    @GetMapping("/getPlanById")
+    public PlanVO getPlanById(@RequestParam Long planId) {
+        return planService.getPlanById(planId); // 요금제 ID로 요금제 정보 조회
     }
-
-
 }

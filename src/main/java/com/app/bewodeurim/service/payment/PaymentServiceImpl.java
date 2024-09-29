@@ -46,4 +46,6 @@ public class PaymentServiceImpl implements PaymentService {
     public List<PaymentVO> getAllPayments() {
         return paymentDAO.findAllPayments();
     }
+
+
 }

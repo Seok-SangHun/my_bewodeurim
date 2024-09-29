@@ -5,6 +5,8 @@ import com.app.bewodeurim.mapper.plan.PlanMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 @RequiredArgsConstructor
 public class PlanDAO {
@@ -13,5 +15,8 @@ public class PlanDAO {
     public PlanVO findById(Long planId) {
         return planMapper.findById(planId);
     }
-}
 
+    public List<PlanVO> findAllPlans() {
+        return planMapper.findAllPlans();  // 모든 요금제 가져오기
+    }
+}

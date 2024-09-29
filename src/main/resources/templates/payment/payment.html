@@ -5,133 +5,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Payment Page</title>
 
-    <script
-            src="https://js.bootpay.co.kr/bootpay-5.0.1.min.js"
-            type="application/javascript"
-    ></script>
+    <script src="https://js.bootpay.co.kr/bootpay-5.0.1.min.js" type="application/javascript"></script>
 </head>
 <body>
 <h1>구독 상품 선택</h1>
 
 <!-- 구독 상품 선택 -->
 <form id="payment-form">
-    <div>
-        <label>
-            <input type="radio" name="telco" value="41" />
-            라이트 (8,000원)
-        </label>
-    </div>
-    <div>
-        <label>
-            <input type="radio" name="telco" value="42" />
-            스탠다드 (10,000원)
-        </label>
-    </div>
-    <div>
-        <label>
-            <input type="radio" name="telco" value="43" />
-            프리미엄 (12,000원)
-        </label>
+    <!-- 서버에서 가져온 Plan 데이터를 동적으로 렌더링 -->
+    <div id="plan-options">
+        <ul>
+            <!-- 서버에서 전달된 3개의 Plan 데이터를 렌더링 -->
+            <li th:each="plan : ${plans}">
+                <label>
+                    <input type="radio" name="telco" th:value="${plan.id}" />
+                    <span th:text="${plan.grade}"></span> (<span th:text="${plan.price}"></span>원)
+                </label>
+            </li>
+        </ul>
     </div>
 
     <!-- 결제 버튼 -->
     <button type="button" id="payment-btn">결제하기</button>
 </form>
-</body>
 
-<script
-        src="https://js.bootpay.co.kr/bootpay-5.0.1.min.js"
-        type="application/javascript"
-></script>
+<!-- Thymeleaf로 받은 plan 데이터를 자바스크립트 변수로 전달 -->
+<script>
+    // 서버에서 렌더링한 Plan 데이터를 JS 변수로 할당
+    const plans = /*[[${plans}]]*/ [];
+</script>
 
 <script>
     // 결제 버튼 클릭 시 pay 함수 호출
-    document
-        .getElementById("payment-btn")
-        .addEventListener("click", (e) => {
-            console.log("결제 버튼이 클릭됨"); // 결제 버튼 클릭 시 로그 확인
-            pay(); // pay 함수 호출
-        });
+    document.getElementById("payment-btn").addEventListener("click", (e) => {
+        console.log("결제 버튼이 클릭됨"); // 결제 버튼 클릭 시 로그 확인
+        pay(); // pay 함수 호출
+    });
 
     // pay 함수 정의
-    const pay = async () => {
-        // planId 값 가져오기 및 검증
-        const planRadio = document.querySelector(
-            'input[name="telco"]:checked'
-        );
+    const pay = () => {
+        const planRadio = document.querySelector('input[name="telco"]:checked');
         if (!planRadio) {
             alert("구독 상품을 선택해 주세요.");
             return;
         }
 
-        // planId 값을 확인
         const planId = planRadio.value;
-        console.log("선택된 planId:", planId); // 여기서 콘솔 확인
+        console.log("선택된 planId:", planId);
 
-        // planPrice, planName, memberId 설정
-        const planPrice = getPlanPrice(planId); // 요금제 ID에 따른 가격
-        const planName = getPlanName(planId) || "기본 상품명"; // 요금제 이름 (기본값 설정)
-        const memberId = "USER_ID"; // 로그인된 사용자 정보에서 가져온 member ID
-        
+        // plans 배열에서 선택된 plan을 찾음
+        const selectedPlan = plans.find(plan => plan.id == planId);
+        const planPrice = selectedPlan.price;
+        const planName = selectedPlan.grade;
+        const memberId = "USER_ID"; // 로그인된 사용자 정보
 
-
-
-        // planPrice 값 검증
-        if (!planPrice) {
-            alert("선택한 요금제에 가격이 없습니다.");
-            return;
-        }
+        console.log(`선택한 planId: ${planId}, planPrice: ${planPrice}, planName: ${planName}`);
 
         // Bootpay 결제 요청
-        const response = await Bootpay.requestPayment({
+        Bootpay.requestPayment({
             application_id: "66c6a75a86fd08d2213fc0ea",
             price: planPrice,
             order_name: "구독료 결제",
             order_id: "TEST_ORDER_ID",
-            pg: "네이버페이", // 결제 수단
-            method: "카드", // 결제 방법
+            pg: "네이버페이",  // 결제 수단
+            method: "카드",  // 결제 방법
             tax_free: 0,
             user: {
                 id: memberId,
-                username: "회원 이름", // 회원 이름
-                phone: "01012345678", // 회원 전화번호
-                email: "test@test.com", // 회원 이메일
+                username: "회원 이름",
+                phone: "01012345678",
+                email: "test@test.com",
             },
             items: [
                 {
-                    id: planId, // 요금제 ID
-                    name: planName, // 요금제 이름
+                    id: planId,
+                    name: planName,
                     qty: 1,
-                    price: planPrice, // 요금제 가격
+                    price: planPrice,
                 },
             ],
             redirect_url: "http://localhost:10000/payment-success"
         });
-
-        // 결제 성공 또는 실패 처리
-        if (response.status === "success") {
-            // 결제 성공 시 결제 정보를 서버에 전송하여 저장
-            location.href = `/payment/process?paymentId=${response.paymentId}&planId=${planId}&memberId=${memberId}&price=${planPrice}`;
-        } else {
-            alert("결제 실패: " + response.error_message);
-        }
     };
-
-    // 요금제 가격을 반환하는 함수
-    // const getPlanPrice = (planId) => {
-    //     if (planId === "41") return 8000;
-    //     else if (planId === "42") return 10000;
-    //     else if (planId === "43") return 12000;
-    //     return 0;
-    // };
-    //
-    // // 요금제 이름을 반환하는 함수
-    // const getPlanName = (planId) => {
-    //     if (planId === "41") return "라이트";
-    //     else if (planId === "42") return "스탠다드";
-    //     else if (planId === "43") return "프리미엄";
-    //     return "";
-    // };
-
 </script>
+</body>
 </html>

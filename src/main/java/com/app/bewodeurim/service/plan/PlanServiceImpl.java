@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 @Primary
@@ -18,4 +20,11 @@ public class PlanServiceImpl implements PlanService {
     public PlanVO getPlanById(Long planId) {
         return planDAO.findById(planId);
     }
+
+    @Override
+    public List<PlanVO> getAllPlans() {
+        return planDAO.findAllPlans();  // PlanDAO에서 모든 요금제 가져오는 메소드 호출
+    }
+
+
 }

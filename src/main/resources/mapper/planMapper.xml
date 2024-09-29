@@ -4,5 +4,10 @@
     <select id="findById" resultType="com.app.bewodeurim.domain.plan.PlanVO">
         SELECT * FROM TBL_PLAN WHERE ID = #{planId}
     </select>
+
+    <select id="findAllPlans" resultType="com.app.bewodeurim.domain.plan.PlanVO">
+        SELECT * FROM TBL_PLAN
+    </select>
+
 </mapper>
 

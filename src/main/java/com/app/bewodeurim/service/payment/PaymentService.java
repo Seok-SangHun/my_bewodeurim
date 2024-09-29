@@ -10,4 +10,5 @@ public interface PaymentService {
     List<PaymentVO> getPaymentsByMemberId(Long memberId);
 
     List<PaymentVO> getAllPayments();
+
 }
