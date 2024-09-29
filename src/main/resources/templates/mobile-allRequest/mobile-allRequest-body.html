@@ -5,10 +5,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link
             rel="shortcut icon"
-            href="https://www.freet.co.kr/static/assets/favicons/favicon.png"
+            href="https://www.freet.co.kr/assets/favicons/favicon.png"
             type="image/x-icon"
         />
-        <link rel="stylesheet" href="/static/css/common/common.css" />
+        <link rel="stylesheet" href="/css/common/common.css" />
         <link
             rel="stylesheet"
             type="text/css"
@@ -16,7 +16,7 @@
         />
         <link
             rel="stylesheet"
-            href="/static/css/mobile-allRequest/mobile-allRequest-body.css"
+            href="/css/mobile-allRequest/mobile-allRequest-body.css"
         />
         <title>수거 요청</title>
     </head>
@@ -314,36 +314,37 @@
                         <div
                             class="side-by-side mt-40-35 f2-body1--body2 f-bold"
                         >
-                            <div class="side" id="totalCnt">총 33 개</div>
+                            <div class="side" id="totalCnt">총 [[${totalCount}]] 개</div>
+
                             <div class="side">
                                 <div class="select-type3">
-                                    <select
-                                        id="orderType"
-                                        style="display: none"
-                                    >
-                                        <option
-                                            class="title"
-                                            selected=""
-                                            value="reco"
-                                        >
-                                            추천순
-                                        </option>
-                                        <option class="title" value="new">
-                                            최신순
-                                        </option>
-                                        <option value="end">가까운 순</option>
-                                    </select>
+<!--                                    <select-->
+<!--                                        id="orderType"-->
+<!--                                        style="display: none"-->
+<!--                                    >-->
+<!--                                        <option-->
+<!--                                            class="title"-->
+<!--                                            selected=""-->
+<!--                                            value="reco"-->
+<!--                                        >-->
+<!--                                            추천순-->
+<!--                                        </option>-->
+<!--                                        <option class="title" value="new">-->
+<!--                                            최신순-->
+<!--                                        </option>-->
+<!--                                        <option value="end">가까운 순</option>-->
+<!--                                    </select>-->
                                     <div class="nice-select" tabindex="0">
-                                        <span class="current">추천순</span>
+                                        <span class="current" id="orderName">최신순</span>
                                         <ul class="list">
+                                            <li data-value="new" class="option selected focus">
+                                                최신순
+                                            </li>
                                             <li
                                                 data-value="reco"
-                                                class="option selected focus"
+                                                class="option"
                                             >
-                                                추천순
-                                            </li>
-                                            <li data-value="new" class="option">
-                                                최신순
+                                                요금제 순
                                             </li>
                                             <li data-value="end" class="option">
                                                 가까운 순
@@ -360,192 +361,160 @@
                                     <!-- 총 -->
                                     <ul class="board-type5">
                                         <div id="requestAllList">
-                                            <li class="requestList1">
-                                                <ul class="board-type5">
-                                                    <div class="plan-top">
-                                                        <span
-                                                            class="flag-type status-light"
-                                                        >
-                                                            라이트
-                                                        </span>
-                                                        <div class="tag-box">
-                                                            <span
-                                                                class="tag-type2"
-                                                                >오늘</span
-                                                            >
-                                                            <span
-                                                                class="tag-type2"
-                                                                >강남구</span
-                                                            >
-                                                            <span
-                                                                class="tag-type2"
-                                                                >수거요청</span
-                                                            >
-                                                        </div>
-                                                    </div>
-                                                </ul>
-                                                <a>
-                                                    <span class="num">617</span>
-                                                    <div>
-                                                        <p>
-                                                            서울특별시 강남구
-                                                            테헤란로 26길
-                                                        </p>
-                                                        <span
-                                                            >제일비전타워
-                                                            13층</span
-                                                        >
-                                                    </div>
-                                                    <i class="ico-arrow4"></i>
-                                                </a>
-                                            </li>
-                                            <li class="requestList2">
-                                                <div class="plan-top">
-                                                    <span
-                                                        class="flag-type status-premium"
-                                                    >
-                                                        프리미엄
-                                                    </span>
-                                                    <div class="tag-box">
-                                                        <span class="tag-type2"
-                                                            >오늘</span
-                                                        >
-                                                        <span class="tag-type2"
-                                                            >송파구</span
-                                                        >
-                                                        <span class="tag-type2"
-                                                            >수거요청</span
-                                                        >
-                                                    </div>
-                                                </div>
-                                                <a>
-                                                    <span class="num">617</span>
-                                                    <div>
-                                                        <p>
-                                                            서울특별시 송파구
-                                                            올림픽로 25
-                                                        </p>
-                                                        <span>5번 출구</span>
-                                                    </div>
-                                                    <i class="ico-arrow4"></i>
-                                                </a>
-                                            </li>
-                                            <li class="requestList3">
-                                                <div class="plan-top">
-                                                    <span
-                                                        class="flag-type status-standard"
-                                                    >
-                                                        스탠다드
-                                                    </span>
-                                                    <div class="tag-box">
-                                                        <span class="tag-type2"
-                                                            >오늘</span
-                                                        >
-                                                        <span class="tag-type2"
-                                                            >서대문구</span
-                                                        >
-                                                        <span class="tag-type2"
-                                                            >수거요청</span
-                                                        >
-                                                    </div>
-                                                </div>
-                                                <a>
-                                                    <span class="num">617</span>
-                                                    <div>
-                                                        <p>
-                                                            서울특별시 강남구
-                                                            테헤란로 26길
-                                                        </p>
-                                                        <span
-                                                            >제일비전타워
-                                                            13층</span
-                                                        >
-                                                    </div>
-                                                    <i class="ico-arrow4"></i>
-                                                </a>
-                                            </li>
-                                            <li class="requestList4">
-                                                <div class="plan-top">
-                                                    <span
-                                                        class="flag-type status-standard"
-                                                    >
-                                                        스탠다드
-                                                    </span>
-                                                    <div class="tag-box">
-                                                        <span class="tag-type2"
-                                                            >오늘</span
-                                                        >
-                                                        <span class="tag-type2"
-                                                            >강남구</span
-                                                        >
-                                                        <span class="tag-type2"
-                                                            >수거요청</span
-                                                        >
-                                                    </div>
-                                                </div>
-                                                <a>
-                                                    <span class="num">617</span>
-                                                    <div>
-                                                        <p>
-                                                            서울특별시 강남구
-                                                            테헤란로 26길
-                                                        </p>
-                                                        <span
-                                                            >제일비전타워
-                                                            13층</span
-                                                        >
-                                                    </div>
-                                                    <i class="ico-arrow4"></i>
-                                                </a>
-                                            </li>
-                                            <li class="requestList5">
-                                                <div class="plan-top">
-                                                    <span
-                                                        class="flag-type status-light"
-                                                    >
-                                                        라이트
-                                                    </span>
-                                                    <div class="tag-box">
-                                                        <span class="tag-type2"
-                                                            >오늘</span
-                                                        >
-                                                        <span class="tag-type2"
-                                                            >마포구</span
-                                                        >
-                                                        <span class="tag-type2"
-                                                            >수거요청</span
-                                                        >
-                                                    </div>
-                                                </div>
-                                                <a>
-                                                    <span class="num">617</span>
-                                                    <div>
-                                                        <p>
-                                                            서울특별시 마포구
-                                                            동교로 247
-                                                        </p>
-                                                        <span
-                                                            >1층
-                                                            랜디스도넛</span
-                                                        >
-                                                    </div>
-                                                    <i class="ico-arrow4"></i>
-                                                </a>
-                                            </li>
+<!--                                            <li id="requestList1">-->
+<!--                                                <ul class="board-type5">-->
+<!--                                                    <div class="plan-top">-->
+<!--                                                        <span-->
+<!--                                                            class="flag-type status-light"-->
+<!--                                                        >-->
+<!--                                                            라이트-->
+<!--                                                        </span>-->
+<!--                                                        <div class="tag-box">-->
+<!--                                                            <span-->
+<!--                                                                class="tag-type2"-->
+<!--                                                                >오늘</span-->
+<!--                                                            >-->
+<!--                                                            <span-->
+<!--                                                                class="tag-type2"-->
+<!--                                                                >강남구</span-->
+<!--                                                            >-->
+<!--                                                            <span-->
+<!--                                                                class="tag-type2"-->
+<!--                                                                >수거요청</span-->
+<!--                                                            >-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                </ul>-->
+<!--                                                <a>-->
+<!--                                                    <span class="num">617</span>-->
+<!--                                                    <div>-->
+<!--                                                        <p>-->
+<!--                                                            서울특별시 강남구-->
+<!--                                                            테헤란로 26길-->
+<!--                                                        </p>-->
+<!--                                                        <span-->
+<!--                                                            >제일비전타워-->
+<!--                                                            13층</span-->
+<!--                                                        >-->
+<!--                                                    </div>-->
+<!--                                                    <i class="ico-arrow4"></i>-->
+<!--                                                </a>-->
+<!--                                            </li>-->
                                         </div>
+                                        <div id="page-wrap"></div>
                                     </ul>
                                 </div>
                                 <ul class="board-type5"></ul>
                             </section>
                             <!-- 수거 요청 목록 레이아웃 -->
                             <div class="btn-wrap">
-                                <a class="btn-type3">더보기</a>
+                                <a class="btn-type3" id="loadMore">더보기</a>
                             </div>
                         </div>
                     </article>
                 </main>
             </div>
         </div>
+        <input type="hidden" id="page" th:value="${pagination.page}">
     </body>
-    <script src="/static/js/mobile-allRequest/mobile-allRequest-body.js"></script>
+    <script th:inline="javascript">
+            const pagination = [[${pagination}]];
+            const totalCount = [[${totalCount}]];
+            const pickups = [[${pickups}]];
+            const order = [[${order}]];
+            const requestAllList = document.getElementById("requestAllList");
+            const pageWrap = document.getElementById("page-wrap");
+            const more = document.getElementById("loadMore");
+            let page = document.getElementById("page").value;
+            const nextPage = [[${nextPage}]];
+
+            const niceSelects = document.querySelectorAll(".nice-select");
+
+            if (order === 'plan') {
+                // 'reco'에 해당하는 li 요소 선택
+                var recoOption = document.querySelector('li[data-value="reco"]');
+
+                // 기존의 selected 및 focus 클래스를 제거하고 새로운 클래스를 추가
+                recoOption.classList.add('selected', 'focus');
+
+                // 'current' span의 텍스트를 변경
+                var currentSpan = document.getElementById("orderName")
+                currentSpan.textContent = recoOption.textContent;
+
+                // 다른 option에서 selected 및 focus 클래스를 제거 (선택적으로)
+                var otherOptions = document.querySelectorAll('.option');
+                otherOptions.forEach(function(option) {
+                    if (option !== recoOption) {
+                        option.classList.remove('selected', 'focus');
+                    }
+                });
+            }
+
+
+            niceSelects.forEach((niceSelect) => {
+                const currentSpan = niceSelect.querySelector(".current");
+                const options = niceSelect.querySelectorAll(".option");
+
+                options.forEach((option) => {
+                    option.addEventListener("click", () => {
+                        // 선택된 값에 따라 페이지 이동
+                        const value = option.getAttribute('data-value');
+                        if (value === 'new') {
+                            window.location.href = `/mobile-allRequest/mobile-allRequest-body?page=${page}&order=recent`;
+                        } else if (value === 'reco') {
+                            window.location.href = `/mobile-allRequest/mobile-allRequest-body?page=${page}&order=plan`;
+                        } else if (value === 'end') {
+                            window.location.href = `/mobile-allRequest/mobile-allRequest-body?page=${page}&order=nearby`;
+                        }
+                    });
+                });
+            });
+
+
+            // 데이터 로그로 출력해서 확인
+            console.log("Pagination:", pagination);
+            console.log("Pickups:", pickups);
+
+            let text = '';
+            pickups.forEach((pickup) => {
+                // planGrade 값에 따라 다른 class 설정
+                const statusClass = pickup.planGrade === "프리미엄" ? "status-premium"
+                    : pickup.planGrade === "일반" ? "status-standard"
+                        : "status-light";
+                text += `
+                    <li>
+                        <ul class="board-type5">
+                            <div class="plan-top">
+                                <span class="flag-type ${statusClass}">${pickup.planGrade}</span>
+                                <div class="tag-box">
+                                    <span class="tag-type2">오늘</span>
+                                    <span class="tag-type2">${pickup.memberAddressBasic}</span>
+                                    <span class="tag-type2">${pickup.pickupStatus}</span>
+                                </div>
+                            </div>
+                        </ul>
+                         <a href="/mobile-detailRequest/mobile-detailRequest-body?id=${pickup.id}">  <!-- 상세 페이지로 링크 연결 -->
+                            <span class="num">617</span>
+                            <div>
+                                <p>${pickup.memberAddressBasic}</p>
+                                <span>${pickup.memberAddressDetail}</span>
+                            </div>
+                            <i class="ico-arrow4"></i>
+                        </a>
+                    </li>`;
+            });
+
+            requestAllList.innerHTML += text;
+
+            if(pickups.length < totalCount){
+                more.addEventListener("click", (e) => {
+                    page++;
+                    location.href = `/mobile-allRequest/mobile-allRequest-body?page=${page}&order=${order}`
+
+                })
+            }else{
+                more.style.display='none';
+            }
+    </script>
+    <script src="/js/mobile-allRequest/mobile-allRequest-body.js"></script>
 </html>

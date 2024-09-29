@@ -22,23 +22,13 @@ public class PickupServiceImpl implements PickupService {
     private final PickupDAO pickupDAO;
 
     @Override
-    public Optional<PlanVO> getPlan(Long id) {
-        return pickupDAO.findByPlanID(id);
-    }
-
-    @Override
-    public Optional<MemberVO> getMember(Long id) {
-        return pickupDAO.findByMemberID(id);
-    }
-
-    @Override
     public void insertPickup(PickupVO pickupVO) {
         pickupDAO.save(pickupVO);
     }
 
     @Override
-    public List<PickupDTO> getPickups(Pagination pagination) {
-        return pickupDAO.findAll(pagination);
+    public List<PickupDTO> getPickups(Pagination pagination, String order) {
+        return pickupDAO.findAll(pagination, order);
     }
 
     @Override
@@ -49,5 +39,10 @@ public class PickupServiceImpl implements PickupService {
     @Override
     public int getTotal() {
         return pickupDAO.getTotal();
+    }
+
+    @Override
+    public void update(PickupVO pickupVO) {
+        pickupDAO.setPickup(pickupVO);
     }
 }

@@ -19,6 +19,7 @@ public class MemberVO {
     private String memberAddressDetail;
     private String memberPhoneNumber;
     private String memberStatus;
+    private String memberType;
     private String memberPassword;
     private String createdDate;
     private String updatedDate;

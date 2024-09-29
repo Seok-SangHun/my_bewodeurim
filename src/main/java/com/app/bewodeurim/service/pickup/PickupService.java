@@ -10,10 +10,9 @@ import java.util.List;
 import java.util.Optional;
 
 public interface PickupService {
-    public Optional<PlanVO> getPlan(Long id);
-    public Optional<MemberVO> getMember(Long id);
     public void insertPickup(PickupVO pickupVO);
-    public List<PickupDTO> getPickups(Pagination pagination);
+    public List<PickupDTO> getPickups(Pagination pagination, String order);
     public Optional<PickupDTO> getPickup(Long id);
     public int getTotal();
+    public void update(PickupVO pickupVO);
 }

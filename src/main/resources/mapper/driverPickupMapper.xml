@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.app.bewodeurim.mapper.driver.DriverPickupMapper">
+    <select id="selectAll" resultType="driverPickupDTO">
+        SELECT DP2.ID, DP2.MEMBER_ID, DP2.DRIVER_ID
+        FROM
+            (
+                SELECT ROWNUM R, DP1.ID, DP1.MEMBER_ID, DP1.DRIVER_ID
+                    FROM (SELECT DP.ID, DP.MEMBER_ID, DP.DRIVER_ID
+                          FROM TBL_MEMBER M
+                                   JOIN TBL_DRIVER_PICKUP DP
+                                        ON M.ID = DP.MEMBER_ID AND DP.DRIVER_ID = #{driverId}
+                          ORDER BY DP.ID DESC) DP1
+                <![CDATA[
+                WHERE DP1.R <= #{pagination.endRow}
+                ]]>
+            )DP2
+        WHERE DP2.R >= #{pagination.startRow}
+    </select>
+
+    <select id="selectTotal" resultType="_int">
+        SELECT COUNT(*) FROM TBL_DRIVER_PICKUP
+    </select>
+</mapper>

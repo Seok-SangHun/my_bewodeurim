@@ -17,20 +17,12 @@ import java.util.Optional;
 public class PickupDAO {
     private final PickupMapper pickupMapper;
 
-    public Optional<PlanVO> findByPlanID(Long id){
-        return pickupMapper.selectPlan(id);
-    }
-
-    public Optional<MemberVO> findByMemberID(Long id){
-        return pickupMapper.selectMember(id);
-    }
-
     public void save(PickupVO pickupVO){
         pickupMapper.insert(pickupVO);
     }
 
-    public List<PickupDTO> findAll(Pagination pagination){
-        return pickupMapper.selectAll(pagination);
+    public List<PickupDTO> findAll(Pagination pagination, String order){
+        return pickupMapper.selectAll(pagination, order);
     }
 
     public Optional<PickupDTO> findById(Long id){
@@ -38,5 +30,8 @@ public class PickupDAO {
     }
     public int getTotal(){
         return pickupMapper.selectTotal();
+    }
+    public void setPickup(PickupVO pickupVO){
+        pickupMapper.update(pickupVO);
     }
 }
