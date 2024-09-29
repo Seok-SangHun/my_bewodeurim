@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.app.bewodeurim.mapper.area.LikedAreaMapper">
+    <insert id="insertLikedArea">
+        INSERT INTO TBL_LIKED_AREA(ID,DRIVER_ID,REGION_ID)
+        VALUES (SEQ_LIKED_AREA.NEXTVAL,#{driverId},#{regionId})
+    </insert>
+
+<!--    <select id="selectLikedAreaByDriverId">-->
+<!--        SELECT LA.ID, DRIVER_ID, REGION_ID, DRIVER_NAME FROM TBL_LIKED_AREA LA-->
+<!--        JOIN TBL_DRIVER D on D.ID = LA.DRIVER_ID-->
+<!--    </select>-->
+</mapper>
