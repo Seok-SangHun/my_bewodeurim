@@ -3,11 +3,19 @@
 <configuration>
     <settings>
         <setting name="mapUnderscoreToCamelCase" value="true"/>
+<!--        <setting name="jdbcTypeForNull" value="NULL" />-->
     </settings>
     <typeAliases>
         <typeAlias type="com.app.bewodeurim.domain.inquiry.InquiryVO" alias="inquiryVO"/>
         <typeAlias type="com.app.bewodeurim.domain.inquiry.InquiryDTO" alias="inquiryDTO"/>
+        <typeAlias type="com.app.bewodeurim.domain.member.MemberVO" alias="memberVO"/>
+        <typeAlias type="com.app.bewodeurim.domain.member.MemberDTO" alias="memberDTO"/>
         <typeAlias type="com.app.bewodeurim.domain.pickup.DriverPickUpDTO" alias="driverPickupDTO"/>
+        <typeAlias type="com.app.bewodeurim.domain.driver.DriverVO" alias="driverVO"/>
+        <typeAlias type="com.app.bewodeurim.domain.driver.DriverDTO" alias="driverDTO"/>
         <typeAlias type="com.app.bewodeurim.domain.pickup.PickupDTO" alias="pickupDTO"/>
+        <typeAlias type="com.app.bewodeurim.domain.area.RegionDTO" alias="regionDTO"/>
+        <typeAlias type="com.app.bewodeurim.domain.area.RegionVO" alias="RegionVO"/>
     </typeAliases>
+
 </configuration>
