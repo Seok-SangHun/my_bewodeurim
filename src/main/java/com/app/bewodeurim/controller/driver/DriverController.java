@@ -25,7 +25,7 @@ public class DriverController {
 
     //    회원가입 페이지로 이동
     @GetMapping("/test/join")
-    public void goToJoin(DriverDTO driverDTO, RegionDTO regionDTO, Model model) {;}
+    public void goToJoin( Model model) {;}
 
     //로그인 페이지로 이동
     @PostMapping("/test/join")

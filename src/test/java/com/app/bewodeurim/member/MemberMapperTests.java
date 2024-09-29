@@ -23,7 +23,7 @@ public class MemberMapperTests {
     public void insertTest() {
         MemberDTO memberDTO = new MemberDTO();
 
-        memberDTO.setMemberName("사용자1");
+        memberDTO.setMemberName("철가방 요리사");
         memberDTO.setMemberEmail("test1234@gmail.com");
         memberDTO.setMemberPassword("123456");
         memberDTO.setMemberPhoneNumber("01012341234");
