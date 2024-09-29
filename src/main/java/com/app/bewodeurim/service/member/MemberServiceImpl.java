@@ -8,6 +8,8 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @Service
 @Primary
 @RequiredArgsConstructor
@@ -19,5 +21,10 @@ public class MemberServiceImpl implements MemberService {
     public void registerMember(MemberDTO memberDTO) {
         MemberVO memberVO = new MemberVO();
         memberDAO.saveMember(memberDTO.toVO());
+    }
+
+    @Override
+    public Optional<MemberVO> login(MemberVO memberVO) {
+        return memberDAO.findByMemberEmailAndMemberPassword(memberVO);
     }
 }

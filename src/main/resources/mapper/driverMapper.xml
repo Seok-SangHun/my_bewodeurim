@@ -5,4 +5,6 @@
         INSERT INTO TBL_DRIVER(ID, DRIVER_BANK, DRIVER_BANK_ACCOUNT)
         VALUES (#{id},#{driverBank},#{driverBankAccount})
     </insert>
+
+    
 </mapper>
