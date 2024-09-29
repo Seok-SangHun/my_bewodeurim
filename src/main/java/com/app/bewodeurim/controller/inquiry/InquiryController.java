@@ -81,29 +81,66 @@ public class InquiryController {
         return "one-to-one/one-to-one";
     }
 
+//    // 1:1 상담 문의 작성완료 (POST)
+//    @PostMapping("/one-to-one/one-to-one")
+//    public RedirectView write(InquiryDTO inquiryDTO, HttpSession session) {
+//        session.setAttribute("newInquiry", inquiryDTO); // 세션에 저장
+//        inquiryService.write(inquiryDTO.toVO()); // DB에 저장
+//
+//        return new RedirectView("/one-to-one/my_counsel"); // 페이지 이동
+//    }
+
+//    // 1:1 상담 문의 작성완료 (POST)
+//    @PostMapping("/one-to-one/one-to-one")
+//    public String write(InquiryDTO inquiryDTO, HttpSession session) {
+//        Long memberId = (Long) session.getAttribute("memberId"); // 세션에서 회원 ID 가져옴
+//        inquiryDTO.setMemberId(memberId); // DTO에 회원 ID 설정
+//        inquiryService.write(inquiryDTO.toVO()); // DB에 저장
+//
+//        return "redirect:/one-to-one/my_counsel"; // 상담 내역 페이지로 리다이렉트
+//    }
+//
+//    // 1:1 상담 문의 목록 조회 (GET)
+//    @GetMapping("/one-to-one/my_counsel")
+//    public String showMyCounselList(HttpSession session, Model model, Pagination pagination) {
+//        Long memberId = (Long) session.getAttribute("memberId"); // 로그인된 회원 ID를 세션에서 가져옴
+//
+//        if (memberId != null) {
+//            // 상담 내역 목록을 페이징 처리하여 가져옴
+//            List<InquiryDTO> inquiries = inquiryService.getListByMemberId(memberId, pagination);
+//
+//            // 조회된 상담 내역 및 페이징 정보를 모델에 추가
+//            model.addAttribute("inquiries", inquiries);
+//            model.addAttribute("pagination", pagination);
+//        }
+//        // my_counsel.html로 이동
+//        return "one-to-one/my_counsel";
+//    }
+
     // 1:1 상담 문의 작성완료 (POST)
     @PostMapping("/one-to-one/one-to-one")
-    public RedirectView write(InquiryDTO inquiryDTO, HttpSession session) {
-        session.setAttribute("newInquiry", inquiryDTO); // 세션에 저장
-        inquiryService.write(inquiryDTO.toVO()); // DB에 저장
+    public String write(InquiryDTO inquiryDTO, HttpSession session, Model model) {
+        Long memberId = (Long) session.getAttribute("memberId"); // 세션에서 회원 ID 가져옴
+        inquiryDTO.setMemberId(memberId); // DTO에 회원 ID 설정
+        inquiryService.registerInquiry(inquiryDTO); // DB에 저장
 
-        return new RedirectView("/one-to-one/my_counsel"); // 페이지 이동
+        // INSERT 후 데이터 조회
+        List<InquiryDTO> inquiries = inquiryService.getAllInquiries(); // 모든 문의 조회
+        model.addAttribute("inquiries", inquiries); // 조회된 문의 목록을 모델에 추가
+
+        return "redirect:/one-to-one/my_counsel"; // 상담 내역 페이지로 리다이렉트
     }
 
+    // 상담 내역 목록 조회 (GET) (실전용)
     @GetMapping("/one-to-one/my_counsel")
     public String showMyCounselList(HttpSession session, Model model, Pagination pagination) {
-        Long memberId = (Long) session.getAttribute("memberId"); // 로그인된 회원 ID를 세션에서 가져옴
-
+        Long memberId = (Long) session.getAttribute("memberId"); // 세션에서 회원 ID를 가져옴
         if (memberId != null) {
-            // 상담 내역 목록을 페이징 처리하여 가져옴
             List<InquiryDTO> inquiries = inquiryService.getListByMemberId(memberId, pagination);
-
-            // 조회된 상담 내역 및 페이징 정보를 모델에 추가
             model.addAttribute("inquiries", inquiries);
             model.addAttribute("pagination", pagination);
         }
-        // my_counsel.html로 이동
-        return "one-to-one/my_counsel";
+        return "/one-to-one/my_counsel"; // my_counsel.html로 이동
     }
 
 }

@@ -26,4 +26,15 @@
     <select id="selectTotal" resultType="int">
         SELECT COUNT(*) FROM TBL_INQUIRY
     </select>
+
+    <insert id="insertInquiry" parameterType="InquiryDTO">
+        INSERT INTO TBL_INQUIRY (ID, MEMBER_ID, INQUIRY_TITLE, INQUIRY_CONTENT, INQUIRY_TYPE, CREATED_DATE, UPDATED_DATE)
+        VALUES (SEQ_INQUIRY.NEXTVAL, #{memberId}, #{inquiryTitle}, #{inquiryContent}, #{inquiryType}, SYSDATE, SYSDATE)
+    </insert>
+
+    <select id="selectAllInquiries" resultType="com.app.bewodeurim.domain.inquiry.InquiryDTO">
+        SELECT ID, MEMBER_ID, INQUIRY_TITLE, INQUIRY_CONTENT, INQUIRY_TYPE, CREATED_DATE, UPDATED_DATE
+        FROM TBL_INQUIRY
+        ORDER BY CREATED_DATE DESC
+    </select>
 </mapper>

@@ -20,41 +20,52 @@ public class InquiryMapperTests {
     @Autowired
     private InquiryMapper inquiryMapper;
 
-//    @Test
-//    public void testInsert(){
-//        InquiryDTO inquiryDTO = new InquiryDTO();
-//
-//            // 필드 값 설정 (단위 테스트를 위한 값)
-//            inquiryDTO.setMemberId(1L);      // 회원 ID
-//            inquiryDTO.setInquiryType("환불");                  // 문의 유형 (옵션에서 선택된 값)
-//            inquiryDTO.setInquiryTitle("문의합니다");            // 문의 제목
-//            inquiryDTO.setInquiryContent("환불 관련 문의 내용");  // 문의 내용
-//
-//            inquiryMapper.insert(inquiryDTO.toVO());
-//
-//            log.info("문의가 성공적으로 저장되었습니다. 제목: {}", inquiryDTO.getInquiryTitle());
-//
-//
-//
-//        }
     @Test
-    public void testInsertSingleInquiry() {
-        // 삽입된 테스트 회원의 ID를 직접 사용 (예: SELECT로 확인한 ID)
-        Long testMemberId = 1L; // 실제로 존재하는 회원 ID로 변경
+    public void testInsertMultipleInquiries() {
+        // 임의의 데이터를 여러 개 생성하여 삽입
+        for (int i = 1; i <= 5; i++) {
+            InquiryDTO inquiryDTO = new InquiryDTO();
+            inquiryDTO.setMemberId(1L); // 테스트용 memberId
+            inquiryDTO.setInquiryTitle("테스트 제목 " + i);
+            inquiryDTO.setInquiryContent("테스트 내용 " + i);
+            inquiryDTO.setInquiryType("1"); // 1: 수거문의
 
-        // 1개의 상담 데이터를 삽입하는 테스트
-        InquiryDTO inquiryDTO = new InquiryDTO();
-        inquiryDTO.setMemberId(testMemberId); // 삽입된 회원 ID 사용
-        inquiryDTO.setInquiryType("일반 문의"); // 문의 유형
-        inquiryDTO.setInquiryTitle("테스트 문의 제목"); // 문의 제목
-        inquiryDTO.setInquiryContent("이것은 테스트 문의 내용입니다."); // 문의 내용
+            // DB에 삽입
+            inquiryMapper.insertInquiry(inquiryDTO);
+        }
 
-        inquiryMapper.insert(inquiryDTO.toVO()); // 데이터베이스에 삽입
-        log.info("삽입된 문의 제목: {}", inquiryDTO.getInquiryTitle());
-
-        // 데이터 삽입 후 로그 출력
-        log.info("1개의 상담 내역이 성공적으로 삽입되었습니다.");
+        // 삽입된 데이터 확인을 위한 로그
+        System.out.println("5개의 테스트 문의가 DB에 삽입되었습니다.");
     }
+
+    @Test
+    public void testSelectInquiries() {
+        // 삽입된 모든 데이터를 조회
+        List<InquiryDTO> inquiries = inquiryMapper.selectAllInquiries();
+
+        // 조회된 데이터를 로그로 출력
+        inquiries.forEach(inquiry -> System.out.println(inquiry));
+
+    }
+
+//    @Test
+//    public void testInsertSingleInquiry() {
+//        // 삽입된 테스트 회원의 ID를 직접 사용 (예: SELECT로 확인한 ID)
+//        Long testMemberId = 1L; // 실제로 존재하는 회원 ID로 변경
+//
+//        // 1개의 상담 데이터를 삽입하는 테스트
+//        InquiryDTO inquiryDTO = new InquiryDTO();
+//        inquiryDTO.setMemberId(testMemberId); // 삽입된 회원 ID 사용
+//        inquiryDTO.setInquiryType("일반 문의"); // 문의 유형
+//        inquiryDTO.setInquiryTitle("테스트 문의 제목"); // 문의 제목
+//        inquiryDTO.setInquiryContent("이것은 테스트 문의 내용입니다."); // 문의 내용
+//
+//        inquiryMapper.insert(inquiryDTO.toVO()); // 데이터베이스에 삽입
+//        log.info("삽입된 문의 제목: {}", inquiryDTO.getInquiryTitle());
+//
+//        // 데이터 삽입 후 로그 출력
+//        log.info("1개의 상담 내역이 성공적으로 삽입되었습니다.");
+//    }
 
 //    // 1. 특정 회원의 상담 내역을 페이징하여 조회하는 테스트 (실전용)
 //    @Test
