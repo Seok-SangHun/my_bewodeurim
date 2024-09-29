@@ -12,10 +12,10 @@
                                         ON M.ID = DP.MEMBER_ID AND DP.DRIVER_ID = #{driverId}
                           ORDER BY DP.ID DESC) DP1
                 <![CDATA[
-                WHERE DP1.R <= {pagination.endRow}
+                WHERE DP1.R <= #{pagination.endRow}
                 ]]>
             )DP2
-        WHERE DP2.R >= {pagination.startRow}
+        WHERE DP2.R >= #{pagination.startRow}
     </select>
 
     <select id="selectTotal" resultType="_int">
