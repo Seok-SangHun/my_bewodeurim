@@ -1,21 +1,4 @@
 @charset "UTF-8";
-@font-face {
-    font-family: "SUIT";
-    font-weight: 400;
-    src: local("SUIT-Regular"),url(/static/css/fonts/SUIT-Regular.woff2)format("woff2"),url(/static/css/fonts/SUIT-Regular.otf)format("opentype")
-}
-
-@font-face {
-    font-family: "SUIT";
-    font-weight: 600;
-    src: local("SUIT-SemiBold"),url(/static/css/fonts/SUIT-SemiBold.woff2)format("woff2"),url(/static/css/fonts/SUIT-SemiBold.otf)format("opentype")
-}
-
-@font-face {
-    font-family: "SUIT";
-    font-weight: 700;
-    src: local("SUIT-Bold"),url(/static/css/fonts/SUIT-Bold.woff2)format("woff2"),url(/static/css/fonts/SUIT-Bold.otf)format("opentype")
-}
 
 body {
     background-color: #fff;
@@ -71,17 +54,7 @@ section {
     }
 }
 
-@media (min-width: 1200px) {
-    .driver-signup2-page-header {
-        position: inherit;
-        text-align: center;
-        padding-right: 0;
-    }
-}
 
-.driver-signup2-page-header {
-    margin-bottom: 40px;
-}
 
 @media (min-width: 1200px) {
     .driver-signup2-location {
@@ -170,7 +143,7 @@ section {
 }
 
 @media (min-width: 1200px) {
-    .driver-signup2-section-join .driver-signup2-join-wrap {
+    .driver-signup1-section-join .driver-signup2-join-wrap {
         max-width: 852px;
         margin: 0 auto;
     }
