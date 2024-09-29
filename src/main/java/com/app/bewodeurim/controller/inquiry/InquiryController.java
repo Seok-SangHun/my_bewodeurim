@@ -131,7 +131,7 @@ public class InquiryController {
         return "redirect:/one-to-one/my_counsel"; // 상담 내역 페이지로 리다이렉트
     }
 
-    // 상담 내역 목록 조회 (GET) (실전용)
+    // 상담 내역 목록 조회 (GET)
     @GetMapping("/one-to-one/my_counsel")
     public String showMyCounselList(HttpSession session, Model model, Pagination pagination) {
         Long memberId = (Long) session.getAttribute("memberId"); // 세션에서 회원 ID를 가져옴
