@@ -252,13 +252,13 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    procBtn.addEventListener("click", function (event) {
-        if (this.classList.contains("disabled")) {
-            event.preventDefault(); // 버튼이 비활성화 상태이면 폼 제출 방지
-        } else {
-            document.getElementById("inquiryForm").submit(); // 유효할 때만 폼 제출
-        }
-    });
+    // procBtn.addEventListener("click", (e) => {
+    //     if (e.target.classList.contains("disabled")) {
+    //         e.target.preventDefault(); // 버튼이 비활성화 상태이면 폼 제출 방지
+    //     } else {
+    //         e.target.submit(); // 유효할 때만 폼 제출
+    //     }
+    // });
 
     // // 문의 접수하기 버튼 클릭 시 폼 제출 및 페이지 이동 처리
     // procBtn.addEventListener("click", function (event) {

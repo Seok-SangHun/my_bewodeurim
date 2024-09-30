@@ -78,9 +78,8 @@ public class InquiryController {
 
     // 1:1 상담 문의 페이지 (GET)
     @GetMapping("/one-to-one/one-to-one")
-    public String goToOnetoOne(Model model) {
-        model.addAttribute("inquiryDTO", new InquiryDTO());
-        return "one-to-one/one-to-one";
+    public void goToOnetoOne(InquiryDTO inquiryDTO) {
+
     }
 
 //    // 1:1 상담 문의 작성완료 (POST)
@@ -147,7 +146,7 @@ public class InquiryController {
 //    }
 
     @PostMapping("/one-to-one/one-to-one")
-    public String writeInquiry(InquiryDTO inquiryDTO, HttpSession session) {
+    public RedirectView writeInquiry(InquiryDTO inquiryDTO, HttpSession session) {
         Long memberId = (Long) session.getAttribute("memberId");
 
         // memberId가 세션에서 없으면 테스트용 임시 값을 사용
@@ -156,21 +155,21 @@ public class InquiryController {
         }
 
         inquiryDTO.setMemberId(memberId);
+        log.info("{}", inquiryDTO);
         inquiryService.registerInquiry(inquiryDTO); // DB에 저장
 
-        return "redirect:/one-to-one/my_counsel"; // 상담 내역 페이지로 리다이렉트
+        return new RedirectView("/one-to-one/my_counsel"); // 상담 내역 페이지로 리다이렉트
     }
 
     // 상담 내역 목록 조회 (GET)
     @GetMapping("/one-to-one/my_counsel")
-    public String showMyCounselList(HttpSession session, Model model, Pagination pagination) {
+    public void showMyCounselList(HttpSession session, Model model, Pagination pagination) {
         Long memberId = (Long) session.getAttribute("memberId"); // 세션에서 회원 ID를 가져옴
         if (memberId != null) {
             List<InquiryDTO> inquiries = inquiryService.getListByMemberId(memberId, pagination);
             model.addAttribute("inquiries", inquiries);
             model.addAttribute("pagination", pagination);
         }
-        return "/one-to-one/my_counsel"; // my_counsel.html로 이동
     }
 
     // inquiry/inquiry 경로로 GET 요청을 처리하여 페이지를 출력

@@ -38,7 +38,7 @@
                             </li>
                         </ul>
                     </div>
-                    <form action="/one-to-one/one-to-one" method="POST" id="inquiryForm">
+                    <form th:action="@{/one-to-one/one-to-one}" method="post" th:object="${inquiryDTO}">
                         <div class="form-table">
                             <!-- 문의 유형 -->
                             <dl class="form-dl">
@@ -52,14 +52,15 @@
                                             <select
                                                     id="comType"
                                                     name="inquiryType"
-                                                    required=""
                                                     style="display: none"
                                                     class="selected"
+                                                    th:field="*{inquiryType}"
+                                                    <!--required-->
                                             >
                                                 <option
                                                         class="title"
-                                                        value=""
-                                                        selected=""
+                                                        value="0"
+                                                        selected
                                                 >
                                                     문의유형
                                                 </option>
@@ -119,7 +120,8 @@
                                                 maxlength="50"
                                                 required=""
                                                 data-gtm-form-interact-field-id="2"
-                                        />
+                                                th:field="*{inquiryTitle}"
+                                        >
                                         <span
                                                 class="invalid-feedback"
                                         ></span>
@@ -140,6 +142,7 @@
                                                         maxlength="1500"
                                                         required=""
                                                         data-gtm-form-interact-field-id="1"
+                                                        th:field="*{inquiryContent}"
                                                 ></textarea>
                                         <span class="maxlenth"
                                         ><strong class="max"
