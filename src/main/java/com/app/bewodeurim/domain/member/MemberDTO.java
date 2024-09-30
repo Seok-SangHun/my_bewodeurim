@@ -20,6 +20,7 @@ public class MemberDTO {
     private String memberType;
     private String createdDate;
     private String updatedDate;
+    private String status;
 
     public MemberVO toVO(){
         return new MemberVO(id,memberName,memberEmail,memberAddressCode,memberAddressBasic,memberAddressDetail,memberPhoneNumber,memberStatus,memberType,memberPassword,createdDate,updatedDate);
