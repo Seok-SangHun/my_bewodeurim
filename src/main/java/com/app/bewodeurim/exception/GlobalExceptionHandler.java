@@ -5,12 +5,13 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.view.RedirectView;
 
-@ControllerAdvice(basePackages = "com.app.threetier.controller.member")
+@ControllerAdvice(basePackages = "com.app.bewodeurim.controller.member")
 @Slf4j
 public class GlobalExceptionHandler {
     @ExceptionHandler(LoginFailException.class)
     protected RedirectView handleLoginFailException(LoginFailException e) {
         log.error(e.getMessage());
-        return new RedirectView("/member/login?status=false");
+        return new RedirectView("/login/web_login?status=false");
+
     }
 }
