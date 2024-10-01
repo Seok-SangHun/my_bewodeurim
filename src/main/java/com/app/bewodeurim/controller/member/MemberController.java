@@ -28,6 +28,11 @@ import java.util.Optional;
 public class MemberController {
     private final MemberService memberService;
 
+    @GetMapping("/login/web_login_signup")
+    public String goToLoginSignupForm(){
+        return "login/web_login_signup";
+    }
+
     @GetMapping("/login/web_login")
 //    @RequestParam(required = false)
 //    전달받은 데이터가 null일 경우 required의 default값이 true이기 때문에,
