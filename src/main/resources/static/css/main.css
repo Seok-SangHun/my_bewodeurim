@@ -218,7 +218,7 @@ a {
 .ico-main-search {
     width: 150px;
     height: 135px;
-    background-image: url(../images/main.png);
+    background-image: url(https://www.freet.co.kr/assets/images/motion/main.png);
     background-size: cover;
 }
 .ico-main-search {
@@ -785,7 +785,7 @@ input, select, strong {
 }
 
 .ico-call {
-    background-image: url(../images/call.svg);
+    background-image: url(/images/mypage/call.svg);
 }
 
 .ico-call, .ico-call2, .ico-data {
@@ -806,7 +806,7 @@ address, caption, em, i, var {
 .ico-edit, .ico-filter, .ico-lock2, .ico-message, .ico-notice, .ico-reset, .ico-usage-call, .ico-usage-data, .ico-usage-sms {
     width: 16px;
     height: 16px;
-    background-image: url(../images/message.svg);
+    background-image: url(/images/mypage/message.svg);
 }
 
 .plan-icon-list li+li, .review-item .review-top .tag-type3 {
@@ -1488,7 +1488,7 @@ strong {
 .banner .banner-inner{
     width: 520px;
     height: 340px;
-    background-image: url(../css/images/banner.png);
+    background-image: url(/images/mypage/banner.png);
 }
 
 div.arrows-right {

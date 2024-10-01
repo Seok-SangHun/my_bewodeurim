@@ -183,7 +183,7 @@ a {
     width: 99px;
     height: 20px;
     vertical-align: middle;
-    background-image: url(../images/logo.svg);
+    background-image: url(/images/mypage/logo.svg);
     background-position: 50% 50%;
     background-size: cover;
     background-repeat: no-repeat;
@@ -488,7 +488,7 @@ a {
     height: 20px;
     display: inline-block;
     vertical-align: middle;
-    background: url(../images/util_01.svg) center no-repeat;
+    background: url(/images/mypage/util_01.svg) center no-repeat;
     background-size: cover;
 }
 address, caption, em, i, var {
@@ -501,7 +501,7 @@ address, caption, em, i, var {
     height: 20px;
     display: inline-block;
     vertical-align: middle;
-    background: url(../images/util_02.svg) center no-repeat;
+    background: url(/images/mypage/util_02.svg) center no-repeat;
     background-size: cover;
 }
 
@@ -527,7 +527,7 @@ address, caption, em, i, var {
     height: 20px;
     display: inline-block;
     vertical-align: middle;
-    background: url(../images/util_03.svg) center no-repeat;
+    background: url(/images/mypage/util_03.svg) center no-repeat;
     background-size: cover;
 }
 
@@ -554,7 +554,7 @@ address, caption, em, i, var {
     height: 20px;
     display: inline-block;
     vertical-align: middle;
-    background: url(../images/util_04.svg) center no-repeat;
+    background: url(/images/mypage/util_04.svg) center no-repeat;
     background-size: cover;
 }
 
@@ -581,7 +581,7 @@ address, caption, em, i, var {
     width: 20px;
     height: 20px;
     vertical-align: middle;
-    background-image: url(../images/bars.svg);
+    background-image: url(/images/mypage/bars.svg);
     background-position: 50% 50%;
     background-size: cover;
     background-repeat: no-repeat;
@@ -681,7 +681,7 @@ address, caption, em, i, var {
     height: 40px;
     display: inline-block;
     vertical-align: middle;
-    background: url(../images/my-menu01.svg) center no-repeat;
+    background: url(/images/mypage/my-menu01.svg) center no-repeat;
     background-size: cover;
 }
 
@@ -690,7 +690,7 @@ address, caption, em, i, var {
     height: 40px;
     display: inline-block;
     vertical-align: middle;
-    background: url(../images/my-menu02.svg) center no-repeat;
+    background: url(/images/mypage/my-menu02.svg) center no-repeat;
     background-size: cover;
 }
 .ico-mymenu03 {
@@ -698,7 +698,7 @@ address, caption, em, i, var {
     height: 40px;
     display: inline-block;
     vertical-align: middle;
-    background: url(../images/my-menu03.svg) center no-repeat;
+    background: url(/images/mypage/my-menu03.svg) center no-repeat;
     background-size: cover;
 }
 .ico-mymenu04 {
@@ -706,7 +706,7 @@ address, caption, em, i, var {
     height: 40px;
     display: inline-block;
     vertical-align: middle;
-    background: url(../images/my-menu04.svg) center no-repeat;
+    background: url(/images/mypage/my-menu04.svg) center no-repeat;
     background-size: cover;
 }
 
@@ -805,7 +805,7 @@ address, caption, em, i, var {
     width: 19px;
     height: 16px;
     vertical-align: middle;
-    background-image: url(../images/arrow5.svg);
+    background-image: url(/images/mypage/arrow5.svg);
     background-position: 50% 50%;
     background-size: cover;
     background-repeat: no-repeat;
@@ -829,7 +829,7 @@ i{
 }
 
 .gnb-wrap .util-wrap .gnb-my.active .ico-util04 {
-    background: url(../images/util_04_on.svg) center no-repeat;
+    background: url(/images/mypage/util_04_on.svg) center no-repeat;
 }
 
 .gnb-wrap .list-depth2>li.active>a {
