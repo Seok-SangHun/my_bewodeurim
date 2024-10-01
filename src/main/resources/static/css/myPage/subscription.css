@@ -581,7 +581,7 @@ ul {
 }
 
 .icon-user {
-    background-image: url('../../images/ico-user.svg');
+    background-image: url(/images/mypage/ico-user.svg);
     width: 18px;
     height: 19px;
     margin-right: 5px; /* 아이콘과 텍스트 사이의 간격을 조절 */
