@@ -80,8 +80,12 @@ public class DriverController {
 //    전달받은 데이터가 null일 경우 required의 default값이 true이기 때문에,
 //    NPE가 발생할 수 있다. 이를 필수가 아닌 선택으로(null 허용) 변경하고 싶다면,
 //    required 설정을 false로 지정한다.
-public void goToLoginForm(@RequestParam(required = false) Boolean status, MemberDTO memberDTO, HttpServletRequest request, Model model){
+public void goToLoginForm(@RequestParam(required = false) Boolean status, DriverDTO driverDTO, HttpServletRequest request, Model model){
     log.info("status: {}", status);
+
+    if (status != null && !status) {
+        model.addAttribute("errorMessage", "로그인에 실패했습니다. 아이디와 비밀번호를 확인하세요.");
+    }
 
 //        쿠키 조회
     Cookie[] cookies = request.getCookies();
@@ -96,7 +100,7 @@ public void goToLoginForm(@RequestParam(required = false) Boolean status, Member
 
             }
             if(cookies[i].getName().equals("memberEmail")){
-                memberDTO.setMemberEmail(cookies[i].getValue());
+                driverDTO.setMemberEmail(cookies[i].getValue());
             }
 
         }
@@ -108,7 +112,7 @@ public void goToLoginForm(@RequestParam(required = false) Boolean status, Member
 //    HttpSession
 //    서버의 Session영역을 관리해주는 객체이다.
 //    Spring이 해당 객체를 주입해준다.
-    public RedirectView login(MemberDTO memberDTO, String save, HttpSession session, HttpServletResponse response){
+    public RedirectView login(DriverDTO driverDTO, String save, HttpSession session, HttpServletResponse response){
 //        memberService.login(memberDTO.toVO())
 //                .ifPresentOrElse(
 //                        (member) -> {
@@ -121,9 +125,9 @@ public void goToLoginForm(@RequestParam(required = false) Boolean status, Member
 
 //        // 로그인 시도
         Optional<DriverDTO> foundDriver = driverService.login(driverDTO);
-//
+        log.info("foundDriver: {}", foundDriver);
 ////        null이 아니면 단일 객체 리턴, null이면 예외 발생
-        DriverDTO driverDTO = foundDriver.orElseThrow(() -> {throw new LoginFailException("(" + LocalTime.now() + ")로그인 실패");});
+        driverDTO = foundDriver.orElseThrow(() -> {throw new LoginFailException("(" + LocalTime.now() + ")로그인 실패");});
 //
 ////        id만 담아놓으면 사용할 때마다 SELECT 쿼리를 발생시켜야 한다(싫어!)
 ////        session.setAttribute("memberId", memberVO.getId());
@@ -135,7 +139,7 @@ public void goToLoginForm(@RequestParam(required = false) Boolean status, Member
         if(save != null){
 //            쿠키 생성, 저장
             Cookie saveCookie = new Cookie("save", save);
-            Cookie memberEmailCookie = new Cookie("memberEmail", memberDTO.getMemberEmail());
+            Cookie memberEmailCookie = new Cookie("memberEmail", driverDTO.getMemberEmail());
 
 //            -1: 쿠키 계속 유지
             saveCookie.setMaxAge(-1);
@@ -157,7 +161,7 @@ public void goToLoginForm(@RequestParam(required = false) Boolean status, Member
         }
 
         log.info("로그인 성공: {}", driverDTO);
-        return new RedirectView( "/main");
+        return new RedirectView( "/mobile-home/mobile-home-body");
     }
 
 //    //    로그 아웃

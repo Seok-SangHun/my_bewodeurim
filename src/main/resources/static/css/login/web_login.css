@@ -308,7 +308,7 @@ input[type="password"]:focus {
     width: 20px;
     height: 20px;
     vertical-align: middle;
-    background-image: url("/static/images/web_login/ico-eye.png");
+    background-image: url("https://www.freet.co.kr/assets/images/icon/eye-off.svg");
     background-position: 50% 50%;
     background-size: cover;
     background-repeat: no-repeat;
@@ -317,7 +317,7 @@ input[type="password"]:focus {
 }
 
 .ico-eye-on {
-    background-image: url("/static/images/web_login/ico-eye-on.png");
+    background-image: url("https://www.freet.co.kr/assets/images/icon/eye.svg");
     display: inline-block;
     width: 20px;
     height: 20px;
