@@ -2070,14 +2070,18 @@
     </body>
     <script th:inline="javascript">
         const faqListHtml = document.getElementById("faqListHtml"); // 문의 목록이 추가될 위치
-        let currentPage = 1; // 현재 페이지를 1로 설정 (초기 페이지)
-        let visibleCount = document.querySelectorAll('.board-item').length; // 이미 화면에 보여지고 있는 항목 수
-        const totalCount = [[${pagination.total}]]; // 전체 문의 수 (타임리프에서 total을 가져옴)
+        const moreBtn = document.getElementById("moreBtn"); // '더보기' 버튼
+        let page = currentPage; // 현재 페이지
+        const inquiries = [[${inquiries}]]
+
+        // 데이터 로그로 출력해서 확인
+        console.log("Pagination:", pagination);
+        console.log("Inquiries:", inquiries);
 
         // 문의 목록을 로드하고 화면에 추가하는 함수
-        function loadInquiryList(inquiries) {
+        function loadInquiryList(data) {
             let text = '';
-            inquiries.forEach(inquiry => {
+            data.forEach(inquiry => {
                 text += `
             <li class="board-item">
                 <dl>
@@ -2097,28 +2101,19 @@
             faqListHtml.innerHTML += text; // 기존 문의 목록에 추가
         }
 
-        // 페이지에 초기 문의 목록 로드
-        loadInquiryList([[${inquiries}]]); // 타임리프에서 초기 문의 목록을 가져와 로드
+        // 초기 문의 목록 로드
+        loadInquiryList(inquiries);
 
-        // '더보기' 버튼 클릭 시 추가로 문의 목록을 서버에서 가져오기
-        document.getElementById('moreBtn').addEventListener('click', function() {
-            currentPage++; // 현재 페이지 증가
-            fetch(`/one-to-one/loadMore?page=${currentPage}`) // 다음 페이지의 문의 목록을 서버에서 가져옴
-                .then(response => response.json())
-                .then(data => {
-                    loadInquiryList(data.inquiries); // 서버에서 가져온 문의 목록을 이어서 출력
-
-                    visibleCount += data.inquiries.length; // 출력된 항목 수 업데이트
-
-                    // 모든 문의를 불러왔으면 '더보기' 버튼 숨기기
-                    if (visibleCount >= totalCount) {
-                        document.getElementById('moreBtn').style.display = 'none';
-                    }
-                })
-                .catch(error => console.error('Error loading more inquiries:', error)); // 에러 처리
+        // 더보기 버튼 클릭 시 추가로 문의 목록을 불러오기 위한 페이지 이동 처리
+        moreBtn.addEventListener('click', (e) => {
+            page++; // 페이지를 증가시킴
+            if (visibleCount < totalCount) {
+                location.href = `/one-to-one/loadMore?page=${page}`; // 페이지 번호 증가 후 다음 페이지 요청
+            } else {
+                moreBtn.style.display = 'none'; // 모든 데이터를 불러왔으면 더보기 버튼 숨김
+            }
         });
     </script>
-
     <script src="/js/one-to-one/my_counsel.js"></script>
 </html>
 
