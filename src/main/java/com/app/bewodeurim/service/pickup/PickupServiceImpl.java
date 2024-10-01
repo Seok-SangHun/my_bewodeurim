@@ -32,6 +32,11 @@ public class PickupServiceImpl implements PickupService {
     }
 
     @Override
+    public List<PickupDTO> getMyPickups(Pagination pagination, String order, Long driverId) {
+        return pickupDAO.myFindAll(pagination, order, driverId);
+    }
+
+    @Override
     public Optional<PickupDTO> getPickup(Long id) {
         return pickupDAO.findById(id);
     }
@@ -39,6 +44,11 @@ public class PickupServiceImpl implements PickupService {
     @Override
     public int getTotal() {
         return pickupDAO.getTotal();
+    }
+
+    @Override
+    public int getMyTotal() {
+        return pickupDAO.getMyTotal();
     }
 
     @Override
