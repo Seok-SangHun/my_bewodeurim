@@ -427,7 +427,7 @@ input, select, strong {
     color: #111;
 }
 .select-type2 .nice-select .current {
-    color: #94949a; 
+    color: #94949a;
 }
 .nice-select {
     -webkit-tap-highlight-color: transparent;
@@ -587,18 +587,18 @@ input, select, strong {
     border-radius: 8px;
 }
 
-  .select-type2 .nice-select .list::-webkit-scrollbar {
+.select-type2 .nice-select .list::-webkit-scrollbar {
     display: block;
     width: 20px;
-  }
-  .select-type2 .nice-select .list::-webkit-scrollbar-thumb {
+}
+.select-type2 .nice-select .list::-webkit-scrollbar-thumb {
     background-color: #8a93b4;
     border: 7px solid #fff;
     border-radius: 12px;
-  }
-  .select-type2 .nice-select .list::-webkit-scrollbar-track {
+}
+.select-type2 .nice-select .list::-webkit-scrollbar-track {
     background-color: rgba(0, 0, 0, 0);
-  }
+}
 /* *********************************************************************** */
 /* 고객정보 */
 
@@ -656,9 +656,9 @@ input, select, strong {
 
 
 
-input[type=text], input[type=submit], input[type=password], 
-input[type=search], input[type=number], input[type=reset], 
-input[type=email], input[type=tel], input[type=search], 
+input[type=text], input[type=submit], input[type=password],
+input[type=search], input[type=number], input[type=reset],
+input[type=email], input[type=tel], input[type=search],
 input[type=file], input[type=email], input[type=tel] {
     height: 56px;
     padding: 0 20px;
@@ -671,9 +671,9 @@ input[type=file], input[type=email], input[type=tel] {
 
 @media (min-width: 1200px) {
     input[type=text], input[type=submit], input[type=password],
-     input[type=search], input[type=number], input[type=reset], 
-     input[type=email], input[type=tel], input[type=search], 
-     input[type=file], input[type=email], input[type=tel] {
+    input[type=search], input[type=number], input[type=reset],
+    input[type=email], input[type=tel], input[type=search],
+    input[type=file], input[type=email], input[type=tel] {
         height: 64px;
         font-size: 18px;
     }
@@ -1015,7 +1015,7 @@ address, caption, em, i, var {
     border-color: #f0543a;
 }
 
-input[type=number]:focus, input[type=password]:focus, 
+input[type=number]:focus, input[type=password]:focus,
 input[type=tel]:focus, input[type=text]:focus {
     border-color: #ffc2b8;
     background: #ffebe8;
@@ -1267,7 +1267,7 @@ input, select {
 .chk-box.selected input[type=checkbox]~.checkbox:before {
     transition-delay: 0ms;
 }
-.chk-box.selected input[type=checkbox]~.checkbox:after, 
+.chk-box.selected input[type=checkbox]~.checkbox:after,
 .chk-box.selected input[type=checkbox]~.checkbox:before {
     background: #fff;
 }
@@ -1280,7 +1280,7 @@ input, select {
     transition-delay: 100ms;
 }
 
-.chk-box.selected input[type=checkbox]~.checkbox:after, 
+.chk-box.selected input[type=checkbox]~.checkbox:after,
 .chk-box.selected input[type=checkbox]~.checkbox:before {
     background: #fff;
 }
@@ -1289,7 +1289,7 @@ input, select {
     width: 10px;
 }
 
-.chk-box input[type=checkbox]:checked~.checkbox:after, 
+.chk-box input[type=checkbox]:checked~.checkbox:after,
 .chk-box input[type=checkbox]:checked~.checkbox:before {
     background: #fff;
 }
@@ -1301,8 +1301,8 @@ input, select {
     justify-content: center;
 }
 
-.button-default.disabled, .disabled.btn-form, 
-.disabled.btn-type, .disabled.btn-type-sm, 
+.button-default.disabled, .disabled.btn-form,
+.disabled.btn-type, .disabled.btn-type-sm,
 .disabled.btn-type2 {
     pointer-events: none;
     color: #fff;
@@ -1592,7 +1592,7 @@ img {
     background-color: #ffc2b8; /* 선택된 상태에서 배경색 적용 */
     border-radius: 12px;
     transition: 0.2s;
-    padding-top: 3px; 
+    padding-top: 3px;
 }
 
 
@@ -1732,7 +1732,7 @@ img {
 
 .content-box{
     max-width: 852px;
-        margin: 0 auto;
+    margin: 0 auto;
 }
 
 /* 기본적으로 나의 후기내역 섹션 숨기기 */
