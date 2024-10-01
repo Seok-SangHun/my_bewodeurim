@@ -320,3 +320,11 @@ moveTop.addEventListener("click", function () {
 //     // 페이지 로드 시 모달 열기
 //     openModal();
 // });
+
+document.querySelectorAll('.nice-select .option').forEach(option => {
+    option.addEventListener('click', function() {
+        const value = this.getAttribute('data-value');
+        document.getElementById('comType').value = value;
+        document.querySelector('.current').textContent = value; // 선택된 값을 화면에 표시
+    });
+});

@@ -9,21 +9,39 @@
     </insert>
 
     <!-- 특정 회원의 문의 목록을 페이징 처리하여 조회하는 SELECT 쿼리 -->
-    <select id="selectByMemberId" resultType="com.app.bewodeurim.domain.inquiry.InquiryDTO">
-        SELECT * FROM (
-        SELECT A.*, ROWNUM RNUM
-        FROM (
-        SELECT INQUIRY_TITLE, INQUIRY_CONTENT, CREATED_DATE
-        FROM TBL_INQUIRY
-        WHERE MEMBER_ID = #{memberId}
-        ORDER BY ID DESC
-        ) A
+<!--    <select id="selectByMemberId" resultType="InquiryDTO">-->
+<!--        SELECT * FROM (-->
+<!--        SELECT A.*, ROWNUM RNUM-->
+<!--        FROM (-->
+<!--        SELECT INQUIRY_TITLE, INQUIRY_CONTENT, CREATED_DATE-->
+<!--        FROM TBL_INQUIRY-->
+<!--        WHERE MEMBER_ID = #{memberId}-->
+<!--        ORDER BY ID DESC-->
+<!--        ) A-->
+<!--        <![CDATA[-->
+<!--        WHERE ROWNUM <= #{pagination.endRow}-->
+<!--        )-->
+<!--        WHERE RNUM >= #{pagination.startRow}-->
+<!--        ]]>-->
+<!--    </select>-->
+
+    <!-- 특정 회원의 문의 목록을 페이징 처리하여 조회하는 SELECT 쿼리 -->
+    <select id="selectByMemberId" resultType="InquiryDTO">
         <![CDATA[
-        WHERE ROWNUM <= #{pagination.endRow}
+        SELECT * FROM (
+            SELECT I.INQUIRY_TYPE, I.INQUIRY_TITLE, ROWNUM AS RNUM
+            FROM (
+                SELECT INQUIRY_TYPE, INQUIRY_TITLE
+                FROM TBL_INQUIRY
+                WHERE MEMBER_ID = #{memberId}
+                ORDER BY ID DESC
+            ) I
+            WHERE ROWNUM <= #{pagination.endRow}
         )
         WHERE RNUM >= #{pagination.startRow}
         ]]>
     </select>
+
 
     <!-- 전체 문의 수를 계산하는 SELECT 쿼리 -->
     <select id="selectTotal" resultType="int">

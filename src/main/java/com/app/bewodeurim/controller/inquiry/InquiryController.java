@@ -164,12 +164,22 @@ public class InquiryController {
     // 상담 내역 목록 조회 (GET)
     @GetMapping("/one-to-one/my_counsel")
     public void showMyCounselList(HttpSession session, Model model, Pagination pagination) {
-        Long memberId = (Long) session.getAttribute("memberId"); // 세션에서 회원 ID를 가져옴
-        if (memberId != null) {
-            List<InquiryDTO> inquiries = inquiryService.getListByMemberId(memberId, pagination);
-            model.addAttribute("inquiries", inquiries);
-            model.addAttribute("pagination", pagination);
+        Long memberId = (Long) session.getAttribute("memberId");
+
+        // 임의의 memberId를 사용한 예제
+        if (memberId == null) {
+            memberId = 1L;  // 테스트용 임시 memberId
         }
+
+        // 특정 회원의 전체 문의 수를 가져와 페이징 처리
+        pagination.setTotal(inquiryService.getTotal());
+        pagination.progress();
+
+        // 페이징된 문의 목록을 모델에 추가
+        model.addAttribute("inquiries", inquiryService.getListByMemberId(memberId, pagination));
+        model.addAttribute("pagination", pagination);
+//        List<InquiryDTO> inquiries = inquiryService.getListByMemberId(memberId, pagination);
+//        model.addAttribute("inquiries", inquiries);  // 조회된 문의 목록을 뷰로 전달
     }
 
     // inquiry/inquiry 경로로 GET 요청을 처리하여 페이지를 출력
