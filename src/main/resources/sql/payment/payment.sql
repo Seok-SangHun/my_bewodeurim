@@ -14,7 +14,6 @@ CREATE TABLE TBL_PAYMENT (
 );
 
 CREATE SEQUENCE SEQ_PAYMENT;
-<<<<<<< HEAD
 
 SELECT * FROM TBL_PAYMENT;
 
@@ -30,11 +29,9 @@ INSERT INTO TBL_PAYMENT (
 ) VALUES (
              SCOTT.SEQ_PAYMENT.NEXTVAL,  -- 결제 테이블 ID 자동 증가
              21,                    -- MEMBER_ID: TBL_MEMBER에서 참조
-             41,                    -- PLAN_ID: TBL_PLAN에서 참조
-             8000,                 -- PAYMENT_PRICE: 요금제 가격
+             42,                    -- PLAN_ID: TBL_PLAN에서 참조
+             12000,                 -- PAYMENT_PRICE: 요금제 가격
              'SUCCESS',            -- 결제 상태
              SYSDATE,
              SYSDATE
          );
-=======
->>>>>>> c9f6cd4dc9dc8e689856cb7408e4897c18c89c60

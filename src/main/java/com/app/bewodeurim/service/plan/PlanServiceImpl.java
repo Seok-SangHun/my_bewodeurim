@@ -1,6 +1,9 @@
 package com.app.bewodeurim.service.plan;
 
+import com.app.bewodeurim.domain.payment.PaymentDTO;
+import com.app.bewodeurim.domain.pickup.Pagination;
 import com.app.bewodeurim.domain.plan.PlanVO;
+import com.app.bewodeurim.repository.payment.PaymentDAO;
 import com.app.bewodeurim.repository.plan.PlanDAO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;
@@ -15,6 +18,7 @@ import java.util.List;
 @Transactional(readOnly = true)
 public class PlanServiceImpl implements PlanService {
     private final PlanDAO planDAO;
+    private final PaymentDAO paymentDAO;
 
     @Override
     public PlanVO getPlanById(Long planId) {
@@ -25,6 +29,7 @@ public class PlanServiceImpl implements PlanService {
     public List<PlanVO> getAllPlans() {
         return planDAO.findAllPlans();  // PlanDAO에서 모든 요금제 가져오는 메소드 호출
     }
+
 
 
 }

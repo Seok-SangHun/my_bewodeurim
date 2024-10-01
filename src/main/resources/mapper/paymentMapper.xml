@@ -21,6 +21,32 @@
     <select id="findAllPayments" resultType="com.app.bewodeurim.domain.payment.PaymentVO">
         SELECT * FROM TBL_PAYMENT
     </select>
+    <select id="selectAll" resultType="paymentDTO">
+        SELECT P2.PAYMENT_PRICE, P2.PAYMENT_STATUS, P2.CREATED_DATE
+        FROM
+        (
+        SELECT ROWNUM R, PAYMENT_PRICE, PAYMENT_STATUS, P1.CREATED_DATE
+        FROM
+        (
+        SELECT PA.PAYMENT_PRICE, PA.PAYMENT_STATUS, PA.CREATED_DATE
+        FROM TBL_PLAN PL
+        JOIN TBL_PAYMENT PA ON PL.ID = PA.PLAN_ID
+        ORDER BY
+        <choose>
+            <when test="pagination.order == 'recent'.toString()">PA.CREATED_DATE</when>
+            <otherwise>PA.PAYMENT_PRICE</otherwise>
+        </choose>
+        DESC
+        ) P1
+        <![CDATA[
+        WHERE ROWNUM <= #{pagination.endRow}
+    ]]>
+        ) P2
+        WHERE P2.R >= #{pagination.startRow}
+    </select>
+    <select id="selectTotal">
+        SELECT COUNT(*) FROM TBL_PAYMENT
+    </select>
 
 </mapper>
 
