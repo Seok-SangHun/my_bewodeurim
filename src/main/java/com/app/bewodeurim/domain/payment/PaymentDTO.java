@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class PaymentVO {
+public class PaymentDTO {
     @EqualsAndHashCode.Include
     private Long id;
     private Long memberId;
@@ -18,6 +18,7 @@ public class PaymentVO {
     private String createdDate;
     private String updatedDate;
 
+    public PaymentVO toVO() {return new PaymentVO(id, memberId, planId, paymentPrice, paymentStatus, createdDate, updatedDate);}
 
 
 }
