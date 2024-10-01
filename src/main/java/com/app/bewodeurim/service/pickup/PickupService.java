@@ -12,7 +12,9 @@ import java.util.Optional;
 public interface PickupService {
     public void insertPickup(PickupVO pickupVO);
     public List<PickupDTO> getPickups(Pagination pagination, String order);
+    public List<PickupDTO> getMyPickups(Pagination pagination, String order, Long driverId);
     public Optional<PickupDTO> getPickup(Long id);
     public int getTotal();
+    public int getMyTotal();
     public void update(PickupVO pickupVO);
 }
