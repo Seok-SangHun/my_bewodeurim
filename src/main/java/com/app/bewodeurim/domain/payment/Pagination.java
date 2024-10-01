@@ -1,4 +1,4 @@
-package com.app.bewodeurim.domain.pickup;
+package com.app.bewodeurim.domain.payment;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;

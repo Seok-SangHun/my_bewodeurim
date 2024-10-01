@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>게시글 목록</title>
+</head>
+<body>
+<h1 th:text="${pagination.total}"></h1>
+<table id="payment-table">
+    <tr>
+        <th>번호</th>
+        <th>결제 금액</th>
+        <th>결제 상태</th>
+        <th>결제 날짜</th>
+    </tr>
+</table>
+<div id="page-wrap"></div>
+</body>
+<script th:inline="javascript">
+    const pagination = /*[[${pagination}]]*/ {};
+    const payments = /*[[${payments}]]*/ [];
+    const table = document.getElementById("payment-table");
+    const pageWrap = document.getElementById("page-wrap");
+    let text = ``;
+
+    // payments 배열에 데이터가 있는지 확인하고 테이블에 추가
+    if (payments.length > 0) {
+        payments.forEach((payment, index) => {
+            text += `
+                <tr>
+                    <td>${index + 1}</td>
+                    <td>${payment.paymentPrice}</td>
+                    <td>${payment.paymentStatus}</td>
+                    <td>${payment.createdDate}</td>
+                </tr>
+            `;
+        });
+        table.innerHTML += text;
+    } else {
+        table.innerHTML += `<tr><td colspan="4">결제 데이터가 없습니다.</td></tr>`;
+    }
+
+    // 페이지네이션 처리
+    text = ``;
+    for (let i = pagination.startPage; i <= pagination.endPage; i++) {
+        text += `<a href="/payment/list?page=${i}">${i}</a> `;
+    }
+    pageWrap.innerHTML = text;
+</script>
+
+</html>
