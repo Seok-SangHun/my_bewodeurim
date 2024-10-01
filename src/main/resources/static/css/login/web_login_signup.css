@@ -2,19 +2,19 @@
 @font-face {
     font-family: "SUIT";
     font-weight: 400;
-    src: local("SUIT-Regular"),url(/static/css/fonts/SUIT-Regular.woff2)format("woff2"),url(/static/css/fonts/SUIT-Regular.otf)format("opentype")
+    src: local("SUIT-Regular"),url(/css/fonts/SUIT-Regular.woff2)format("woff2"),url(/css/fonts/SUIT-Regular.otf)format("opentype")
 }
 
 @font-face {
     font-family: "SUIT";
     font-weight: 600;
-    src: local("SUIT-SemiBold"),url(/static/css/fonts/SUIT-SemiBold.woff2)format("woff2"),url(/static/css/fonts/SUIT-SemiBold.otf)format("opentype")
+    src: local("SUIT-SemiBold"),url(/css/fonts/SUIT-SemiBold.woff2)format("woff2"),url(/css/fonts/SUIT-SemiBold.otf)format("opentype")
 }
 
 @font-face {
     font-family: "SUIT";
     font-weight: 700;
-    src: local("SUIT-Bold"),url(/static/css/fonts/SUIT-Bold.woff2)format("woff2"),url(/static/css/fonts/SUIT-Bold.otf)format("opentype")
+    src: local("SUIT-Bold"),url(/css/fonts/SUIT-Bold.woff2)format("woff2"),url(/css/fonts/SUIT-Bold.otf)format("opentype")
 }
 
 body {
@@ -106,7 +106,7 @@ section {
         width: 16px;
         height: 16px;
         vertical-align: middle;
-        background-image: url("/static/images/web_login_signup/login_signup_home.png");
+        background-image: url("/images/web_login_signup/login_signup_home.png");
         background-position: 50% 50%;
         background-size: cover;
         background-repeat: no-repeat;
@@ -141,7 +141,7 @@ section {
         content: "";
         width: 10px;
         height: 10px;
-        background-image: url("/static/images/web_login_signup/login_signup_arrow.png");
+        background-image: url("/images/web_login_signup/login_signup_arrow.png");
         transform: rotate(-90deg);
         position: absolute;
         right: -18px;
@@ -225,7 +225,19 @@ section {
         cursor: pointer;
     }
 }
-
+.img-loginSignup{
+    background-image: url("/images/web_login_signup/kakao_login_large_wide.png");
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 18px 99px;
+    width: 404px;
+    height: 64px;
+    cursor: pointer;
+    background-position: 50% 50%;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
 .loginsignup-section-login .loginsignup-sns-login-btn-container .with-kakao {
     background-color: #ffe500;
 }
@@ -233,10 +245,10 @@ section {
 .loginsignup-ico-kakao3 {
     width: 20px;
     height: 19px;
-    background-image: url("/static/images/web_login_signup/login_signup_kakao3.png");
+    background-image: url("/images/web_login_signup/login_signup_kakao3.png");
     display: inline-block;
     vertical-align: middle;
-    background-position: 50% 50%;
+    background-position: 100%;
     background-size: cover;
     background-repeat: no-repeat;
 }
