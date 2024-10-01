@@ -6,6 +6,8 @@ import com.app.bewodeurim.mapper.member.MemberMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 @RequiredArgsConstructor
 public class MemberDAO {
@@ -13,4 +15,9 @@ public class MemberDAO {
 
     //회원가입
     public void saveMember(MemberVO memberVO) {memberMapper.insertMemberInfo(memberVO);}
+
+    //    로그인
+    public Optional<MemberVO> findByMemberEmailAndMemberPassword(MemberVO memberVO){
+        return memberMapper.selectByMemberEmailAndMemberPassword(memberVO);
+    }
 }

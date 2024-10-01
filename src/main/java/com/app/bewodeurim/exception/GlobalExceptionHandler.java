@@ -1,16 +1,19 @@
 package com.app.bewodeurim.exception;
 
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.view.RedirectView;
 
-@ControllerAdvice(basePackages = "com.app.bewodeurim.controller.pickup")
+@ControllerAdvice(basePackages = {"com.app.bewodeurim.controller.member", "com.app.bewodeurim.controller.driver"})
 @Slf4j
 public class GlobalExceptionHandler {
-    @ExceptionHandler(DriverNotFoundException.class)
-    protected RedirectView handleDriverNotFoundException(DriverNotFoundException e) {
+    @ExceptionHandler(LoginFailException.class)
+    protected RedirectView handleLoginFailException(LoginFailException e , HttpServletRequest request) {
+        String currentPath = request.getRequestURI();
         log.error(e.getMessage());
-        return new RedirectView("/login/mobile_login?status=false");
+        return new RedirectView(currentPath + "?status=false");
+
     }
 }
