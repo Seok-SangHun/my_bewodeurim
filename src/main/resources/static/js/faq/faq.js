@@ -212,4 +212,23 @@ document.addEventListener("DOMContentLoaded", () => {
     filterItems(); // 드롭다운 선택에 따라 필터링된 항목 초기화
     showInitialItems(); // 초기 15개 항목 표시
     moreBtn.addEventListener("click", showMoreItems); // '더보기' 버튼 클릭 시 추가 항목 표시
+
+    // 추가로 넣는 질문 리스트 동작
+    document.getElementById('faqListHtml').addEventListener('click', function(event) {
+        // 이벤트가 발생한 요소가 .js_accordion 클래스를 가진 요소인지를 확인
+        const targetAccordion = event.target.closest('.js_accordion');
+
+        if (targetAccordion) {
+            // .js_accordion이 클릭되었으면, 해당하는 답변(dd 태그)을 찾아서 display 토글
+            const faqDetail = targetAccordion.closest('dt').nextElementSibling;
+
+            // 답변의 display 상태를 토글하여 보이거나 숨김
+            if (faqDetail.style.display === 'none' || faqDetail.style.display === '') {
+                faqDetail.style.display = 'block'; // 답변을 보이게 함
+            } else {
+                faqDetail.style.display = 'none'; // 답변을 숨김
+            }
+        }
+    });
+
 });

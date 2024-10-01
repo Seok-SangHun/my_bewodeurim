@@ -6,6 +6,8 @@
 <!--        <setting name="jdbcTypeForNull" value="NULL" />-->
     </settings>
     <typeAliases>
+        <typeAlias type="com.app.bewodeurim.domain.inquiry.InquiryVO" alias="inquiryVO"/>
+        <typeAlias type="com.app.bewodeurim.domain.inquiry.InquiryDTO" alias="inquiryDTO"/>
         <typeAlias alias="PlanVO" type="com.app.bewodeurim.domain.plan.PlanVO"/>
         <typeAlias alias="PaymentVO" type="com.app.bewodeurim.domain.payment.PaymentVO"/>
         <typeAlias alias="PaymentDTO" type="com.app.bewodeurim.domain.payment.PaymentDTO"/>
