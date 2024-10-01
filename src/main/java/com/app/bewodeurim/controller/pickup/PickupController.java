@@ -32,6 +32,35 @@ public class PickupController {
     private final HttpSession session;
     private final DriverPickupDAO driverPickupDAO;
 
+    // 새로운 수거 요청 페이지로 이동 (주소와 요금제 정보를 보여주기 위한 페이지)
+    @GetMapping("/web-collectRequest/web-collectRequest-body")
+    public void showPickupRequestForm(Model model) {
+        // 세션에서 member 정보 가져오기
+        MemberVO memberVO = (MemberVO) session.getAttribute("member");
+
+        // 회원 주소와 요금제 정보 모델에 추가
+        model.addAttribute("member", memberVO);
+//        model.addAttribute("plans", planService.getPlans()); // 요금제 데이터 조회 서비스 메서드
+
+    }
+
+    // 새로운 수거 요청을 처리하는 메서드
+    @PostMapping("/web-collectRequest/web-collectRequest-body")
+    public RedirectView insertPickupRequest(PickupDTO pickupDTO, @RequestParam("planId") Long planId) {
+        // 세션에서 member 정보 가져오기
+        MemberVO memberVO = (MemberVO) session.getAttribute("member");
+
+        // pickupDTO에 member 정보 설정
+        pickupDTO.setMemberId(memberVO.getId()); // 세션에서 가져온 member 정보의 ID 설정
+        pickupDTO.setPickupStatus("수거대기"); // 초기 상태 설정 (예: "수거대기")
+
+        // 픽업 데이터를 DB에 insert
+        pickupService.insertPickup(pickupDTO.toVO());
+
+        // 수거 요청 완료 후 목록 페이지로 리다이렉트
+        return new RedirectView("/mobile-allRequest/mobile-allRequest-body");
+    }
+
 //  수거 요청 전체 목록
     @GetMapping("/mobile-allRequest/mobile-allRequest-body")
     public void getList(Pagination pagination, String order, Model model){
@@ -45,10 +74,8 @@ public class PickupController {
         pagination.setTotal(pickupService.getTotal());
         pagination.progress();
 
-
         // 게시물 목록과 회원 정보를 모델에 추가
         model.addAttribute("pickups", pickupService.getPickups(pagination, order));
-        log.info("{}",order);
         model.addAttribute("totalCount", totalCount); // 총 개수를 모델에 추가
         model.addAttribute("order", order); // order 값을 모델에 추가
     }
@@ -77,6 +104,12 @@ public class PickupController {
     //  수거 요청 세부사항
     @PostMapping("/mobile-detailRequest/mobile-detailRequest-body")
     public RedirectView update(PickupDTO pickupDTO, HttpSession session) {
+
+        PickupDTO sessionPickupDTO = (PickupDTO) session.getAttribute("pickup");
+        if (sessionPickupDTO != null) {
+            // 세션에서 가져온 pickup 정보를 사용하여 필요한 처리를 함
+            log.info("세션에서 가져온 픽업 데이터: {}", sessionPickupDTO);
+        }
         // 세션에서 driverID를 가져옴
         DriverVO driverVO = (DriverVO) session.getAttribute("driver");
         Optional<DriverVO> driver = Optional.ofNullable(driverVO);
@@ -87,11 +120,11 @@ public class PickupController {
                 () -> {
                     throw new DriverNotFoundException("(" + LocalTime.now() + ") 드라이버 정보를 찾을 수 없습니다.");
                 });
-        pickupDTO.setDriverId(foundDriver.getId());
+        sessionPickupDTO.setDriverId(foundDriver.getId());
 
-        // 픽업 데이터를 업데이트
-        log.info("업데이트할 픽업 데이터: {}", pickupDTO);
-        pickupService.update(pickupDTO.toVO()); // toVO() 메서드가 있다면 사용
+        // 세션에서 저장된 pickup 데이터를 가져옴
+        sessionPickupDTO.setPickupStatus("수거예정");
+        pickupService.update(sessionPickupDTO.toVO()); // toVO() 메서드가 있다면 사용
         // 업데이트 완료 후 나의 목록 페이지로 리다이렉트
         return new RedirectView("/mobile-myRequest/mobile-myRequest-body");
     }
