@@ -89,11 +89,11 @@ document.getElementById("pop-alert-confirm").addEventListener("click", (e) => {
     e.preventDefault(); // 기본 동작 방지
 });
 
-// 비밀번호 입력창 ico-eye 아이콘 동작 이벤트
-document.addEventListener("DOMContentLoaded", () => {
+
     const passwordField = document.getElementById("password");
     const toggleIcon = document.querySelector(".ico-eye");
 
+// 비밀번호 입력창 ico-eye 아이콘 동작 이벤트
     toggleIcon.addEventListener("click", () => {
         const isPassword = passwordField.type === "password";
 
@@ -101,6 +101,6 @@ document.addEventListener("DOMContentLoaded", () => {
         passwordField.type = isPassword ? "text" : "password";
 
         // 아이콘 클래스를 토글하여 상태를 변경합니다.
-        toggleIcon.classList.toggle("ico-eye-on");
+        toggleIcon.classList.toggle("ico-eye-on", isPassword);
     });
-});
+

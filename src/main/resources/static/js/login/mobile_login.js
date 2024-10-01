@@ -31,10 +31,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const passwordField = document.getElementById("password");
     const toggleIcon = document.querySelector(".mobile-ico-eye");
 
+    // toggleIcon.addEventListener("click", () => {
+    //     const isPassword = passwordField.type === "password";
+    //     passwordField.type = isPassword ? "text" : "password";
+    //     toggleIcon.classList.toggle("mobile-ico-eye-on");
+    // });
+
+    // 비밀번호 입력창 ico-eye 아이콘 동작 이벤트
     toggleIcon.addEventListener("click", () => {
         const isPassword = passwordField.type === "password";
+
+        // 비밀번호를 보이게 하거나 숨깁니다.
         passwordField.type = isPassword ? "text" : "password";
-        toggleIcon.classList.toggle("mobile-ico-eye-on");
+
+        // 아이콘 클래스를 토글하여 상태를 변경합니다.
+        toggleIcon.classList.toggle("mobile-ico-eye-on", isPassword);
     });
 
     // 로그인 버튼 클릭 이벤트

@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.view.RedirectView;
 
-@ControllerAdvice(basePackages = "com.app.bewodeurim.controller.member")
+@ControllerAdvice(basePackages = {"com.app.bewodeurim.controller.member", "com.app.bewodeurim.controller.driver"})
 @Slf4j
 public class GlobalExceptionHandler {
     @ExceptionHandler(LoginFailException.class)
