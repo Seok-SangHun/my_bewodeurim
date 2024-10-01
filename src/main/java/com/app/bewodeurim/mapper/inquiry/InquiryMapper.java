@@ -26,4 +26,7 @@ public interface InquiryMapper {
 
     // 모든 상담 목록 조회 (추가된 메서드)
     public List<InquiryDTO> selectAllInquiries();
+
+    // 특정 회원의 전체 문의 수 조회 (새로 추가된 메서드)
+    public int getTotalByMemberId(@Param("memberId") Long memberId);
 }

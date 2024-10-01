@@ -37,6 +37,13 @@ public class InquiryServiceImpl implements InquiryService {
         return inquiryDAO.findByMemberId(memberId, pagination);
     }
 
+    // 특정 회원의 전체 문의 수 조회
+    @Override
+    public int getTotalByMemberId(Long memberId) {
+        return inquiryDAO.getTotalByMemberId(memberId);
+    }
+
+    // 전체 목록 개수 조회
     @Override
     public int getTotal() {
         return inquiryDAO.getTotal();

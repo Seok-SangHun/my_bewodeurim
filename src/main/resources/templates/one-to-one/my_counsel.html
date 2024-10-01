@@ -2071,34 +2071,44 @@
     <script th:inline="javascript">
         const faqListHtml = document.getElementById("faqListHtml"); // 문의 목록이 추가될 위치
         let currentPage = 1; // 현재 페이지를 1로 설정 (초기 페이지)
-        const totalCount = /*[[${pagination.total}]]*/ 0; // 전체 문의 수 (타임리프에서 total을 가져옴)
+        let visibleCount = document.querySelectorAll('.board-item').length; // 이미 화면에 보여지고 있는 항목 수
+        const totalCount = [[${pagination.total}]]; // 전체 문의 수 (타임리프에서 total을 가져옴)
 
-        // '더보기' 버튼 클릭 시 추가로 문의 목록을 서버에서 불러오기
+        // 문의 목록을 로드하고 화면에 추가하는 함수
+        function loadInquiryList(inquiries) {
+            let text = '';
+            inquiries.forEach(inquiry => {
+                text += `
+            <li class="board-item">
+                <dl>
+                    <dt>
+                        <a href="javascript:void(0);" class="js_accordion">
+                            <span class="tag-type2 v3">` + inquiry.inquiryType + `</span> <!-- 문의 유형 -->
+                            <p>` + inquiry.inquiryTitle + `</p> <!-- 문의 제목 -->
+                            <i class="ico-up3"></i>
+                        </a>
+                    </dt>
+                    <dd>
+                        <p>답변이 아직 등록되지 않았습니다.</p> <!-- 답변 -->
+                    </dd>
+                </dl>
+            </li>`;
+            });
+            faqListHtml.innerHTML += text; // 기존 문의 목록에 추가
+        }
+
+        // 페이지에 초기 문의 목록 로드
+        loadInquiryList([[${inquiries}]]); // 타임리프에서 초기 문의 목록을 가져와 로드
+
+        // '더보기' 버튼 클릭 시 추가로 문의 목록을 서버에서 가져오기
         document.getElementById('moreBtn').addEventListener('click', function() {
             currentPage++; // 현재 페이지 증가
             fetch(`/one-to-one/loadMore?page=${currentPage}`) // 다음 페이지의 문의 목록을 서버에서 가져옴
                 .then(response => response.json())
                 .then(data => {
-                    let html = '';
-                    data.inquiries.forEach(inquiry => {
-                        html += `
-                        <li class="board-item">
-                            <dl>
-                                <dt>
-                                    <a href="javascript:void(0);" class="js_accordion">
-                                        <span class="tag-type2 v3">` + inquiry.inquiryType + `</span> <!-- 문의 유형 -->
-                                        <p>` + inquiry.inquiryTitle + `</p> <!-- 문의 제목 -->
-                                        <i class="ico-up3"></i>
-                                    </a>
-                                </dt>
-                                <dd>
-                                    <p>답변이 아직 등록되지 않았습니다.</p> <!-- 답변 -->
-                                </dd>
-                            </dl>
-                        </li>`;
-                    });
-                    faqListHtml.innerHTML += html; // 새로운 문의 목록을 기존 목록에 추가
-                    const visibleCount = faqListHtml.querySelectorAll('.board-item').length; // 화면에 표시된 문의 수
+                    loadInquiryList(data.inquiries); // 서버에서 가져온 문의 목록을 이어서 출력
+
+                    visibleCount += data.inquiries.length; // 출력된 항목 수 업데이트
 
                     // 모든 문의를 불러왔으면 '더보기' 버튼 숨기기
                     if (visibleCount >= totalCount) {

@@ -31,6 +31,11 @@ public class InquiryDAO {
         return inquiryMapper.selectTotal();
     }
 
+    // 특정 회원의 문의 목록 전체 개수 조회
+    public int getTotalByMemberId(Long memberId) {
+        return inquiryMapper.getTotalByMemberId(memberId);
+    }
+
 //    // 특정 회원의 1:1 문의 내역 조회
 //    public List<InquiryVO> findByMemberId(Long memberId) {
 //        return inquiryMapper.findByMemberId(memberId);
