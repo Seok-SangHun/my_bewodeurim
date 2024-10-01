@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Primary
@@ -49,6 +50,11 @@ public class DriverServiceImpl implements DriverService {
 //                likedAreaMapper.insertLikedArea(likedAreaDTO); // 지역 등록
 //            }
 //        }
+    }
+
+    @Override
+    public Optional<DriverDTO> login(DriverDTO driverDTO) {
+        return driverDAO.findByDriverEmailAndMemberPassword(driverDTO);
     }
 
 

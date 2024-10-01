@@ -14,18 +14,18 @@
     border-radius: 8px;
 }
 
-  .select-type2 .nice-select .list::-webkit-scrollbar {
+.select-type2 .nice-select .list::-webkit-scrollbar {
     display: block;
     width: 20px;
-  }
-  .select-type2 .nice-select .list::-webkit-scrollbar-thumb {
+}
+.select-type2 .nice-select .list::-webkit-scrollbar-thumb {
     background-color: #8a93b4;
     border: 7px solid #fff;
     border-radius: 12px;
-  }
-  .select-type2 .nice-select .list::-webkit-scrollbar-track {
+}
+.select-type2 .nice-select .list::-webkit-scrollbar-track {
     background-color: rgba(0, 0, 0, 0);
-  }
+}
 /* *********************************************************************** */
 * {
     margin: 0;
@@ -128,7 +128,7 @@ body {
     font-size: 15px;
     font-weight: 500;
     line-height: 1.67;
-    
+
 }
 
 .plan-detail .plan-infomation .bottom-box .box-type2 .box-title dl dd {
@@ -215,12 +215,12 @@ body {
 }
 .board-type2-wrap .board-type2#inf_01 > .content > .title,
 .plan-detail
-    .plan-infomation
-    .plan-box
-    .box-type3
-    .box-item
-    .box-content
-    .title {
+.plan-infomation
+.plan-box
+.box-type3
+.box-item
+.box-content
+.title {
     font-size: 18px;
     font-weight: 600;
     line-height: 1.56;
@@ -427,33 +427,33 @@ body {
     background-image: url(https://www.freet.co.kr/assets/images/icon/plan-01.svg);
 }
 .plan-detail
-    .plan-content
-    .plan-benefit
-    .box-type3
-    .box-item
-    .box-content
-    .caption,
+.plan-content
+.plan-benefit
+.box-type3
+.box-item
+.box-content
+.caption,
 .self-button-center.v2 button.btn-type {
     font-size: 13px;
 }
 .plan-detail
-    .plan-content
-    .plan-benefit
-    .box-type3
-    .box-item
-    .box-content
-    .caption
-    + .caption,
+.plan-content
+.plan-benefit
+.box-type3
+.box-item
+.box-content
+.caption
++ .caption,
 .self_pop .box-type3.v2 .box-item .box-content p {
     margin-top: 3px;
 }
 .plan-detail
-    .plan-content
-    .plan-benefit
-    .box-type3
-    .box-item
-    .box-content
-    .caption,
+.plan-content
+.plan-benefit
+.box-type3
+.box-item
+.box-content
+.caption,
 .self-button-center.v2 button.btn-type {
     font-size: 13px;
 }
@@ -667,9 +667,9 @@ a {
     padding: 30px 0 50px;
 }
 
- .btn-type:hover {
+.btn-type:hover {
     background: #e2391d;
-    
+
 
 }
 

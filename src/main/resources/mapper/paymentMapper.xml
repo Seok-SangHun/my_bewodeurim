@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.app.bewodeurim.mapper.payment.PaymentMapper">
+    <insert id="save" useGeneratedKeys="true" keyProperty="id" keyColumn="ID">
+        INSERT INTO TBL_PAYMENT (ID, MEMBER_ID, PLAN_ID, PAYMENT_PRICE, PAYMENT_STATUS, CREATED_DATE, UPDATED_DATE)
+        VALUES (SEQ_PAYMENT.NEXTVAL, #{memberId}, #{planId}, #{price}, #{status}, SYSDATE, SYSDATE)
+    </insert>
+
+<!--    plan 조회를 만들어 -->
+
+<!--    특정 회원 결제 내역 조회-->
+    <select id="findPaymentsByMemberId" resultType="com.app.bewodeurim.domain.payment.PaymentVO">
+        SELECT ID, MEMBER_ID, PLAN_ID, PAYMENT_PRICE, PAYMENT_STATUS, CREATED_DATE, UPDATED_DATE
+        FROM TBL_PAYMENT
+        WHERE MEMBER_ID = #{memberId}
+    </select>
+
+<!--    전체 회원 결제 내역 조회-->
+    <select id="findAllPayments" resultType="com.app.bewodeurim.domain.payment.PaymentVO">
+        SELECT * FROM TBL_PAYMENT
+    </select>
+    <select id="selectAll" resultType="paymentDTO">
+        SELECT P2.PAYMENT_PRICE, P2.PAYMENT_STATUS, P2.CREATED_DATE
+        FROM
+        (
+        SELECT ROWNUM R, PAYMENT_PRICE, PAYMENT_STATUS, P1.CREATED_DATE
+        FROM
+        (
+        SELECT PA.PAYMENT_PRICE, PA.PAYMENT_STATUS, PA.CREATED_DATE
+        FROM TBL_PLAN PL
+        JOIN TBL_PAYMENT PA ON PL.ID = PA.PLAN_ID
+        ORDER BY
+        <choose>
+            <when test="pagination.order == 'recent'.toString()">PA.CREATED_DATE</when>
+            <otherwise>PA.PAYMENT_PRICE</otherwise>
+        </choose>
+        DESC
+        ) P1
+        <![CDATA[
+        WHERE ROWNUM <= #{pagination.endRow}
+    ]]>
+        ) P2
+        WHERE P2.R >= #{pagination.startRow}
+    </select>
+    <select id="selectTotal">
+        SELECT COUNT(*) FROM TBL_PAYMENT
+    </select>
+
+</mapper>
+
+

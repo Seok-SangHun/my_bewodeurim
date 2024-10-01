@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="../static/css/main.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/header-style.css" />
+        <link rel="stylesheet" href="/css/footer.css" />
+
         <title>메인</title>
     </head>
     <body>
+    <header th:replace="~{/header-logout :: header-logout}"></header>
         <div id="wrap" class="wrap-main" style="padding-top: 80px">
             <div class="body-dim"></div>
             <div class="container">
@@ -241,9 +245,9 @@
                                 <li class="grid-item-m">
                                     <a href="">
                                         <i class="ico-main-event"></i>
-                                        <p class="title">이벤트</p>
+                                        <p class="title">기사 신청</p>
                                         <p class="desc">
-                                            특별한 혜택을
+                                            원하시는 기사를
                                             <br />
                                             만나보세요.
                                         </p>
@@ -252,30 +256,30 @@
                                 <li class="grid-item-m">
                                     <a href="">
                                         <i class="ico-main-self"></i>
-                                        <p class="title">유심(셀프) 개통</p>
+                                        <p class="title">수거 요청</p>
                                         <p class="desc">
-                                            쉽고 빠른 개통을
+                                            편리한 수거를
                                             <br />
-                                            시작하세요.
+                                            경험해보세요.
                                         </p>
                                     </a>
                                 </li>
                                 <li class="grid-item-s">
                                     <a href="">
                                         <i class="ico-main-usim"></i>
-                                        <p class="title">유심 구매</p>
+                                        <p class="title">구독권</p>
                                     </a>
                                 </li>
                                 <li class="grid-item-s">
                                     <a href="">
                                         <i class="ico-main-phone"></i>
-                                        <p class="title">휴대폰</p>
+                                        <p class="title">사업 소개</p>
                                     </a>
                                 </li>
                                 <li class="grid-item-s">
                                     <a href="">
                                         <i class="ico-main-cs"></i>
-                                        <p class="title">고객지원</p>
+                                        <p class="title">FAQ</p>
                                     </a>
                                 </li>
                             </ul>
@@ -575,7 +579,7 @@
                     <article class="article-plan">
                         <div class="main-title">
                             <h2 class="title-type">
-                                <span class="notranslate">프리티</span>
+                                <span class="notranslate">비워드림</span>
                                 BEST 요금제👍🏻
                             </h2>
                         </div>
@@ -719,8 +723,8 @@
                                             >
                                                 <div class="plan-top">
                                                     <span
-                                                        class="flag-type status-premium"
-                                                        >프리미엄</span
+                                                        class="flag-type status-light"
+                                                        >라이트</span
                                                     >
 
                                                     <strong class="name"
@@ -867,109 +871,6 @@
 
                                                     <p class="spec">
                                                         6개월 후 36,300원
-                                                    </p>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li
-                                            class="plan-item slick-slide"
-                                            data-slick-index="2"
-                                            aria-hidden="true"
-                                            style="width: 350px"
-                                            tabindex="-1"
-                                            role="option"
-                                            aria-describedby="slick-slide72"
-                                        >
-                                            <a
-                                                href="/plan/ratePlan/detail?svcCd=SIMPLE100"
-                                                tabindex="-1"
-                                            >
-                                                <div class="plan-top">
-                                                    <span
-                                                        class="flag-type status-premium"
-                                                        >프리미엄</span
-                                                    >
-
-                                                    <strong class="name"
-                                                        >심플 100분2G</strong
-                                                    >
-                                                </div>
-                                                <div class="plan-content">
-                                                    <h3 class="title">2GB</h3>
-
-                                                    <ul class="plan-icon-list">
-                                                        <li>
-                                                            <i
-                                                                class="ico-call"
-                                                            ></i
-                                                            >100분
-                                                        </li>
-                                                        <li>
-                                                            <i
-                                                                class="ico-message"
-                                                            ></i
-                                                            >50건
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="plan-price">
-                                                    <p class="price">
-                                                        월
-                                                        <strong>220</strong>원
-                                                    </p>
-
-                                                    <p class="spec">
-                                                        6개월 후 11,000원
-                                                    </p>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li
-                                            class="plan-item slick-slide slick-current slick-active"
-                                            data-slick-index="0"
-                                            aria-hidden="false"
-                                            style="width: 350px"
-                                            tabindex="-1"
-                                            role="option"
-                                            aria-describedby="slick-slide80"
-                                        >
-                                            <a tabindex="0">
-                                                <div class="plan-top">
-                                                    <span
-                                                        class="flag-type status-light"
-                                                        >라이트</span
-                                                    >
-
-                                                    <strong class="name"
-                                                        >음성기본데이터10G</strong
-                                                    >
-                                                </div>
-                                                <div class="plan-content">
-                                                    <h3 class="title">10GB</h3>
-
-                                                    <ul class="plan-icon-list">
-                                                        <li>
-                                                            <i
-                                                                class="ico-call"
-                                                            ></i
-                                                            >기본제공
-                                                        </li>
-                                                        <li>
-                                                            <i
-                                                                class="ico-message"
-                                                            ></i
-                                                            >기본제공
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="plan-price">
-                                                    <p class="price">
-                                                        월
-                                                        <strong>4,400</strong>원
-                                                    </p>
-
-                                                    <p class="spec">
-                                                        8개월 후 26,400원
                                                     </p>
                                                 </div>
                                             </a>
@@ -1328,6 +1229,7 @@
                 </main>
             </div>
         </div>
+    <footer th:replace="~{/footer :: footer}"></footer>
     </body>
     <script>
         const banner = document.querySelector(".banner"); // 배너 전체 컨테이너
@@ -1385,5 +1287,8 @@
         slideInterval = setInterval(autoSlide, autoSlideInterval);
     </script>
 
-    <script src="../static/js/main.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/header-logout.js"></script>
+    <script src="/js/footer.js"></script>
+
 </html>

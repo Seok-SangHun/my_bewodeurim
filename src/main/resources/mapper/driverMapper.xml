@@ -5,4 +5,11 @@
         INSERT INTO TBL_DRIVER(ID, DRIVER_BANK, DRIVER_BANK_ACCOUNT)
         VALUES (#{id},#{driverBank},#{driverBankAccount})
     </insert>
+
+    <select id="selectByDriverEmailAndMemberPassword" resultType="driverDTO">
+        SELECT D.ID, MEMBER_NAME, MEMBER_EMAIL, MEMBER_ADDRESS_CODE, MEMBER_ADDRESS_BASIC, MEMBER_ADDRESS_DETAIL, MEMBER_PHONE_NUMBER, MEMBER_TYPE, MEMBER_PASSWORD
+        FROM TBL_DRIVER D JOIN TBL_MEMBER M
+        ON D.ID = M.ID
+        WHERE MEMBER_EMAIL = #{memberEmail} AND MEMBER_PASSWORD = #{memberPassword}
+    </select>
 </mapper>

@@ -116,18 +116,18 @@ body {
     border-radius: 8px;
 }
 
-  .select-type2 .nice-select .list::-webkit-scrollbar {
+.select-type2 .nice-select .list::-webkit-scrollbar {
     display: block;
     width: 20px;
-  }
-  .select-type2 .nice-select .list::-webkit-scrollbar-thumb {
+}
+.select-type2 .nice-select .list::-webkit-scrollbar-thumb {
     background-color: #8a93b4;
     border: 7px solid #fff;
     border-radius: 12px;
-  }
-  .select-type2 .nice-select .list::-webkit-scrollbar-track {
+}
+.select-type2 .nice-select .list::-webkit-scrollbar-track {
     background-color: rgba(0, 0, 0, 0);
-  }
+}
 /* *********************************************************************** */
 a {
     color: inherit;
@@ -839,13 +839,13 @@ address, caption, em, i, var {
 
 @media (min-width: 1200px) {
     input[type=text]{
-    height: 64px;
-    font-size: 18px;
-    padding: 0 20px;
-    border: 1px solid #efefef;
-    background: #f4f4f4;
-    color: #111;
-    border-radius: 12px;
+        height: 64px;
+        font-size: 18px;
+        padding: 0 20px;
+        border: 1px solid #efefef;
+        background: #f4f4f4;
+        color: #111;
+        border-radius: 12px;
 
     }
 }
@@ -898,7 +898,7 @@ input{
 
 .btn-type:hover{
     background: #e2391d;
-    ;
+;
 }
 
 

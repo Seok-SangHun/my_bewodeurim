@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.app.bewodeurim.mapper.plan.PlanMapper">
+    <select id="findById" resultType="com.app.bewodeurim.domain.plan.PlanVO">
+        SELECT * FROM TBL_PLAN WHERE ID = #{planId}
+    </select>
+
+    <select id="findAllPlans" resultType="com.app.bewodeurim.domain.plan.PlanVO">
+        SELECT * FROM TBL_PLAN
+    </select>
+
+</mapper>
+

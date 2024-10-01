@@ -18,11 +18,14 @@ document.getElementById("BtnLogin").addEventListener("click", (e) => {
     } else if (userid !== "" && password !== "") {
         // 아이디와 비밀번호가 모두 입력된 경우 로그인 처리
         console.log("로그인 시도");
-        return; // 로그인 시도일 경우 모달을 열지 않음
+
+        // 로그인 폼 제출
+        return document['login-form'].submit();
     }
 
     // 기본 동작 방지 (링크 클릭 등)
     e.preventDefault();
+
 });
 
 // DOMContentLoaded 이벤트 리스너를 추가하여 문서가 완전히 로드된 후 코드를 실행합니다.
@@ -86,11 +89,11 @@ document.getElementById("pop-alert-confirm").addEventListener("click", (e) => {
     e.preventDefault(); // 기본 동작 방지
 });
 
-// 비밀번호 입력창 ico-eye 아이콘 동작 이벤트
-document.addEventListener("DOMContentLoaded", () => {
+
     const passwordField = document.getElementById("password");
     const toggleIcon = document.querySelector(".ico-eye");
 
+// 비밀번호 입력창 ico-eye 아이콘 동작 이벤트
     toggleIcon.addEventListener("click", () => {
         const isPassword = passwordField.type === "password";
 
@@ -98,6 +101,6 @@ document.addEventListener("DOMContentLoaded", () => {
         passwordField.type = isPassword ? "text" : "password";
 
         // 아이콘 클래스를 토글하여 상태를 변경합니다.
-        toggleIcon.classList.toggle("ico-eye-on");
+        toggleIcon.classList.toggle("ico-eye-on", isPassword);
     });
-});
+
