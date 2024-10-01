@@ -4,10 +4,13 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/header-style.css" />
+        <link rel="stylesheet" href="/css/footer.css" />
+
         <title>메인</title>
     </head>
     <body>
-    <header th:insert="~{/header-logout :: #header-logout}"></header>
+    <header th:replace="~{/header-logout :: header-logout}"></header>
         <div id="wrap" class="wrap-main" style="padding-top: 80px">
             <div class="body-dim"></div>
             <div class="container">
@@ -242,9 +245,9 @@
                                 <li class="grid-item-m">
                                     <a href="">
                                         <i class="ico-main-event"></i>
-                                        <p class="title">이벤트</p>
+                                        <p class="title">기사 신청</p>
                                         <p class="desc">
-                                            특별한 혜택을
+                                            원하시는 기사를
                                             <br />
                                             만나보세요.
                                         </p>
@@ -253,30 +256,30 @@
                                 <li class="grid-item-m">
                                     <a href="">
                                         <i class="ico-main-self"></i>
-                                        <p class="title">유심(셀프) 개통</p>
+                                        <p class="title">수거 요청</p>
                                         <p class="desc">
-                                            쉽고 빠른 개통을
+
                                             <br />
-                                            시작하세요.
+                                            만나보세요.
                                         </p>
                                     </a>
                                 </li>
                                 <li class="grid-item-s">
                                     <a href="">
                                         <i class="ico-main-usim"></i>
-                                        <p class="title">유심 구매</p>
+                                        <p class="title">구독권</p>
                                     </a>
                                 </li>
                                 <li class="grid-item-s">
                                     <a href="">
                                         <i class="ico-main-phone"></i>
-                                        <p class="title">휴대폰</p>
+                                        <p class="title">사업 소개</p>
                                     </a>
                                 </li>
                                 <li class="grid-item-s">
                                     <a href="">
                                         <i class="ico-main-cs"></i>
-                                        <p class="title">고객지원</p>
+                                        <p class="title">FAQ</p>
                                     </a>
                                 </li>
                             </ul>
@@ -576,7 +579,7 @@
                     <article class="article-plan">
                         <div class="main-title">
                             <h2 class="title-type">
-                                <span class="notranslate">프리티</span>
+                                <span class="notranslate">비워드림</span>
                                 BEST 요금제👍🏻
                             </h2>
                         </div>
@@ -1329,6 +1332,7 @@
                 </main>
             </div>
         </div>
+    <footer th:replace="~{/footer :: footer}"></footer>
     </body>
     <script>
         const banner = document.querySelector(".banner"); // 배너 전체 컨테이너
@@ -1387,4 +1391,7 @@
     </script>
 
     <script src="/js/main.js"></script>
+    <script src="/js/header-logout.js"></script>
+    <script src="/js/footer.js"></script>
+
 </html>

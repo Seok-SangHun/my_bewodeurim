@@ -15,20 +15,22 @@
     <!-- 서버에서 가져온 Plan 데이터를 동적으로 렌더링 -->
     <div id="plan-options">
         <ul>
-            <!-- 서버에서 전달된 3개의 Plan 데이터를 렌더링 -->
             <li th:each="plan : ${plans}">
                 <label>
-                    <input type="radio" name="telco" th:value="${plan.id}" />
+                    <input type="radio" name="telco" value="[[${plan.id}]]"
+                           data-price="[[${plan.price}]]"
+                           data-grade="[[${plan.grade}]]"/>
                     <span th:text="${plan.grade}"></span> (<span th:text="${plan.price}"></span>원)
                 </label>
             </li>
         </ul>
+
     </div>
 
     <!-- 결제 버튼 -->
     <button type="button" id="payment-btn">결제하기</button>
 </form>
-
+<script src="https://js.bootpay.co.kr/bootpay-5.0.1.min.js" type="application/javascript"></script>
 <!-- Thymeleaf로 받은 plan 데이터를 자바스크립트 변수로 전달 -->
 <script>
     // 서버에서 렌더링한 Plan 데이터를 JS 변수로 할당
@@ -36,30 +38,22 @@
 </script>
 
 <script>
-    // 결제 버튼 클릭 시 pay 함수 호출
-    document.getElementById("payment-btn").addEventListener("click", (e) => {
-        console.log("결제 버튼이 클릭됨"); // 결제 버튼 클릭 시 로그 확인
-        pay(); // pay 함수 호출
-    });
-
-    // pay 함수 정의
     const pay = () => {
+        // 선택된 라디오 버튼을 가져옴
         const planRadio = document.querySelector('input[name="telco"]:checked');
+
         if (!planRadio) {
             alert("구독 상품을 선택해 주세요.");
             return;
         }
 
-        const planId = planRadio.value;
-        console.log("선택된 planId:", planId);
+        // 선택된 요금제의 아이디 가져오기
+        const planId = planRadio.value;  // 여기서 요금제 아이디(41, 42, 43)를 받아옴
+        const planPrice = planRadio.dataset.price;  // 요금제 가격
+        const planGrade = planRadio.dataset.grade;  // 요금제 등급
+        const memberId = "USER_ID";  // 로그인된 사용자 정보
 
-        // plans 배열에서 선택된 plan을 찾음
-        const selectedPlan = plans.find(plan => plan.id == planId);
-        const planPrice = selectedPlan.price;
-        const planName = selectedPlan.grade;
-        const memberId = "USER_ID"; // 로그인된 사용자 정보
-
-        console.log(`선택한 planId: ${planId}, planPrice: ${planPrice}, planName: ${planName}`);
+        console.log(`선택한 planId: ${planId}, planPrice: ${planPrice}, planGrade: ${planGrade}`);
 
         // Bootpay 결제 요청
         Bootpay.requestPayment({
@@ -67,8 +61,8 @@
             price: planPrice,
             order_name: "구독료 결제",
             order_id: "TEST_ORDER_ID",
-            pg: "네이버페이",  // 결제 수단
-            method: "카드",  // 결제 방법
+            pg: "네이버페이",
+            method: "카드",
             tax_free: 0,
             user: {
                 id: memberId,
@@ -78,8 +72,8 @@
             },
             items: [
                 {
-                    id: planId,
-                    name: planName,
+                    id: planId,  // 선택된 요금제 아이디
+                    name: planGrade,
                     qty: 1,
                     price: planPrice,
                 },
@@ -87,6 +81,7 @@
             redirect_url: "http://localhost:10000/payment-success"
         });
     };
+
 </script>
 </body>
 </html>
