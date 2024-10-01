@@ -27,7 +27,6 @@ public class PickupMapperTests {
         for(int i=0; i<34; i++) {
             pickupDTO.setPickupNumber("PICKUP"+i);
             pickupDTO.setMemberId(1L); // 실제 회원 ID로 설정
-            pickupDTO.setDriverId(1L); // 실제 운전사 ID로 설정
             pickupDTO.setPickupSchedule("2024-09-25 10:00");
             pickupDTO.setPickupEnter("2024-09-25 09:00");
             pickupDTO.setPickupRequestContent("요청 내용"+i);
@@ -40,7 +39,7 @@ public class PickupMapperTests {
     public void testSelectAll(){
         Pagination pagination = new Pagination();
         String order = "recent";
-        pagination.setPage(3);
+        pagination.setPage(1);
         pagination.setTotal(pickupMapper.selectTotal());
         pagination.progress();
         List<PickupDTO> posts = pickupMapper.selectAll(pagination, order);
@@ -56,20 +55,6 @@ public class PickupMapperTests {
     }
 
     @Test
-    public void testSelectPlan() {
-        Long id = 1L;
-        Optional<PlanVO> plan = pickupMapper.selectPlan(id);
-        plan.ifPresent(p -> log.info("Plan: {}", p));
-    }
-
-    @Test
-    public void testSelectMember() {
-        Long id = 1L;
-        Optional<MemberVO> member = pickupMapper.selectMember(id);
-        member.ifPresent(m -> log.info("Member: {}", m));
-    }
-
-    @Test
     public void testSelectTotal() {
         int total = pickupMapper.selectTotal();
         log.info("Total Pickups: {}", total);
@@ -77,16 +62,17 @@ public class PickupMapperTests {
 
     @Test
     public void testUpdate() {
-        Long id = 3L; // 업데이트할 ID 설정
+        Long id = 10L; // 업데이트할 ID 설정
         Optional<PickupDTO> pickup = pickupMapper.selectById(id); // ID로 데이터 조회
 
         // 데이터를 조회하고 있을 경우 업데이트 진행
         pickup.ifPresent(dto -> {
             // 새로운 값으로 업데이트 (예: 요청 내용 수정)
             dto.setPickupRequestContent("업데이트 테스트");
-            dto.setPickupEnter("true");  // 예시: 픽업 여부 업데이트
+            dto.setPickupEnter("업데이트 출입2");  // 예시: 픽업 여부 업데이트
             dto.setPickupSchedule("2022-02-01");  // 픽업 일정을 2일 뒤로 설정
             dto.setPickupStatus("활동중");  // 상태 값을 변경 (예시로 '2' 설정)
+            dto.setDriverId(6L);
 
             // DTO를 VO로 변환 후 업데이트 실행
             pickupMapper.update(dto.toVO());

@@ -12,9 +12,10 @@ import org.springframework.stereotype.Component;
 public class DriverVO {
     @EqualsAndHashCode.Include
     private Long id;
-    private Long memberId;
     private String driverBank;
     private String driverBankAccount;
     private String createdDate;
     private String updatedDate;
+
+
 }

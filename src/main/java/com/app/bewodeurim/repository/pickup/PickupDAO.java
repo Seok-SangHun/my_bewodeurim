@@ -17,14 +17,6 @@ import java.util.Optional;
 public class PickupDAO {
     private final PickupMapper pickupMapper;
 
-    public Optional<PlanVO> findByPlanID(Long id){
-        return pickupMapper.selectPlan(id);
-    }
-
-    public Optional<MemberVO> findByMemberID(Long id){
-        return pickupMapper.selectMember(id);
-    }
-
     public void save(PickupVO pickupVO){
         pickupMapper.insert(pickupVO);
     }
