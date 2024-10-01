@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.app.bewodeurim.mapper.inquiry.InquiryMapper">
+
+    <!-- 새로운 문의를 DB에 저장하는 INSERT 쿼리 (날짜 포함) -->
+    <insert id="insertInquiry" parameterType="InquiryDTO">
+        INSERT INTO TBL_INQUIRY (ID, MEMBER_ID, INQUIRY_TITLE, INQUIRY_CONTENT, INQUIRY_TYPE, CREATED_DATE, UPDATED_DATE)
+        VALUES (SEQ_INQUIRY.NEXTVAL, #{memberId}, #{inquiryTitle}, #{inquiryContent}, #{inquiryType}, SYSDATE, SYSDATE)
+    </insert>
+
+    <!-- 특정 회원의 문의 목록을 페이징 처리하여 조회하는 SELECT 쿼리 -->
+<!--    <select id="selectByMemberId" resultType="InquiryDTO">-->
+<!--        SELECT * FROM (-->
+<!--        SELECT A.*, ROWNUM RNUM-->
+<!--        FROM (-->
+<!--        SELECT INQUIRY_TITLE, INQUIRY_CONTENT, CREATED_DATE-->
+<!--        FROM TBL_INQUIRY-->
+<!--        WHERE MEMBER_ID = #{memberId}-->
+<!--        ORDER BY ID DESC-->
+<!--        ) A-->
+<!--        <![CDATA[-->
+<!--        WHERE ROWNUM <= #{pagination.endRow}-->
+<!--        )-->
+<!--        WHERE RNUM >= #{pagination.startRow}-->
+<!--        ]]>-->
+<!--    </select>-->
+
+    <!-- 특정 회원의 문의 목록을 페이징 처리하여 조회하는 SELECT 쿼리 -->
+    <select id="selectByMemberId" resultType="InquiryDTO">
+        <![CDATA[
+        SELECT * FROM (
+            SELECT I.INQUIRY_TYPE, I.INQUIRY_TITLE, ROWNUM AS RNUM
+            FROM (
+                SELECT INQUIRY_TYPE, INQUIRY_TITLE
+                FROM TBL_INQUIRY
+                WHERE MEMBER_ID = #{memberId}
+                ORDER BY ID DESC
+            ) I
+            WHERE ROWNUM <= #{pagination.endRow}
+        )
+        WHERE RNUM >= #{pagination.startRow}
+        ]]>
+    </select>
+
+
+    <!-- 전체 문의 수를 계산하는 SELECT 쿼리 -->
+    <select id="selectTotal" resultType="int">
+        SELECT COUNT(*) FROM TBL_INQUIRY
+    </select>
+
+    <!-- 모든 문의 내역을 조회하는 SELECT 쿼리 -->
+    <select id="selectAllInquiries" resultType="com.app.bewodeurim.domain.inquiry.InquiryDTO">
+        SELECT ID, MEMBER_ID, INQUIRY_TITLE, INQUIRY_CONTENT, INQUIRY_TYPE, CREATED_DATE, UPDATED_DATE
+        FROM TBL_INQUIRY
+        ORDER BY CREATED_DATE DESC
+    </select>
+
+    <select id="getTotalByMemberId" resultType="int">
+        SELECT COUNT(*) FROM TBL_INQUIRY WHERE MEMBER_ID = #{memberId}
+    </select>
+</mapper>
