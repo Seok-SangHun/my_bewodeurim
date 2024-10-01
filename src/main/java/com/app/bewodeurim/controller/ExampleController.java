@@ -17,4 +17,16 @@ public class ExampleController {
     public String paymentSuccess() {
         return "payment/payment-success";
     }
-}
+
+    @GetMapping("/mobile-main")
+    public String mobileMain() {
+        return "mobile-home/mobile-home-body";
+    }
+
+    @GetMapping("/header")
+    public String header() { return "header-logout"; }
+
+    }
+
+
+

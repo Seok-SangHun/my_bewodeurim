@@ -1,6 +1,8 @@
 package com.app.bewodeurim.service.payment;
 
+import com.app.bewodeurim.domain.payment.PaymentDTO;
 import com.app.bewodeurim.domain.payment.PaymentVO;
+import com.app.bewodeurim.domain.pickup.Pagination;
 
 import java.util.List;
 
@@ -11,4 +13,7 @@ public interface PaymentService {
 
     List<PaymentVO> getAllPayments();
 
+    List<PaymentDTO> getList(Pagination pagination);
+
+    public int getTotal();
 }

@@ -1,7 +1,9 @@
 package com.app.bewodeurim.service.payment;
 
 
+import com.app.bewodeurim.domain.payment.PaymentDTO;
 import com.app.bewodeurim.domain.payment.PaymentVO;
+import com.app.bewodeurim.domain.pickup.Pagination;
 import com.app.bewodeurim.domain.plan.PlanVO;
 import com.app.bewodeurim.repository.payment.PaymentDAO;
 import com.app.bewodeurim.service.plan.PlanService;
@@ -47,5 +49,12 @@ public class PaymentServiceImpl implements PaymentService {
         return paymentDAO.findAllPayments();
     }
 
+    @Override
+    public List<PaymentDTO> getList(Pagination pagination){
+        PaymentDAO paymentDTO;
+        return paymentDAO.findAll(pagination);
+    }
 
+    @Override
+    public int getTotal(){ return paymentDAO.getTotal(); }
 }
